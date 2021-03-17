@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      get 'users/index'
-      get 'users/create'
-      get 'users/show'
-      get 'users/destroy'
-      get 'users/update'
+      get 'registrations/index'
+      post 'registrations/create'
+
+    
+      get 'users/show/:id', to: 'users#show'
+      delete 'users/destroy/:id', to: 'users#destroy'
+      patch 'users/update/:id', to: 'users#update'
     end
   end
   root 'homepage#index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get '/*path' => 'homepage#index'
 end
