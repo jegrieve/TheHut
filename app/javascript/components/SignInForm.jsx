@@ -6,14 +6,14 @@ const SignInForm = (props) => {
         password: "",
     });
 
-    useEffect(() => {
-        if (props.currentUser) {
-            setSignInUserInputs({
-                username: "",
-                password: "",
-            })
-        }
-    })
+    // useEffect(() => {
+    //     if (props.currentUser) {
+    //         setSignInUserInputs({
+    //             username: "",
+    //             password: "",
+    //         })
+    //     }
+    // })
 
     const bringUpSignInForm = () => {
         document.querySelector(".sign-in-form").classList.remove("d-none");
@@ -25,12 +25,10 @@ const SignInForm = (props) => {
     const submitSignInForm = (e) => {
         e.preventDefault();
         const body = {
-            email: createUserInputs["email"],
-            username: createUserInputs["username"],
-            password: createUserInputs["password"],
-            password_confirmation: createUserInputs["passwordConfirm"],
+            username: signInUserInputs["username"],
+            password: signInUserInputs["password"],
         }
-        const url = "api/v1/registrations/create"
+        const url = "api/v1/sessions/create"
         const token = document.querySelector('meta[name="csrf-token"]').content;
         fetch(url, {
         method: "POST",
@@ -47,8 +45,10 @@ const SignInForm = (props) => {
             throw new Error("Network response was not ok.");
         })
         .then(response => {
-            if (response.id) {
-                exitSignUpForm();
+            if (response === null) {
+                console.log('invalid user or pass')
+            } else if (response.id) {
+                exitSignInForm();
                 props.setCurrentUser(response)
             } else {
                 console.log(response)

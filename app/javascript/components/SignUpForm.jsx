@@ -8,16 +8,16 @@ const SignUpForm = (props) => {
         passwordConfirm: "",
     });
 
-    useEffect(() => {
-        if (props.currentUser) {
-            setCreateUserInputs({
-                email: "",
-                username: "",
-                password: "",
-                passwordConfirm: "",
-            })
-        }
-    })
+    // useEffect(() => {
+    //     if (props.currentUser) {
+    //         setCreateUserInputs({
+    //             email: "",
+    //             username: "",
+    //             password: "",
+    //             passwordConfirm: "",
+    //         })
+    //     }
+    // })
 
     const bringUpSignUpForm = () => {
         document.querySelector(".sign-up-form").classList.remove("d-none");
