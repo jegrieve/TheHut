@@ -4,7 +4,9 @@ Rails.application.routes.draw do
       get 'registrations/index'
       post 'registrations/create'
 
-    
+      post 'sessions/create'
+      delete 'sessions/destroy/:id', to: 'sessions#destroy'
+
       get 'users/show/:id', to: 'users#show'
       delete 'users/destroy/:id', to: 'users#destroy'
       patch 'users/update/:id', to: 'users#update'
