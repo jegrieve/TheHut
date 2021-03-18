@@ -21,6 +21,7 @@ const SignUpForm = (props) => {
 
     const bringUpSignUpForm = () => {
         document.querySelector(".sign-up-form").classList.remove("d-none");
+        console.log(props.currentUser)
     }
     const exitSignUpForm = () => {
         document.querySelector(".sign-up-form").classList.add("d-none");

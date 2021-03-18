@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       get 'registrations/index'
       post 'registrations/create'
 
+      get 'sessions/index'
       post 'sessions/create'
       delete 'sessions/destroy/:id', to: 'sessions#destroy'
 

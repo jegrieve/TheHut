@@ -20,6 +20,19 @@ const Routes = () => {
     console.log(`current user is ${currentUser.username}`)
   }
 
+  useEffect(() => {
+    const url = "/api/v1/sessions/index";
+    fetch(url)
+      .then(response => {
+        if (response.ok && response) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then(response => setCurrentUser(response))
+      .catch((error) => console.log(error));
+  }, [])
+
   return (
     <Router>
         <Navbar setCurrentUser = {setCurrentUser} currentUser = {currentUser} />
