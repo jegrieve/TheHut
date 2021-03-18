@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "./Navbar"
 import PostFeed from "./PostFeed"
 
 const Homepage = () => (

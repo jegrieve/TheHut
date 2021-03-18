@@ -9,7 +9,7 @@ const Routes = () => {
 
   return (
     <Router>
-      <Navbar />
+        <Navbar />
       <Switch>
         <Route path="/" exact component={Homepage} />
       </Switch>
