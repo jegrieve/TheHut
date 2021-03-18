@@ -4,7 +4,6 @@ import PostFeed from "./PostFeed"
 
 const Homepage = () => (
   <div>
-      <Navbar />
       <div className = "container">
         <div className = "row">
           <div className = "col-md-12 col-lg-9">
