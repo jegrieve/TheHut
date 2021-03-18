@@ -1,9 +1,10 @@
 import React from "react";
 
 const UserOptions = (props) => {
+
     const signOutUser = () => {
             const currentUserId = props.currentUser.id
-            const url = `/api/v1/destroy/${currentUserId}`;
+            const url = `/api/v1/sessions/destroy/${currentUserId}`;
             const token = document.querySelector('meta[name="csrf-token"]').content;
         
             fetch(url, {
@@ -19,7 +20,7 @@ const UserOptions = (props) => {
                 }
                 throw new Error("Network response was not ok.");
               })
-              .then((response) => console.log(response))
+              .then((response) => props.setCurrentUser({}))
               .catch(error => console.log(error.message));
     }
 

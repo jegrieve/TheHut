@@ -30,7 +30,7 @@ const Routes = () => {
         throw new Error("Network response was not ok.");
       })
       .then(response => setCurrentUser(response))
-      .catch((error) => console.log(error));
+      .catch(() => console.log('no user'));
   }, [])
 
   return (

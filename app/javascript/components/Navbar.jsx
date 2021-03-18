@@ -10,7 +10,7 @@ const Navbar = (props) => {
             <SignUpForm setCurrentUser = {props.setCurrentUser} currentUser = {props.currentUser} />
             <SignInForm setCurrentUser = {props.setCurrentUser} currentUser = {props.currentUser} />
             {/* if user is signed in*/}
-            <UserOptions currentUser = {props.currentUser}/>
+            <UserOptions setCurrentUser = {props.setCurrentUser} currentUser = {props.currentUser}/>
         </div>
 
     )
