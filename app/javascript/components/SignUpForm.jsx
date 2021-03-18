@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 
-const SignUpForm = () => {
+const SignUpForm = (props) => {
     const [createUserInputs, setCreateUserInputs] = useState({
         email: "",
         username: "",
@@ -8,8 +8,22 @@ const SignUpForm = () => {
         passwordConfirm: "",
     });
 
+    useEffect(() => {
+        if (props.currentUser) {
+            setCreateUserInputs({
+                email: "",
+                username: "",
+                password: "",
+                passwordConfirm: "",
+            })
+        }
+    })
+
     const bringUpSignUpForm = () => {
         document.querySelector(".sign-up-form").classList.remove("d-none");
+    }
+    const exitSignUpForm = () => {
+        document.querySelector(".sign-up-form").classList.add("d-none");
     }
 
     const submitSignUpForm = (e) => {
@@ -36,7 +50,14 @@ const SignUpForm = () => {
             }
             throw new Error("Network response was not ok.");
         })
-        .then(response => console.log(response))
+        .then(response => {
+            if (response.id) {
+                exitSignUpForm();
+                props.setCurrentUser(response)
+            } else {
+                console.log(response)
+            }
+        })
         .catch(error => console.log(error.message))
     }
 
