@@ -15,14 +15,14 @@ const SignInForm = (props) => {
         }
     })
 
-    const bringUpSignUpForm = () => {
-        document.querySelector(".sign-up-form").classList.remove("d-none");
+    const bringUpSignInForm = () => {
+        document.querySelector(".sign-in-form").classList.remove("d-none");
     }
-    const exitSignUpForm = () => {
-        document.querySelector(".sign-up-form").classList.add("d-none");
+    const exitSignInForm = () => {
+        document.querySelector(".sign-in-form").classList.add("d-none");
     }
 
-    const submitSignUpForm = (e) => {
+    const submitSignInForm = (e) => {
         e.preventDefault();
         const body = {
             email: createUserInputs["email"],
@@ -57,30 +57,18 @@ const SignInForm = (props) => {
         .catch(error => console.log(error.message))
     }
 
-    const enterSignUpInputs = (e) => {
+    const enterSignInInputs = (e) => {
         switch (e.target.id) {
-          case 'user-email':
-            setCreateUserInputs(ps => ({
-                ...ps,
-                email: e.target.value,
-            }));
-            break;
-          case 'user-username':
-            setCreateUserInputs(ps => ({
+          case 'sign-in-user-username':
+            setSignInUserInputs(ps => ({
                 ...ps,
                 username: e.target.value,
             }));
             break;
-          case 'user-password':
-            setCreateUserInputs(ps => ({
+          case 'sign-in-user-password':
+            setSignInUserInputs(ps => ({
                 ...ps,
                 password: e.target.value,
-            }));
-            break;
-        case 'user-password-confirmation':
-            setCreateUserInputs(ps => ({
-                ...ps,
-                passwordConfirm: e.target.value,
             }));
             break;
           default:
@@ -90,21 +78,15 @@ const SignInForm = (props) => {
 
     return (
         <div>
-            <button onClick = {bringUpSignUpForm}>Sign Up</button>
-            <form className = "sign-up-form d-none">
-                <label>Email:
-                <input id="user-email" type="email" onChange = {enterSignUpInputs} value = {createUserInputs["email"]} />
-                </label>
+            <button onClick = {bringUpSignInForm}>Log In</button>
+            <form className = "sign-in-form d-none">
                 <label>Username:
-                <input id="user-username" type="text" onChange = {enterSignUpInputs} value = {createUserInputs["username"]}/>
+                <input id="sign-in-user-username" type="text" onChange = {enterSignInInputs} value = {signInUserInputs["username"]}/>
                 </label>
                 <label>Password:
-                <input id="user-password" type="password" onChange = {enterSignUpInputs} value = {createUserInputs["password"]}/>
+                <input id="sign-in-user-password" type="password" onChange = {enterSignInInputs} value = {signInUserInputs["password"]}/>
                 </label>
-                <label>Password Confirmation:
-                <input id="user-password-confirmation" type="password" onChange = {enterSignUpInputs} value = {createUserInputs["passwordConfirm"]}/>
-                </label>
-                <button onClick = {submitSignUpForm}>Create Account</button>
+                <button onClick = {submitSignInForm}>Log In</button>
             </form>
         </div>
     )
