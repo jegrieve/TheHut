@@ -3,7 +3,7 @@
     height: 80px;
 }
 
-#sign-up-form {
+.sign-up-form {
     border: 1px solid black;
     position: fixed;
     width: 500px;
@@ -12,5 +12,6 @@
     left: 50%;
     margin-top: -100px; 
     margin-left: -250px; 
-    background-color: black;
+    z-index: 1;
+    background-color: grey;
 }
