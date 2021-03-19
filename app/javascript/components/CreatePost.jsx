@@ -1,9 +1,18 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
-const CreatePost = () => (
-  <div>
-      CreatePostForm
-  </div>
-);
+const CreatePost = () => {
+    const [postContent, setPostContent] = useState({})
+
+    return (
+        <div>
+            <form>
+                <input></input>
+                <input></input>
+                <input></input>
+            </form>
+        CreatePostForm
+        </div>
+    )
+};
 
 export default CreatePost;
