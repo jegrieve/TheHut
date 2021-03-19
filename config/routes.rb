@@ -11,6 +11,9 @@ Rails.application.routes.draw do
       get 'users/show/:id', to: 'users#show'
       delete 'users/destroy/:id', to: 'users#destroy'
       patch 'users/update/:id', to: 'users#update'
+
+      post "posts/index", to: 'posts#create'
+      get "posts/create", to: "posts#index"
     end
   end
   root 'homepage#index'
