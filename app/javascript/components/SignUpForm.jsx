@@ -8,20 +8,8 @@ const SignUpForm = (props) => {
         passwordConfirm: "",
     });
 
-    // useEffect(() => {
-    //     if (props.currentUser) {
-    //         setCreateUserInputs({
-    //             email: "",
-    //             username: "",
-    //             password: "",
-    //             passwordConfirm: "",
-    //         })
-    //     }
-    // })
-
     const bringUpSignUpForm = () => {
         document.querySelector(".sign-up-form").classList.remove("d-none");
-        console.log(props.currentUser)
     }
     const exitSignUpForm = () => {
         document.querySelector(".sign-up-form").classList.add("d-none");
@@ -55,9 +43,7 @@ const SignUpForm = (props) => {
             if (response.id) {
                 exitSignUpForm();
                 props.setCurrentUser(response)
-            } else {
-                console.log(response)
-            }
+            };
         })
         .catch(error => console.log(error.message))
     }
@@ -96,21 +82,25 @@ const SignUpForm = (props) => {
     return (
         <div>
             <button onClick = {bringUpSignUpForm}>Sign Up</button>
-            <form className = "sign-up-form d-none">
-                <label>Email:
-                <input id="user-email" type="email" onChange = {enterSignUpInputs} value = {createUserInputs["email"]} />
-                </label>
-                <label>Username:
-                <input id="user-username" type="text" onChange = {enterSignUpInputs} value = {createUserInputs["username"]}/>
-                </label>
-                <label>Password:
-                <input id="user-password" type="password" onChange = {enterSignUpInputs} value = {createUserInputs["password"]}/>
-                </label>
-                <label>Password Confirmation:
-                <input id="user-password-confirmation" type="password" onChange = {enterSignUpInputs} value = {createUserInputs["passwordConfirm"]}/>
-                </label>
+            <div className = "sign-up-form d-none">
+                <form >
+                    <label>Email:
+                    <input id="user-email" type="email" onChange = {enterSignUpInputs} value = {createUserInputs["email"]} />
+                    </label>
+                    <label>Username:
+                    <input id="user-username" type="text" onChange = {enterSignUpInputs} value = {createUserInputs["username"]}/>
+                    </label>
+                    <label>Password:
+                    <input id="user-password" type="password" onChange = {enterSignUpInputs} value = {createUserInputs["password"]}/>
+                    </label>
+                    <label>Password Confirmation:
+                    <input id="user-password-confirmation" type="password" onChange = {enterSignUpInputs} value = {createUserInputs["passwordConfirm"]}/>
+                    </label>
                 <button onClick = {submitSignUpForm}>Create Account</button>
-            </form>
+                </form>
+                <button onClick = {exitSignUpForm}>Exit</button>
+            </div>
+
         </div>
     )
 }

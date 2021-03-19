@@ -6,15 +6,6 @@ const SignInForm = (props) => {
         password: "",
     });
 
-    // useEffect(() => {
-    //     if (props.currentUser) {
-    //         setSignInUserInputs({
-    //             username: "",
-    //             password: "",
-    //         })
-    //     }
-    // })
-
     const bringUpSignInForm = () => {
         document.querySelector(".sign-in-form").classList.remove("d-none");
     }
@@ -50,9 +41,7 @@ const SignInForm = (props) => {
             } else if (response.id) {
                 exitSignInForm();
                 props.setCurrentUser(response)
-            } else {
-                console.log(response)
-            }
+            };
         })
         .catch(error => console.log(error.message))
     }
@@ -79,15 +68,19 @@ const SignInForm = (props) => {
     return (
         <div>
             <button onClick = {bringUpSignInForm}>Log In</button>
-            <form className = "sign-in-form d-none">
-                <label>Username:
-                <input id="sign-in-user-username" type="text" onChange = {enterSignInInputs} value = {signInUserInputs["username"]}/>
-                </label>
-                <label>Password:
-                <input id="sign-in-user-password" type="password" onChange = {enterSignInInputs} value = {signInUserInputs["password"]}/>
-                </label>
-                <button onClick = {submitSignInForm}>Log In</button>
-            </form>
+            <div className = "sign-in-form d-none">
+                <form>
+                    <label>Username:
+                    <input id="sign-in-user-username" type="text" onChange = {enterSignInInputs} value = {signInUserInputs["username"]}/>
+                    </label>
+                    <label>Password:
+                    <input id="sign-in-user-password" type="password" onChange = {enterSignInInputs} value = {signInUserInputs["password"]}/>
+                    </label>
+                    <button onClick = {submitSignInForm}>Log In</button>
+                </form>
+                <button onClick = {exitSignInForm}>Exit</button>
+            </div>
+
         </div>
     )
 }

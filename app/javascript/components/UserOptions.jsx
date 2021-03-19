@@ -1,7 +1,6 @@
 import React from "react";
 
 const UserOptions = (props) => {
-
     const signOutUser = () => {
             const currentUserId = props.currentUser.id
             const url = `/api/v1/sessions/destroy/${currentUserId}`;
@@ -20,7 +19,7 @@ const UserOptions = (props) => {
                 }
                 throw new Error("Network response was not ok.");
               })
-              .then((response) => props.setCurrentUser({}))
+              .then((response) => props.setCurrentUser(null))
               .catch(error => console.log(error.message));
     }
 
