@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Homepage from "../components/Homepage";
 import Navbar from "../components/Navbar";
+import CreatePost from "../components/CreatePost";
 
 const Routes = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -28,6 +29,7 @@ const Routes = () => {
         <Navbar setCurrentUser = {setCurrentUser} currentUser = {currentUser} />
       <Switch>
         <Route path="/" exact component={Homepage} />
+        <Route path="/create-post" exact component={CreatePost} />
       </Switch>
     </Router>
   );
