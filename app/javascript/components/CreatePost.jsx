@@ -37,8 +37,8 @@ const CreatePost = () => {
         "X-CSRF-Token": token, 
       },
     })
-    .catch(error => console.log(error.message))
-    }
+.then(console.log("hello"))}
+
 
     return (
         <div>

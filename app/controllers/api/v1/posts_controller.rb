@@ -6,7 +6,6 @@ class Api::V1::PostsController < ApplicationController
     def create
         user = User.find_by(id: session[:user_id])
         @post = user.posts.create(post_params)
-        render json: @post
     end
     private
 
