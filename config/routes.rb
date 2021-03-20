@@ -12,8 +12,8 @@ Rails.application.routes.draw do
       delete 'users/destroy/:id', to: 'users#destroy'
       patch 'users/update/:id', to: 'users#update'
 
-      post "posts/index", to: 'posts#create'
-      get "posts/create", to: "posts#index"
+      get "posts/index", to: "posts#index"
+      post "posts/create", to: 'posts#create'
     end
   end
   root 'homepage#index'

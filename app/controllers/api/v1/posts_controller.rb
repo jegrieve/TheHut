@@ -4,7 +4,9 @@ class Api::V1::PostsController < ApplicationController
         render json: @posts
     end
     def create
-        @post = Post.create(post_params)
+        user = User.find_by(id: session[:user_id])
+        @post = user.posts.create(post_params)
+        render json: @post
     end
     private
 
