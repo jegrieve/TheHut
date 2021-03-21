@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  default_url_options :host => "localhost:3000"
+  #change before pushing to production
   namespace :api do
     namespace :v1 do
       get 'registrations/index'

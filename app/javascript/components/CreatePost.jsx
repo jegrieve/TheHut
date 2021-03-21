@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 
-const CreatePost = () => {
+const CreatePost = (props) => {
     const [postContent, setPostContent] = useState({
         title: '',
         body: '',
@@ -37,7 +37,38 @@ const CreatePost = () => {
         "X-CSRF-Token": token, 
       },
     })
-.then(console.log("hello"))}
+    .then(renderPostData)
+}
+
+    const renderPostData = () => {
+        //so you post data
+        //then you request it back and display it
+        //if its an error then you can update state
+        //and it will say like error: post could not be made
+        //the a link to return home
+        //or after its created you create a new route
+        //with this + the comment stuff etc.
+        //probably do this instead.
+
+        //so we post data
+        //then we link to the new route which has
+        //the post + place for comments.
+                const {
+                  match: {
+                    params: { id }
+                  }
+                } = this.props;
+                const url = `/api/v1/show/${id}`;
+                fetch(url)
+                  .then(response => {
+                    if (response.ok) {
+                      return response.json();
+                    }
+                    throw new Error("Network response was not ok.");
+                  })
+                  .then(response => this.setState({ recipe: response }))
+                  .catch(() => this.props.history.push("/recipes"));
+    }
 
 
     return (

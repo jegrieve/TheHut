@@ -29,7 +29,16 @@ const Routes = () => {
         <Navbar setCurrentUser = {setCurrentUser} currentUser = {currentUser} />
       <Switch>
         <Route path="/" exact component={Homepage} />
-        <Route path="/create-post" exact component={CreatePost} />
+        <Route
+          exact
+          path="/create-post"
+          render={(props) => (
+            <CreatePost
+              {...props}
+              currentUser={currentUser}
+            />
+          )}
+        />
       </Switch>
     </Router>
   );
