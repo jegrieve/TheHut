@@ -11,11 +11,17 @@ const PostFeed = () => {
             }
             throw new Error("Network response was not ok.");
           })
-          .then(response => console.log(response))
+          .then(response => {
+              let postfeed = document.getElementById("postfeed")
+              let image = document.createElement("IMG")
+              image.src = response[4].image.url
+              console.log(image)
+              postfeed.appendChild(image)
+          })
           .catch(() => console.log("error"));
     }
     return (
-        <div>
+        <div id = "postfeed">
             <button onClick = {getPosts}>Click for posts</button>
         {/* {placeholderPosts.map((el,i) => {
             return (

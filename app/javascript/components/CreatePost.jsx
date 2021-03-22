@@ -37,7 +37,7 @@ const CreatePost = (props) => {
         "X-CSRF-Token": token, 
       },
     })
-    .then(renderPostData)
+    // .then(renderPostData)
 }
 
     const renderPostData = () => {
@@ -53,6 +53,13 @@ const CreatePost = (props) => {
         //so we post data
         //then we link to the new route which has
         //the post + place for comments.
+
+        //have a button to click that will let you
+        //post an image, otherwise send json
+        //if you want to post an image send it
+        //through formdata
+        //that way we can have a null image
+
                 const {
                   match: {
                     params: { id }
