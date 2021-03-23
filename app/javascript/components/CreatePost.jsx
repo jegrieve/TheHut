@@ -60,6 +60,18 @@ const CreatePost = (props) => {
         //through formdata
         //that way we can have a null image
 
+        //tonight
+        //------
+        //work on postfeed tonight
+        //get it to display most recent 5 posts
+        //option to load more undeer it
+        //tommorow work on seeing individual posts
+        //next 3 days
+        //------
+        //finally work on comments
+        //then work on css/refactor
+        //at end possibly add comunity options(subreddit)
+
                 const {
                   match: {
                     params: { id }
