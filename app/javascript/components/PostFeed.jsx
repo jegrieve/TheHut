@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
+import FeedPost from "./FeedPost"
 
 const PostFeed = () => {
-    // let placeholderPosts = ["post1","post2","post3","post4","post5"]
+    const [loadedFeedPosts, setLoadedFeedPosts] = useState(null)
     const getPosts = () => {
         const url = "/api/v1/posts/index";
         fetch(url)
@@ -12,27 +13,32 @@ const PostFeed = () => {
             throw new Error("Network response was not ok.");
           })
           .then(response => {
-              let postfeed = document.getElementById("postfeed")
-              let image = document.createElement("IMG")
-              image.src = response[4].image.url
-              console.log(image)
-              postfeed.appendChild(image)
+            setLoadedFeedPosts(response)
           })
           .catch(() => console.log("error"));
     }
-    return (
-        <div id = "postfeed">
-            <button onClick = {getPosts}>Click for posts</button>
-        {/* {placeholderPosts.map((el,i) => {
+     if (loadedFeedPosts) {
+        return (
+            <div id = "postfeed">
+            {loadedFeedPosts.map((el,i) => {
             return (
                 <div className = "post" key = {i}>
-                    {el}
+                    <FeedPost id ={el.id} title ={el.title} body ={el.body} img ={el.image} />
                 </div>
             )
-        })} */}
-        </div>
-    )
-}
+            })}
+            </div>
+        )}
+        else {
+            return (
+                <div id = "postfeed">
+                    <button onClick = {getPosts}>Get Posts</button>
+                    No posts to show.
+                </div>
+            )
+        }
+     }
+
 
 
 

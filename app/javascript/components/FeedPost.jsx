@@ -1,18 +1,28 @@
 import React from "react";
 
-const FeedPost = () => (
-  <div>
-      <div className = "container">
-        <div className = "row">
-          <div className = "col-md-12 col-lg-9">
-            <PostFeed />
-          </div>
-          <div className = "col-3 d-none d-lg-block">
-            fsadfads
-          </div>
-        </div>
-      </div>
-  </div>
-);
+const FeedPost = (props) => { 
+    if (props.img) {
+        return (
+            <div className = "feed-post">
+                <div>{props.id}</div>
+                <div>{props.title}</div>
+                <div>{props.body}</div>
+                <img src = {props.img.url} width = {30} height = {30} />
+            </div>
+          );
+    } else {
+        return (
+            <div className = "feed-post">
+                <div>{props.id}</div>
+                <div>{props.title}</div>
+                <div>{props.body}</div>
+            </div>
+        )
+    }
+
+}
+
+    
+
 
 export default FeedPost;
