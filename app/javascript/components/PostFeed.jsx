@@ -4,10 +4,12 @@ import FeedPost from "./FeedPost"
 const PostFeed = () => {
     const [loadedFeedPosts, setLoadedFeedPosts] = useState([]);
     const [cachedPosts, setCachedPosts] = useState([]);
-    const [fetchedPosts, setFetchedPosts] = useState({offset: -5});
+    const [fetchedPosts, setFetchedPosts] = useState({offset: 0});
     
     useEffect(() => {
-        setFetchedPosts({offset: fetchedPosts['offset'] + 5})
+        if (loadedFeedPosts.length > 0) {
+            setFetchedPosts({offset: fetchedPosts['offset'] + 5})
+        } 
     }, [loadedFeedPosts])
 
     useEffect(() => {
@@ -15,6 +17,10 @@ const PostFeed = () => {
             [...prevState].concat(loadedFeedPosts)
         ))
     }, [fetchedPosts])
+
+    useEffect(() => {
+        getPosts();
+    }, [])
 
     const getPosts = () => {
         const limit = 5;
@@ -31,6 +37,7 @@ const PostFeed = () => {
           })
           .catch(() => console.log("error"));
     }
+    
      if (cachedPosts.length > 0) {
         return (
             <div id = "postfeed">
