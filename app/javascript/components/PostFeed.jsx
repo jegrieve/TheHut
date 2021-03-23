@@ -1,10 +1,24 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import FeedPost from "./FeedPost"
 
 const PostFeed = () => {
-    const [loadedFeedPosts, setLoadedFeedPosts] = useState(null)
+    const [loadedFeedPosts, setLoadedFeedPosts] = useState([]);
+    const [cachedPosts, setCachedPosts] = useState([]);
+    const [fetchedPosts, setFetchedPosts] = useState({offset: -5});
+    
+    useEffect(() => {
+        setFetchedPosts({offset: fetchedPosts['offset'] + 5})
+    }, [loadedFeedPosts])
+
+    useEffect(() => {
+        setCachedPosts((prevState) => (
+            [...prevState].concat(loadedFeedPosts)
+        ))
+    }, [fetchedPosts])
+
     const getPosts = () => {
-        const url = "/api/v1/posts/index";
+        const limit = 5;
+        const url = `/api/v1/posts/index?limit=${limit}&offset=${fetchedPosts['offset']}`;
         fetch(url)
           .then(response => {
             if (response.ok) {
@@ -17,16 +31,17 @@ const PostFeed = () => {
           })
           .catch(() => console.log("error"));
     }
-     if (loadedFeedPosts) {
+     if (cachedPosts.length > 0) {
         return (
             <div id = "postfeed">
-            {loadedFeedPosts.map((el,i) => {
+            {cachedPosts.map((el,i) => {
             return (
                 <div className = "post" key = {i}>
                     <FeedPost id ={el.id} title ={el.title} body ={el.body} img ={el.image} />
                 </div>
             )
             })}
+            <button onClick = {getPosts}>Load more</button>
             </div>
         )}
         else {

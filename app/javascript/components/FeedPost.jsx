@@ -19,7 +19,6 @@ const FeedPost = (props) => {
             </div>
         )
     }
-
 }
 
     

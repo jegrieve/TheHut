@@ -1,6 +1,6 @@
 class Api::V1::PostsController < ApplicationController
     def index
-        @posts = Post.all
+        @posts = Post.limit(params[:limit]).offset(params[:offset])
         render json: @posts
     end
     def create
