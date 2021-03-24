@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import FeedPost from "./FeedPost"
+import { NavLink } from "react-router-dom";
 
 const PostFeed = () => {
     const [loadedFeedPosts, setLoadedFeedPosts] = useState([]);
@@ -44,6 +45,7 @@ const PostFeed = () => {
             {cachedPosts.map((el,i) => {
             return (
                 <div className = "post" key = {i}>
+                    <NavLink to={`/post/${el.id}`}>{el.id}</NavLink>
                     <FeedPost id ={el.id} title ={el.title} body ={el.body} img ={el.image} />
                 </div>
             )

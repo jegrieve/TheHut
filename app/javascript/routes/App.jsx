@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Homepage from "../components/Homepage";
 import Navbar from "../components/Navbar";
 import CreatePost from "../components/CreatePost";
+import ShowPost from "../components/ShowPost";
 
 const Routes = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -39,6 +40,7 @@ const Routes = () => {
             />
           )}
         />
+        <Route exact path={"/post/:id"} component = {ShowPost} />
       </Switch>
     </Router>
   );
