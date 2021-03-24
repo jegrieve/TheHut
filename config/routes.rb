@@ -22,6 +22,6 @@ Rails.application.routes.draw do
   root 'homepage#index'
   get "/create-post" => 'homepage#index'
   get "/" => 'homepage#index'
-
+  get '/post/*path' => 'homepage#index'
   # get '/*path' => 'homepage#index'
 end

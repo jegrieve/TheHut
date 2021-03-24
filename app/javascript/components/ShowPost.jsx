@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
-
+import ShowPostData from "./ShowPostData";
+import Loader from "react-loader-spinner";
 
 const ShowPost = (props) => {
     const [postData, setPostData] = useState(null)
@@ -19,16 +20,15 @@ const ShowPost = (props) => {
       .catch(() => console.log("error"));
   }, [])
 
-  if (postData) {
+  if(postData) {
+    return ( 
+        <div>
+            <ShowPostData data = {postData} />
+        </div>)
+  } else {
       return (
           <div>
-              {postData.title}
-          </div>
-      )
-  } else {
-      return(
-          <div>
-              No post here :(
+             <Loader type="Puff" color="#00BFFF" height={80} width={80} />
           </div>
       )
   }
