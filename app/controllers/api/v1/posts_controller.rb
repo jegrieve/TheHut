@@ -6,7 +6,7 @@ class Api::V1::PostsController < ApplicationController
 
     def show
         @post = Post.find(params[:id])
-        if post
+        if @post
             render json: @post
         else
             render json: @post.errors
