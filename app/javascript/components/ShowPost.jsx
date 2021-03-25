@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import ShowPostData from "./ShowPostData";
 import Loader from "react-loader-spinner";
+import CreateComment from "./CreateComment"
+import CommentFeed from "./CommentFeed"
 
 const ShowPost = (props) => {
     const [postData, setPostData] = useState(null)
@@ -24,7 +26,17 @@ const ShowPost = (props) => {
     return ( 
         <div>
             <ShowPostData data = {postData} />
+            <CreateComment />
+            <CommentFeed />
+            {/* <CommentsFeed /> render:*/}
+            {/*post hasmny comments */}
+            {/*user hasmny coments */}
+            {/*comment belongsto post/user */}
+            {/*when creating comment, use user_id */}
+            {/*so only show createcomment when user_id */}
+            {/* */}
         </div>)
+        
   } else {
       return (
           <div>

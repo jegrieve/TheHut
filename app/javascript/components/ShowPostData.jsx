@@ -24,7 +24,6 @@ const ShowPostData = (props) => {
             <div>
                 {props.data.title}
             </div>
-
             <div>
                 {props.data.body}
             </div>
