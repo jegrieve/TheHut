@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 
 const CreateComment = (props) => { 
-    const [commentData, setCommentData] = useState("")
+    const [commentData, setCommentData] = useState("");
     //props.params = post id
     const submitCommentData = (e) => {
         e.preventDefault();

@@ -5,7 +5,7 @@ import CreateComment from "./CreateComment"
 import CommentFeed from "./CommentFeed"
 
 const ShowPost = (props) => {
-    const [postData, setPostData] = useState(null)
+    const [postData, setPostData] = useState(null);
 
   useEffect(() => {
     const id = props.match.params.id
@@ -27,14 +27,7 @@ const ShowPost = (props) => {
         <div>
             <ShowPostData data = {postData} />
             <CreateComment params = {props.match.params.id} />
-            <CommentFeed />
-            {/* <CommentsFeed /> render:*/}
-            {/*post hasmny comments */}
-            {/*user hasmny coments */}
-            {/*comment belongsto post/user */}
-            {/*when creating comment, use user_id */}
-            {/*so only show createcomment when user_id */}
-            {/* */}
+            <CommentFeed params = {props.match.params.id}  />
         </div>)
         
   } else {

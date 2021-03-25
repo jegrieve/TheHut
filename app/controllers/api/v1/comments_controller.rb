@@ -1,6 +1,6 @@
 class Api::V1::CommentsController < ApplicationController
     def index
-        @comments = Post.find(params[:id]).comments
+        @comments = Post.find(params[:id]).comments.limit(params[:limit]).offset(params[:offset])
         if @comments
             render json: @comments
         else
