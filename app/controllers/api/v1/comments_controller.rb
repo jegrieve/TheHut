@@ -10,9 +10,16 @@ class Api::V1::CommentsController < ApplicationController
 
     def create
         user = User.find_by(id: session[:user_id])
-        @comment = user.posts.create(post_params)
+        @comment = user.comments.new(comment_params)
         @comment.post_id = params[:id]
+        @comment.save
 
         render json: @comment
+    end
+
+    private
+
+    def comment_params
+        params.permit(:body)
     end
 end

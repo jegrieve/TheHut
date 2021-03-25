@@ -26,7 +26,7 @@ const ShowPost = (props) => {
     return ( 
         <div>
             <ShowPostData data = {postData} />
-            <CreateComment />
+            <CreateComment params = {props.match.params.id} />
             <CommentFeed />
             {/* <CommentsFeed /> render:*/}
             {/*post hasmny comments */}

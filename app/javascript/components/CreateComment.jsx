@@ -1,10 +1,45 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
 const CreateComment = (props) => { 
-    
-    return(
+    const [commentData, setCommentData] = useState("")
+    //props.params = post id
+    const submitCommentData = (e) => {
+        e.preventDefault();
+        const body = {
+            body: commentData,
+        }
+        const url = `/api/v1/comments/create/${props.params}`;
+        const token = document.querySelector('meta[name="csrf-token"]').content;
+        fetch(url, {
+        method: "POST",
+        headers: {
+        "X-CSRF-Token": token, 
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.json()
+            }
+            throw new Error("Network response was not ok.");
+        })
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => console.log(error.message))
+    }
+
+    const changeCommentData = (e) => {
+        setCommentData(e.target.value)
+    }
+
+    return (
         <div>
-            Create comment here
+            <form onSubmit = {submitCommentData}>
+                <input onChange = {changeCommentData} type = "text" value = {commentData} />
+                <button>Post</button>
+            </form>
         </div>
     )
 }
