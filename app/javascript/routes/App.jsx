@@ -8,7 +8,7 @@ import ShowUser from "../components/ShowUser";
 
 const Routes = () => {
   const [currentUser, setCurrentUser] = useState(null);
-  
+
   if (currentUser) {
     console.log(`current user is ${currentUser.username}`)
   }
