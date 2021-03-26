@@ -12,6 +12,7 @@ const Navbar = (props) => {
             ? <div>
                 <UserOptions setCurrentUser = {props.setCurrentUser} currentUser = {props.currentUser}/>
                 <NavLink to="/create-post">Create Post (+)</NavLink>
+                <NavLink to={`/user/${props.currentUser.id}`}>Current User</NavLink>
               </div>
             : <div>
             <SignUpForm setCurrentUser = {props.setCurrentUser} currentUser = {props.currentUser} />

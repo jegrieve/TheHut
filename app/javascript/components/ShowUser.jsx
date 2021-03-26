@@ -1,0 +1,40 @@
+import React, {useState, useEffect} from "react";
+import Loader from "react-loader-spinner";
+
+const ShowUser = (props) => {
+    const [userData, setUserData] = useState(null);
+
+    useEffect(() => {
+        const id = props.match.params.id
+        const url = `/api/v1/users/show/${id}`;
+    
+        fetch(url)
+          .then(response => {
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error("Network response was not ok.");
+          })
+          .then(response => setUserData(response))
+          .catch(() => console.log("error"));
+      }, []);
+    
+      if(userData) {
+        return (
+            <div>
+                {userData.username}
+            </div>
+        )
+      } else {
+        return (
+            <div>
+               <Loader type="Puff" color="#00BFFF" height={80} width={80} />
+            </div>
+        )
+      }
+
+}
+
+
+
+export default ShowUser;
