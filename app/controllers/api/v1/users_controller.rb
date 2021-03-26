@@ -8,7 +8,7 @@ class Api::V1::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     if @user
-      render :json => @user.to_json( :include => [:posts] )
+        render :json => @user.to_json( :include => [:posts, :comments])
     else
         render json: @user.errors
     end

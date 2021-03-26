@@ -16,7 +16,7 @@ const ShowUser = (props) => {
             throw new Error("Network response was not ok.");
           })
           .then(response => {
-            console.log(response.posts[response.posts.length - 1])
+            console.log(response)
             setUserData(response)
         })
           .catch(() => console.log("error"));
