@@ -24,20 +24,26 @@ const ShowUser = (props) => {
         })
           .catch(() => console.log("error"));
       }, []);
-    
+
       if(userData) {
         return (
         <div>
             <div>
                 {userData.username}
             </div>
-            <div>
+            <div className = "container-fluid">
+             <div className = "row">
+                <div className = "col-6">
                 <UserPosts posts = {userData.posts}/>
+                </div>
+
+                <div className = "col-6">
+                <UserComments comments = {userData.comments}/>
+                </div>
+             </div>
+
             </div>
 
-            <div>
-                <UserComments comments = {userData.coments}/>
-            </div>
         </div>
         )
       } else {

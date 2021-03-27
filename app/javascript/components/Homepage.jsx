@@ -1,5 +1,6 @@
 import React from "react";
 import PostFeed from "./PostFeed"
+import BoardFeed from "./BoardFeed"
 
 const Homepage = () => (
   <div>
@@ -9,7 +10,7 @@ const Homepage = () => (
             <PostFeed />
           </div>
           <div className = "col-3 d-none d-lg-block">
-            fsadfads
+            <BoardFeed />
           </div>
         </div>
       </div>
