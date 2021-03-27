@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from "react";
 import Loader from "react-loader-spinner";
+import UserPosts from "./UserPosts";
+import UserComments from "./UserComments";
+
 
 const ShowUser = (props) => {
     const [userData, setUserData] = useState(null);
@@ -24,9 +27,18 @@ const ShowUser = (props) => {
     
       if(userData) {
         return (
+        <div>
             <div>
                 {userData.username}
             </div>
+            <div>
+                <UserPosts posts = {userData.posts}/>
+            </div>
+
+            <div>
+                <UserComments comments = {userData.coments}/>
+            </div>
+        </div>
         )
       } else {
         return (
