@@ -20,6 +20,10 @@ Rails.application.routes.draw do
 
       get "comments/index", to: "comments#index"
       post "comments/create/:id", to: 'comments#create'
+
+      get "boards/index", to: "boards#index"
+      post "boards/create", to: 'boards#create'
+      get 'boards/show/:id', to: 'boards#show'
     end
   end
   root 'homepage#index'
