@@ -5,7 +5,8 @@ class Api::V1::BoardsController < ApplicationController
     end
 
     def create
-        @board = Board.create(board_params)
+        user = User.find_by(id: session[:user_id])
+        @board = user.boards.create(board_params)
     end
 
     def show
