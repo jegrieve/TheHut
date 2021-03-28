@@ -6,6 +6,7 @@ import CreatePost from "../components/CreatePost";
 import ShowPost from "../components/ShowPost";
 import ShowUser from "../components/ShowUser";
 import CreateBoard from "../components/CreateBoard";
+import ShowBoard from "../components/ShowBoard";
 
 const Routes = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -44,7 +45,17 @@ const Routes = () => {
         />
         <Route exact path={"/post/:id"} component = {ShowPost} />
         <Route exact path={"/user/:id"} component = {ShowUser} />
-        <Route exact path={"/create-board"} component = {CreateBoard} />
+        <Route
+          exact
+          path="/create-board"
+          render={(props) => (
+            <CreateBoard
+              {...props}
+              currentUser={currentUser}
+            />
+          )}
+        />
+        <Route exact path={"/board/:id"} component = {ShowBoard} />
       </Switch>
     </Router>
   );

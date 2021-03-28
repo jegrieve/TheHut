@@ -26,7 +26,7 @@ const CreateBoard = (props) => {
         const formData =  new FormData();
         formData.append('title', boardContent["title"]);
         formData.append('body', boardContent["body"]);
-        formData.append('image', boardContent["image"]);
+        formData.append('board_image', boardContent["image"]);
 
         const url = "api/v1/boards/create"
         const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -39,12 +39,30 @@ const CreateBoard = (props) => {
     })
      .then(response => {
          if (response.ok) {
-            console.log(response);
+            renderBoardData();
          } else {
             console.log("did not post")
          }
      })
 }
+
+const renderBoardData = () => {
+    const id = props.currentUser.id
+    const url = `/api/v1/users/show/${id}`;
+
+    fetch(url)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then(response => {
+        props.history.push(`/board/${response.boards[response.boards.length - 1].id}`);
+    })
+      .catch(() => console.log("error"));
+}
+
 
 
     return (
