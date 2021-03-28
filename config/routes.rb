@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   end
   root 'homepage#index'
   get "/create-post" => 'homepage#index'
+  get "/create-board" => 'homepage#index'
   get "/" => 'homepage#index'
   get '/post/*path' => 'homepage#index'
   get '/user/*path' => 'homepage#index'

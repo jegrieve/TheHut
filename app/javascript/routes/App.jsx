@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import CreatePost from "../components/CreatePost";
 import ShowPost from "../components/ShowPost";
 import ShowUser from "../components/ShowUser";
+import CreateBoard from "../components/CreateBoard";
 
 const Routes = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -43,6 +44,7 @@ const Routes = () => {
         />
         <Route exact path={"/post/:id"} component = {ShowPost} />
         <Route exact path={"/user/:id"} component = {ShowUser} />
+        <Route exact path={"/create-board"} component = {CreateBoard} />
       </Switch>
     </Router>
   );

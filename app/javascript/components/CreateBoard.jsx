@@ -10,5 +10,4 @@ const CreateBoard = (props) => {
 
     
 
-
 export default CreateBoard;
