@@ -39,7 +39,7 @@ const CreateBoard = (props) => {
     })
      .then(response => {
          if (response.ok) {
-            console.log(response)
+            console.log(response);
          } else {
             console.log("did not post")
          }
