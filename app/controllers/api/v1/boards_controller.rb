@@ -1,6 +1,6 @@
 class Api::V1::BoardsController < ApplicationController
     def index
-        @boards = Board.all
+        @boards = Board.limit(params[:limit]).offset(params[:offset])
         render json: @boards
     end
 

@@ -32,5 +32,6 @@ Rails.application.routes.draw do
   get "/" => 'homepage#index'
   get '/post/*path' => 'homepage#index'
   get '/user/*path' => 'homepage#index'
+  get '/board/*path' => 'homepage#index'
   # get '/*path' => 'homepage#index'
 end
