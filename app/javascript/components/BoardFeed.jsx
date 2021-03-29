@@ -41,11 +41,11 @@ const BoardFeed = () => {
      if (cachedBoards.length > 0) {
         return (
             <div id = "boardfeed">
+                <NavLink to="/create-board">(+) Create a new board</NavLink>
             {cachedBoards.map((el,i) => {
             return (
                 <div className = "board" key = {i}>
-                    <NavLink to={`/board/${el.id}`}>{el.id}</NavLink>
-                    {/* <FeedPost id ={el.id} title ={el.title} body ={el.body} img ={el.image} /> */}
+                    <NavLink to={`/board/${el.id}`}>{el.title}</NavLink>
                 </div>
             )
             })}
@@ -55,7 +55,7 @@ const BoardFeed = () => {
         else {
             return (
                 <div id = "boardfeed">
-                    <button onClick = {getBoards}>Get Boards</button>
+                    <NavLink to="/create-board">(+) Create a new board</NavLink>
                     No boards to show. Create a new one.
                 </div>
             )
