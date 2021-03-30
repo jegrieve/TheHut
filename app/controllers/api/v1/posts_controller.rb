@@ -15,7 +15,9 @@ class Api::V1::PostsController < ApplicationController
 
     def create
         user = User.find_by(id: session[:user_id])
-        @post = user.posts.create(post_params)
+        @post = user.posts.new(post_params)
+        @post.board_id = params[:board_id]
+        @post.save
     end
     private
 

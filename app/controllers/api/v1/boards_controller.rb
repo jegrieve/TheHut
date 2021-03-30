@@ -1,6 +1,10 @@
 class Api::V1::BoardsController < ApplicationController
     def index
-        @boards = Board.limit(params[:limit]).offset(params[:offset])
+        if params[:limit]
+            @boards = Board.limit(params[:limit]).offset(params[:offset])
+        else
+            @boards = Board.all
+        end
         render json: @boards
     end
 
