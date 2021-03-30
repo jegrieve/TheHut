@@ -20,7 +20,7 @@ class Api::V1::BoardsController < ApplicationController
             render json: @posts
             #render :json => @board.to_json( :include => [:posts])
         else
-            render json: @board.errors
+            render json: @board
         end
     end
     private

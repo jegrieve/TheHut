@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 
 
 const ShowBoard = (props) => {
+    const [boardData, setBoardData] = useState(null);
     const [loadedBoardPosts, setLoadedBoardPosts] = useState([]);
     const [cachedBoardPosts, setCachedBoardPosts] = useState([]);
     const [fetchedBoardPosts, setFetchedBoardPosts] = useState({offset: 0});
@@ -21,8 +22,28 @@ const ShowBoard = (props) => {
     }, [fetchedBoardPosts])
 
     useEffect(() => {
+        getBoardData();
+    }, [])
+
+    
+    useEffect(() => {
         getBoardPosts();
     }, [])
+
+    const getBoardData = () => {
+        const id = props.match.params.id
+        const url = `/api/v1/boards/show/${id}`;
+    
+        fetch(url)
+          .then(response => {
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error("Network response was not ok.");
+          })
+          .then(response => setBoardData(response))
+          .catch(() => console.log("error"));
+    }
 
     const getBoardPosts = () => {
         const id = props.match.params.id
@@ -41,9 +62,13 @@ const ShowBoard = (props) => {
           .catch(() => console.log("error"));
     }
     
-     if (cachedBoardPosts.length > 0) {
+     if (cachedBoardPosts.length > 0 && boardData) {
         return (
             <div id = "board-postfeed">
+                {console.log(boardData)}
+                <div>{boardData.title}</div>
+                <div>{boardData.body}</div>
+                <div>eventual image</div>
             {cachedBoardPosts.map((el,i) => {
             return (
                 <div className = "board-post" key = {i}>
