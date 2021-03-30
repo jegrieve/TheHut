@@ -92,8 +92,6 @@ const CreatePost = (props) => {
     }
 
     if (loadedBoards) {
-        //once that is done, get a fetch on the show
-        //page of the board.
         return (
             <div>
                 <form onSubmit = {submitPostData}>

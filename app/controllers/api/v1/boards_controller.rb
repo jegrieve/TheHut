@@ -15,8 +15,10 @@ class Api::V1::BoardsController < ApplicationController
 
     def show
         @board = Board.find(params[:id])
-        if @board
-            render json: @board
+        if @board && params[:limit]
+            @posts = @board.posts.limit(params[:limit]).offset(params[:offset])
+            render json: @posts
+            #render :json => @board.to_json( :include => [:posts])
         else
             render json: @board.errors
         end
