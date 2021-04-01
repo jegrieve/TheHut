@@ -24,6 +24,9 @@ Rails.application.routes.draw do
       get "boards/index", to: "boards#index"
       post "boards/create", to: 'boards#create'
       get 'boards/show/:id', to: 'boards#show'
+
+      post "likes/create", to: 'likes#create'
+      delete 'likes/destroy/:id', to: 'likes#destroy'
     end
   end
   root 'homepage#index'
