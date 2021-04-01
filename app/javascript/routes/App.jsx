@@ -32,7 +32,16 @@ const Routes = () => {
     <Router>
         <Navbar setCurrentUser = {setCurrentUser} currentUser = {currentUser} />
       <Switch>
-        <Route path="/" exact component={Homepage} />
+      <Route
+          exact
+          path="/"
+          render={(props) => (
+            <Homepage
+              {...props}
+              currentUser={currentUser}
+            />
+          )}
+        />
         <Route
           exact
           path="/create-post"

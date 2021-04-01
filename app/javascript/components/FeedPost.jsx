@@ -1,6 +1,7 @@
 import React from "react";
 
 const FeedPost = (props) => { 
+
     if (props.img) {
         return (
             <div className = "feed-post">
@@ -8,6 +9,7 @@ const FeedPost = (props) => {
                 <div>{props.title}</div>
                 <div>{props.body}</div>
                 <img src = {props.img.url} width = {30} height = {30} />
+                {/* <button onClick = {likePost}>Like</button> */}
             </div>
           );
     } else {
@@ -16,6 +18,7 @@ const FeedPost = (props) => {
                 <div>{props.id}</div>
                 <div>{props.title}</div>
                 <div>{props.body}</div>
+                {/* <button onClick = {likePost}>Like</button> */}
             </div>
         )
     }
