@@ -1,13 +1,13 @@
 class Api::V1::PostsController < ApplicationController
     def index
         @posts = Post.limit(params[:limit]).offset(params[:offset])
-        render :json => @posts.to_json( :include => [:liking_users])
+        render json: @posts
     end
 
     def show
         @post = Post.find(params[:id])
         if @post
-            render :json => @post.to_json( :include => [:liking_users])
+            render json: @post
         else
             render json: @post.errors
         end
