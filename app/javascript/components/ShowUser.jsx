@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import Loader from "react-loader-spinner";
 import UserPosts from "./UserPosts";
 import UserComments from "./UserComments";
+import UserLikes from "./UserLikes";
 
 
 const ShowUser = (props) => {
@@ -39,6 +40,10 @@ const ShowUser = (props) => {
 
                 <div className = "col-6">
                 <UserComments comments = {userData.comments}/>
+                </div>
+
+                <div className = "col-6">
+                <UserLikes likedPosts = {userData.liked_posts}/>
                 </div>
              </div>
 

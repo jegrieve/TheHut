@@ -52,7 +52,16 @@ const Routes = () => {
             />
           )}
         />
-        <Route exact path={"/post/:id"} component = {ShowPost} />
+        <Route
+          exact
+          path="/post/:id"
+          render={(props) => (
+            <ShowPost
+              {...props}
+              currentUser={currentUser}
+            />
+          )}
+        />
         <Route exact path={"/user/:id"} component = {ShowUser} />
         <Route
           exact
