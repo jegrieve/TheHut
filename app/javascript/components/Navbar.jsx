@@ -20,7 +20,7 @@ const Navbar = (props) => {
                     <UserOptions setCurrentUser = {props.setCurrentUser} currentUser = {props.currentUser}/>
                 </div>
               </div>
-            : <div className = "d-flex navbar-user-controls justify-content-between">
+            : <div className = "d-flex navbar-user-controls justify-content-between signed-out">
                 <div>
                     <SignUpForm setCurrentUser = {props.setCurrentUser} currentUser = {props.currentUser} />
                 </div>
