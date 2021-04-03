@@ -1,6 +1,10 @@
 class Api::V1::PostsController < ApplicationController
     def index
-        @posts = Post.limit(params[:limit]).offset(params[:offset])
+        if (params[:filter] == "newest")
+        @posts = Post.order(created_at: :desc).limit(params[:limit]).offset(params[:offset])
+        else
+        @posts = Post.order(created_at: :asc).limit(params[:limit]).offset(params[:offset])   
+        end
         render json: @posts
     end
 

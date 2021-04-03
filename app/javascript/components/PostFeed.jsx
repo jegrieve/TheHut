@@ -6,7 +6,8 @@ const PostFeed = (props) => {
     const [loadedFeedPosts, setLoadedFeedPosts] = useState([]);
     const [cachedPosts, setCachedPosts] = useState([]);
     const [fetchedPosts, setFetchedPosts] = useState({offset: 0});
-    
+    const [filterPostsValue, setFilterPostsValue] = useState('newest');
+
     useEffect(() => {
         if (loadedFeedPosts.length > 0) {
             setFetchedPosts({offset: fetchedPosts['offset'] + 5})
@@ -25,7 +26,7 @@ const PostFeed = (props) => {
 
     const getPosts = () => {
         const limit = 5;
-        const url = `/api/v1/posts/index?limit=${limit}&offset=${fetchedPosts['offset']}`;
+        const url = `/api/v1/posts/index?limit=${limit}&offset=${fetchedPosts['offset']}&filter=${filterPostsValue}`;
         fetch(url)
           .then(response => {
             if (response.ok) {
@@ -38,10 +39,19 @@ const PostFeed = (props) => {
           })
           .catch(() => console.log("error"));
     }
+    const handleFilterChange = (e) => {
+        setFilterPostsValue(e.target.value)
+    }
     
      if (cachedPosts.length > 0) {
         return (
             <div id = "postfeed">
+                <label>Filter by:
+                    <select name = "filter" value = {filterPostsValue} onChange = {handleFilterChange}>
+                        <option value = "newest">Newest</option>
+                        <option value = "oldest">Oldest</option>
+                    </select>
+                </label>
             {cachedPosts.map((el,i) => {
             return (
                 <div className = "post" key = {i}>
@@ -56,7 +66,6 @@ const PostFeed = (props) => {
         else {
             return (
                 <div id = "postfeed">
-                    <button onClick = {getPosts}>Get Posts</button>
                     No posts to show.
                 </div>
             )
