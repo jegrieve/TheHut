@@ -82,9 +82,13 @@ const SignUpForm = (props) => {
                     <input className = "form-control" name = "passwordConfirm" type="password" onChange = {enterSignUpInputs} value = {createUserInputs["passwordConfirm"]}/>
                     </label>
                     </div>
-                <button>Create Account</button>
+                    <div className = "sign-up-btn">
+                        <button type = "submit">Create Account</button>
+                    </div>
+                    <div className = "sign-up-btn">
+                        <button type = "button" onClick = {exitSignUpForm}>Exit</button>
+                    </div>
                 </form>
-                <button onClick = {exitSignUpForm}>Exit</button>
             </div>
         </div>
     )

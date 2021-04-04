@@ -4,7 +4,7 @@ import React, {useState, useEffect} from "react";
 const FeedPost = (props) => { 
     const [likedPost, setLikedPost] = useState(false)
     useEffect(() => {
-        if (props.currentUser) {
+        if (props.currentUser && props.currentUser.liked_posts) {
             props.currentUser.liked_posts.forEach((el) => {
                 if (el.id === props.id) {setLikedPost(true)};
             })
