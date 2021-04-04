@@ -10,9 +10,11 @@ const SignUpForm = (props) => {
 
     const bringUpSignUpForm = () => {
         document.querySelector(".sign-up-form").classList.remove("d-none");
+        document.querySelector("body").classList.add("unclickable");
     }
     const exitSignUpForm = () => {
         document.querySelector(".sign-up-form").classList.add("d-none");
+        document.querySelector("body").classList.remove("unclickable");
     }
 
     const submitSignUpForm = (e) => {
@@ -49,58 +51,41 @@ const SignUpForm = (props) => {
     }
 
     const enterSignUpInputs = (e) => {
-        switch (e.target.id) {
-          case 'user-email':
-            setCreateUserInputs(ps => ({
-                ...ps,
-                email: e.target.value,
-            }));
-            break;
-          case 'user-username':
-            setCreateUserInputs(ps => ({
-                ...ps,
-                username: e.target.value,
-            }));
-            break;
-          case 'user-password':
-            setCreateUserInputs(ps => ({
-                ...ps,
-                password: e.target.value,
-            }));
-            break;
-        case 'user-password-confirmation':
-            setCreateUserInputs(ps => ({
-                ...ps,
-                passwordConfirm: e.target.value,
-            }));
-            break;
-          default:
-            return;
-        }
-      };
+        setCreateUserInputs((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        }));
+    }
 
     return (
         <div>
             <button onClick = {bringUpSignUpForm}>Sign Up</button>
-            <div className = "sign-up-form d-none">
-                <form >
+            <div className = "sign-up-form d-none clickable">
+                <form onSubmit = {submitSignUpForm} className = "sign-up-inputs">
+                    <div className = "form-group">
                     <label>Email:
-                    <input id="user-email" type="email" onChange = {enterSignUpInputs} value = {createUserInputs["email"]} />
+                    <input className = "form-control" name = "email" type="email" onChange = {enterSignUpInputs} value = {createUserInputs["email"]} />
                     </label>
+                    </div>
+                    <div className = "form-group">
                     <label>Username:
-                    <input id="user-username" type="text" onChange = {enterSignUpInputs} value = {createUserInputs["username"]}/>
+                    <input className ="form-control" name = "username" type="text" onChange = {enterSignUpInputs} value = {createUserInputs["username"]}/>
                     </label>
+                    </div>
+                    <div className = "form-group">
                     <label>Password:
-                    <input id="user-password" type="password" onChange = {enterSignUpInputs} value = {createUserInputs["password"]}/>
+                    <input className ="form-control" name = "password" type="password" onChange = {enterSignUpInputs} value = {createUserInputs["password"]}/>
                     </label>
+                    </div>
+                    <div className = "form-group">
                     <label>Password Confirmation:
-                    <input id="user-password-confirmation" type="password" onChange = {enterSignUpInputs} value = {createUserInputs["passwordConfirm"]}/>
+                    <input className = "form-control" name = "passwordConfirm" type="password" onChange = {enterSignUpInputs} value = {createUserInputs["passwordConfirm"]}/>
                     </label>
-                <button onClick = {submitSignUpForm}>Create Account</button>
+                    </div>
+                <button>Create Account</button>
                 </form>
                 <button onClick = {exitSignUpForm}>Exit</button>
             </div>
-
         </div>
     )
 }

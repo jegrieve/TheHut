@@ -1,0 +1,32 @@
+.unclickable {
+  pointer-events: none;
+}
+
+.clickable {
+  pointer-events: auto;
+}
+
+.blured {
+  filter: blur(0.8px);
+}
+
+.unblured {
+  filter: blur(0);
+}
+
+.sign-up-form {
+  border: 1px solid black;
+  position: fixed;
+  width: 400px;
+  height: 500px;
+  top: 30%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -200px;
+  z-index: 1;
+  background-color: grey;
+}
+
+.sign-up-inputs {
+  text-align: center;
+}
