@@ -18,7 +18,7 @@
   border: 1px solid black;
   position: fixed;
   width: 400px;
-  height: 500px;
+  min-height: 500px;
   top: 30%;
   left: 50%;
   margin-top: -100px;
@@ -33,4 +33,9 @@
 
 .sign-up-btn {
   margin-top: 25px;
+}
+
+.red-text {
+  color: rgb(231, 14, 14);
+  font-weight: bold;
 }
