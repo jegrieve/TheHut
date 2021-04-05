@@ -1,0 +1,41 @@
+.unclickable {
+  pointer-events: none;
+}
+
+.clickable {
+  pointer-events: auto;
+}
+
+.blured {
+  filter: blur(0.8px);
+}
+
+.unblured {
+  filter: blur(0);
+}
+
+.sign-in-form {
+  border: 1px solid black;
+  position: fixed;
+  width: 400px;
+  min-height: 300px;
+  top: 35%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -200px;
+  z-index: 1;
+  background-color: grey;
+}
+
+.sign-in-inputs {
+  text-align: center;
+}
+
+.sign-in-btn {
+  margin-top: 25px;
+}
+
+.red-text {
+  color: rgb(231, 14, 14);
+  font-weight: bold;
+}

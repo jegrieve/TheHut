@@ -37,7 +37,7 @@ const SignInForm = (props) => {
         })
         .then(response => {
             if (response === null) {
-                console.log('invalid user or pass')
+                signInErrorHandling();
             } else if (response.id) {
                 exitSignInForm();
                 props.setCurrentUser(response)
@@ -46,39 +46,42 @@ const SignInForm = (props) => {
         .catch(error => console.log(error.message))
     }
 
+    const signInErrorHandling = () => {
+        document.getElementById("signin-usernameHelp").innerHTML = "Invalid User/Pass"
+        document.getElementById("sign-in-user-username").classList.add("is-invalid")
+        document.getElementById("sign-in-user-password").classList.add("is-invalid")
+    }
+
     const enterSignInInputs = (e) => {
-        switch (e.target.id) {
-          case 'sign-in-user-username':
-            setSignInUserInputs(ps => ({
-                ...ps,
-                username: e.target.value,
-            }));
-            break;
-          case 'sign-in-user-password':
-            setSignInUserInputs(ps => ({
-                ...ps,
-                password: e.target.value,
-            }));
-            break;
-          default:
-            return;
-        }
-      };
+        setSignInUserInputs((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        }));
+    }
 
     return (
         <div>
             <button onClick = {bringUpSignInForm}>Log In</button>
             <div className = "sign-in-form d-none">
-                <form>
+                <form className = "sign-in-inputs">
+                    <div className = "form-group">
                     <label>Username:
-                    <input id="sign-in-user-username" type="text" onChange = {enterSignInInputs} value = {signInUserInputs["username"]}/>
+                    <small id="signin-usernameHelp" className="form-text red-text"></small>
+                    <input id="sign-in-user-username" name = "username" type="text" className = "form-control" onChange = {enterSignInInputs} value = {signInUserInputs["username"]}/>
                     </label>
+                    </div>
+                    <div className = "form-group">
                     <label>Password:
-                    <input id="sign-in-user-password" type="password" onChange = {enterSignInInputs} value = {signInUserInputs["password"]}/>
+                    <input id="sign-in-user-password" name = "password" className = "form-control" type="password" onChange = {enterSignInInputs} value = {signInUserInputs["password"]}/>
                     </label>
-                    <button onClick = {submitSignInForm}>Log In</button>
+                    </div>
+                    <div className = "sign-in-btn">
+                    <button type = "submit" onClick = {submitSignInForm}>Log In</button>
+                    </div>
+                    <div className = "sign-in-btn">
+                    <button type = "button" onClick = {exitSignInForm}>Exit</button>
+                    </div>
                 </form>
-                <button onClick = {exitSignInForm}>Exit</button>
             </div>
 
         </div>
