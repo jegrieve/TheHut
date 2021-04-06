@@ -22,10 +22,10 @@ const Routes = () => {
         if (response.ok && response) {
           return response.json();
         }
-        throw new Error("Network response was not ok.");
+        throw new Error("Could not login this user");
       })
       .then(response => setCurrentUser(response))
-      .catch(() => console.log('no user'));
+      .catch(() => setCurrentUser(null));
   }, [])
 
   return (
