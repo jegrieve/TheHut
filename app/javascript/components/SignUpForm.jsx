@@ -125,7 +125,7 @@ const SignUpForm = (props) => {
             password: createUserInputs["password"],
             password_confirmation: createUserInputs["passwordConfirm"],
         }
-        const url = "api/v1/registrations/create"
+        const url = "/api/v1/registrations/create"
         const token = document.querySelector('meta[name="csrf-token"]').content;
         fetch(url, {
         method: "POST",

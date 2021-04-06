@@ -19,7 +19,7 @@ const SignInForm = (props) => {
             username: signInUserInputs["username"],
             password: signInUserInputs["password"],
         }
-        const url = "api/v1/sessions/create"
+        const url = "/api/v1/sessions/create"
         const token = document.querySelector('meta[name="csrf-token"]').content;
         fetch(url, {
         method: "POST",
