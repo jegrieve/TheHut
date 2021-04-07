@@ -56,9 +56,7 @@ const PostFeed = (props) => {
             {cachedPosts.map((el,i) => {
             return (
                 <div className = "post" key = {i}>
-                    <NavLink className = "text-link" to={`/post/${el.id}`}>
-                        <FeedPost currentUser = {props.currentUser} id ={el.id} title ={el.title} body ={el.body} img ={el.image}  currentUser = {props.currentUser} />
-                    </NavLink>
+                    <FeedPost board = {el.board} user = {el.user} created_at = {el.created_at} currentUser = {props.currentUser} id ={el.id} title ={el.title} body ={el.body} img ={el.image}  currentUser = {props.currentUser} />
                 </div>
             )
             })}

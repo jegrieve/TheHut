@@ -73,7 +73,7 @@ const ShowBoard = (props) => {
             return (
                 <div className = "board-post" key = {i}>
                     <NavLink to={`/post/${el.id}`}>{el.id}</NavLink>
-                    <FeedPost id ={el.id} title ={el.title} body ={el.body} img ={el.image} />
+                    <FeedPost board = {el.board} user = {el.user} created_at = {el.created_at} id ={el.id} title ={el.title} body ={el.body} img ={el.image} />
                 </div>
             )
             })}

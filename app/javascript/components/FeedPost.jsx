@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-
+import { NavLink } from "react-router-dom";
 
 const FeedPost = (props) => { 
     const [likedPost, setLikedPost] = useState(false)
@@ -61,19 +61,30 @@ const FeedPost = (props) => {
               })
               .catch(error => console.log(error.message));
     }
-
     if (!props.currentUser) {
         if (props.img) {
             return (
                 <div className = "feed-post">
+                    <NavLink className = "text-link" to={`/board/${props.board.id}`}>
+                        <div className = "post-board">{props.board.title}</div>
+                    </NavLink>
+                    <NavLink className = "text-link" to={`/user/${props.user.id}`}>
+                        <div className = "post-user">{props.user.username}</div>
+                    </NavLink>
+                    <NavLink className = "text-link" to={`/post/${props.id}`}>
+                    <div className = "post-created-at">{props.created_at}</div>
                     <div className = "post-title">{props.title}</div>
                     <img src = {props.img.url} width = {30} height = {30} />
+                    </NavLink>
                     <div>Like button removed show heart+counts only</div>
                 </div>
             )
         } else {
             return (
                 <div className = "feed-post">
+                    <div className = "post-board">{props.board.title}</div>
+                    <div className = "post-user">{props.user.username}</div>
+                    <div className = "post-created-at">{props.created_at}</div>
                     <div className = "post-title">{props.title}</div>
                     <div>Like button removed show heart+counts only</div>
                 </div>
@@ -93,7 +104,9 @@ const FeedPost = (props) => {
         if (props.img) {
             return (
                 <div className = "feed-post">
-                    <div>{props.id}</div>
+                    <div className = "post-board">{props.board.title}</div>
+                    <div className = "post-user">{props.user.username}</div>
+                    <div className = "post-created-at">{props.created_at}</div>
                     <div className = "post-title">{props.title}</div>
                     <img src = {props.img.url} width = {30} height = {30} />
                     <button onClick = {likePost}>Like</button>
@@ -102,7 +115,9 @@ const FeedPost = (props) => {
         } else {
             return (
                 <div className = "feed-post">
-                    <div>{props.id}</div>
+                    <div className = "post-board">{props.board.title}</div>
+                    <div className = "post-user">{props.user.username}</div>
+                    <div className = "post-created-at">{props.created_at}</div>
                     <div className = "post-title">{props.title}</div>
                     <button onClick = {likePost}>Like</button>
                 </div>
