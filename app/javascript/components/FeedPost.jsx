@@ -65,25 +65,17 @@ const FeedPost = (props) => {
     if (!props.currentUser) {
         if (props.img) {
             return (
-                <div>
-                    <div className = "feed-post">
-                    <div>{props.id}</div>
-                    <div>{props.title}</div>
-                    <div>{props.body}</div>
+                <div className = "feed-post">
+                    <div className = "post-title">{props.title}</div>
                     <img src = {props.img.url} width = {30} height = {30} />
                     <div>Like button removed show heart+counts only</div>
-                </div>
                 </div>
             )
         } else {
             return (
-                <div>
-                    <div className = "feed-post">
-                    <div>{props.id}</div>
-                    <div>{props.title}</div>
-                    <div>{props.body}</div>
+                <div className = "feed-post">
+                    <div className = "post-title">{props.title}</div>
                     <div>Like button removed show heart+counts only</div>
-                    </div>
                 </div>
             )
         }
@@ -102,8 +94,7 @@ const FeedPost = (props) => {
             return (
                 <div className = "feed-post">
                     <div>{props.id}</div>
-                    <div>{props.title}</div>
-                    <div>{props.body}</div>
+                    <div className = "post-title">{props.title}</div>
                     <img src = {props.img.url} width = {30} height = {30} />
                     <button onClick = {likePost}>Like</button>
                 </div>
@@ -112,8 +103,7 @@ const FeedPost = (props) => {
             return (
                 <div className = "feed-post">
                     <div>{props.id}</div>
-                    <div>{props.title}</div>
-                    <div>{props.body}</div>
+                    <div className = "post-title">{props.title}</div>
                     <button onClick = {likePost}>Like</button>
                 </div>
             )
