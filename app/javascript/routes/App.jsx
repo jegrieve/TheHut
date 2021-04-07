@@ -27,6 +27,40 @@ const Routes = () => {
       .then(response => setCurrentUser(response))
       .catch(() => setCurrentUser(null));
   }, [])
+  
+  if (!currentUser) {
+    return (
+      <Router>
+      <Navbar setCurrentUser = {setCurrentUser} currentUser = {currentUser} />
+    <Switch>
+    <Route
+        exact
+        path="/"
+        render={(props) => (
+          <Homepage
+            {...props}
+            currentUser={currentUser}
+          />
+        )}
+      />
+      <Route
+        exact
+        path="/post/:id"
+        render={(props) => (
+          <ShowPost
+            {...props}
+            currentUser={currentUser}
+          />
+        )}
+      />
+      <Route exact path={"/user/:id"} component = {ShowUser} />
+      <Route exact path={"/board/:id"} component = {ShowBoard} />
+      <Route path="*" component = {Homepage} />
+    </Switch>
+  </Router>
+      )
+    
+  }
 
   return (
     <Router>
