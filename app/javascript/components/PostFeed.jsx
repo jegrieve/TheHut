@@ -35,6 +35,7 @@ const PostFeed = (props) => {
             throw new Error("Network response was not ok.");
           })
           .then(response => {
+              console.log(response)
             setLoadedFeedPosts(response)
           })
           .catch(() => console.log("error"));
