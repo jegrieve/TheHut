@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { NavLink } from "react-router-dom";
 
-const BoardFeed = () => {
+const BoardFeed = (props) => {
     const [loadedBoards, setLoadedBoards] = useState([]);
     const [cachedBoards, setCachedBoards] = useState([]);
     const [fetchedBoards, setFetchedBoards] = useState({offset: 0});
@@ -39,19 +39,37 @@ const BoardFeed = () => {
     }
     
      if (cachedBoards.length > 0) {
-        return (
-            <div id = "boardfeed">
-                <NavLink to="/create-board">(+) Create a new board</NavLink>
-            {cachedBoards.map((el,i) => {
+         if (!props.currentUser) {
             return (
-                <div className = "board" key = {i}>
-                    <NavLink to={`/board/${el.id}`}>{el.title}</NavLink>
+                <div id = "boardfeed">
+                <div>Boards</div>
+                {cachedBoards.map((el,i) => {
+                return (
+                    <div className = "board" key = {i}>
+                        <NavLink to={`/board/${el.id}`}>{el.title}</NavLink>
+                    </div>
+                )
+                })}
+                <button onClick = {getBoards}>Load more</button>
                 </div>
             )
-            })}
-            <button onClick = {getBoards}>Load more</button>
-            </div>
-        )}
+         } else {
+            return (
+                <div id = "boardfeed">
+                <div>Boards</div>
+                    <NavLink to="/create-board">(+) Create a new board</NavLink>
+                {cachedBoards.map((el,i) => {
+                return (
+                    <div className = "board" key = {i}>
+                        <NavLink to={`/board/${el.id}`}>{el.title}</NavLink>
+                    </div>
+                )
+                })}
+                <button onClick = {getBoards}>Load more</button>
+                </div>
+            )
+         }
+}
         else {
             return (
                 <div id = "boardfeed">

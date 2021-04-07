@@ -61,6 +61,34 @@ const FeedPost = (props) => {
               })
               .catch(error => console.log(error.message));
     }
+
+    if (!props.currentUser) {
+        if (props.img) {
+            return (
+                <div>
+                    <div className = "feed-post">
+                    <div>{props.id}</div>
+                    <div>{props.title}</div>
+                    <div>{props.body}</div>
+                    <img src = {props.img.url} width = {30} height = {30} />
+                    <div>Like button removed show heart+counts only</div>
+                </div>
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    <div className = "feed-post">
+                    <div>{props.id}</div>
+                    <div>{props.title}</div>
+                    <div>{props.body}</div>
+                    <div>Like button removed show heart+counts only</div>
+                    </div>
+                </div>
+            )
+        }
+
+    }
     
     if (likedPost) {
         return (

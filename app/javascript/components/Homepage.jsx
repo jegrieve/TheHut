@@ -10,7 +10,7 @@ const Homepage = (props) => (
             <PostFeed currentUser = {props.currentUser} />
           </div>
           <div className = "col-3 d-none d-lg-block">
-            <BoardFeed />
+            <BoardFeed currentUser = {props.currentUser} />
           </div>
         </div>
       </div>

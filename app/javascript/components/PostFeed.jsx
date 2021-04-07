@@ -56,7 +56,7 @@ const PostFeed = (props) => {
             return (
                 <div className = "post" key = {i}>
                     <NavLink to={`/post/${el.id}`}>{el.id}</NavLink>
-                    <FeedPost id ={el.id} title ={el.title} body ={el.body} img ={el.image}  currentUser = {props.currentUser} />
+                    <FeedPost currentUser = {props.currentUser} id ={el.id} title ={el.title} body ={el.body} img ={el.image}  currentUser = {props.currentUser} />
                 </div>
             )
             })}

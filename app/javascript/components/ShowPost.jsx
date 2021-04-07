@@ -9,7 +9,7 @@ const ShowPost = (props) => {
     const [likedPost, setLikedPost] = useState(false);
 
     useEffect(() => {
-      if (props.currentUser && postData) {
+      if (props.currentUser && postData && props.currentUser.liked_posts) {
           props.currentUser.liked_posts.forEach((el) => {
               if (el.id === postData.id) {setLikedPost(true)};
           })
@@ -82,7 +82,19 @@ const unLikePost = () => {
           .catch(error => console.log(error.message));
 }
 
-
+//if user not signed in
+  if (postData && !props.currentUser) {
+    return (
+      <div>
+        <ShowPostData data = {postData} />
+        <div>
+          Please Sign Up/Log In to post comments.
+          <CommentFeed params = {props.match.params.id}  />
+        </div>
+      </div>
+    )
+  }
+//if use signed in
   if (likedPost) {
     if(postData) {
       return ( 
