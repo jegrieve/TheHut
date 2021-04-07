@@ -82,10 +82,16 @@ const FeedPost = (props) => {
         } else {
             return (
                 <div className = "feed-post">
-                    <div className = "post-board">{props.board.title}</div>
-                    <div className = "post-user">{props.user.username}</div>
+                    <NavLink className = "text-link" to={`/board/${props.board.id}`}>
+                        <div className = "post-board">{props.board.title}</div>
+                    </NavLink>
+                    <NavLink className = "text-link" to={`/user/${props.user.id}`}>
+                        <div className = "post-user">{props.user.username}</div>
+                    </NavLink>
+                    <NavLink className = "text-link" to={`/post/${props.id}`}>
                     <div className = "post-created-at">{props.created_at}</div>
                     <div className = "post-title">{props.title}</div>
+                    </NavLink>
                     <div>Like button removed show heart+counts only</div>
                 </div>
             )
@@ -104,21 +110,33 @@ const FeedPost = (props) => {
         if (props.img) {
             return (
                 <div className = "feed-post">
-                    <div className = "post-board">{props.board.title}</div>
-                    <div className = "post-user">{props.user.username}</div>
+                    <NavLink className = "text-link" to={`/board/${props.board.id}`}>
+                        <div className = "post-board">{props.board.title}</div>
+                    </NavLink>
+                    <NavLink className = "text-link" to={`/user/${props.user.id}`}>
+                        <div className = "post-user">{props.user.username}</div>
+                    </NavLink>
+                    <NavLink className = "text-link" to={`/post/${props.id}`}>
                     <div className = "post-created-at">{props.created_at}</div>
                     <div className = "post-title">{props.title}</div>
                     <img src = {props.img.url} width = {30} height = {30} />
+                    </NavLink>
                     <button onClick = {likePost}>Like</button>
                 </div>
               );
         } else {
             return (
                 <div className = "feed-post">
-                    <div className = "post-board">{props.board.title}</div>
-                    <div className = "post-user">{props.user.username}</div>
+                    <NavLink className = "text-link" to={`/board/${props.board.id}`}>
+                        <div className = "post-board">{props.board.title}</div>
+                    </NavLink>
+                    <NavLink className = "text-link" to={`/user/${props.user.id}`}>
+                        <div className = "post-user">{props.user.username}</div>
+                    </NavLink>
+                    <NavLink className = "text-link" to={`/post/${props.id}`}>
                     <div className = "post-created-at">{props.created_at}</div>
                     <div className = "post-title">{props.title}</div>
+                    </NavLink>
                     <button onClick = {likePost}>Like</button>
                 </div>
             )
