@@ -1,0 +1,22 @@
+#boardfeed {
+  font-size: 18px;
+}
+
+.board-link {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.board-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.board {
+  margin-top: 10px;
+}
+
+.board-title {
+  font-weight: bold;
+  font-size: 22px;
+}

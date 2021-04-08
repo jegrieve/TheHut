@@ -56,12 +56,12 @@ const BoardFeed = (props) => {
          } else {
             return (
                 <div id = "boardfeed">
-                <div>Boards</div>
-                    <NavLink to="/create-board">(+) Create a new board</NavLink>
+                <div className = "board-title">Boards</div>
+                    <NavLink className = "board-link" to="/create-board">(+) Create a new board</NavLink>
                 {cachedBoards.map((el,i) => {
                 return (
                     <div className = "board" key = {i}>
-                        <NavLink to={`/board/${el.id}`}>{el.title}</NavLink>
+                        <NavLink className = "board-link" to={`/board/${el.id}`}>{el.title}</NavLink>
                     </div>
                 )
                 })}
@@ -73,7 +73,7 @@ const BoardFeed = (props) => {
         else {
             return (
                 <div id = "boardfeed">
-                    <NavLink to="/create-board">(+) Create a new board</NavLink>
+                    <NavLink className = "board-link" to="/create-board">(+) Create a new board</NavLink>
                     No boards to show. Create a new one.
                 </div>
             )
