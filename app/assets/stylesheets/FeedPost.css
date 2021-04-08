@@ -1,7 +1,3 @@
-.feed-post {
-  margin-left: 12px;
-}
-
 .post-title {
   font-size: 24px;
   font-weight: bold;
@@ -15,4 +11,9 @@
 .text-link:hover {
   text-decoration: none;
   color: inherit;
+}
+
+.post-img {
+  width: 100%;
+  max-height: 600px;
 }

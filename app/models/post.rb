@@ -7,5 +7,9 @@ class Post < ApplicationRecord
     has_many :liking_users, :through => :likes, :source => :user 
 
     validates :title, presence: true
+
+    def created_at
+        attributes['created_at'].strftime("%m/%d/%Y %H:%M")
+      end
 end
 

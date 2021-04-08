@@ -61,38 +61,39 @@ const FeedPost = (props) => {
               })
               .catch(error => console.log(error.message));
     }
+
     if (!props.currentUser) {
         if (props.img) {
             return (
                 <div className = "feed-post">
                     <NavLink className = "text-link" to={`/board/${props.board.id}`}>
-                        <div className = "post-board">{props.board.title}</div>
+                        <div className = "post-board">b/{props.board.title}</div>
                     </NavLink>
                     <NavLink className = "text-link" to={`/user/${props.user.id}`}>
-                        <div className = "post-user">{props.user.username}</div>
+                        <div className = "post-user">posted by u/{props.user.username}</div>
                     </NavLink>
                     <NavLink className = "text-link" to={`/post/${props.id}`}>
-                    <div className = "post-created-at">{props.created_at}</div>
-                    <div className = "post-title">{props.title}</div>
-                    <img src = {props.img.url} width = {30} height = {30} />
+                        <div className = "post-created-at">post date {props.created_at}</div>
+                        <div className = "post-title">{props.title}</div>
+                        <img className = "post-img" src = {props.img.url}/>
                     </NavLink>
-                    <div>Like button removed show heart+counts only</div>
+                        <div>Like button removed show heart+counts only</div>
                 </div>
             )
         } else {
             return (
                 <div className = "feed-post">
                     <NavLink className = "text-link" to={`/board/${props.board.id}`}>
-                        <div className = "post-board">{props.board.title}</div>
+                        <div className = "post-board">b/{props.board.title}</div>
                     </NavLink>
                     <NavLink className = "text-link" to={`/user/${props.user.id}`}>
-                        <div className = "post-user">{props.user.username}</div>
+                        <div className = "post-user">posted by u/{props.user.username}</div>
                     </NavLink>
                     <NavLink className = "text-link" to={`/post/${props.id}`}>
-                    <div className = "post-created-at">{props.created_at}</div>
-                    <div className = "post-title">{props.title}</div>
+                        <div className = "post-created-at">post date {props.created_at}</div>
+                        <div className = "post-title">{props.title}</div>
                     </NavLink>
-                    <div>Like button removed show heart+counts only</div>
+                        <div>Like button removed show heart+counts only</div>
                 </div>
             )
         }
@@ -111,33 +112,37 @@ const FeedPost = (props) => {
             return (
                 <div className = "feed-post">
                     <NavLink className = "text-link" to={`/board/${props.board.id}`}>
-                        <div className = "post-board">{props.board.title}</div>
+                        <div className = "post-board">b/{props.board.title}</div>
                     </NavLink>
                     <NavLink className = "text-link" to={`/user/${props.user.id}`}>
-                        <div className = "post-user">{props.user.username}</div>
+                        <div className = "post-user">posted by u/{props.user.username}</div>
                     </NavLink>
                     <NavLink className = "text-link" to={`/post/${props.id}`}>
-                    <div className = "post-created-at">{props.created_at}</div>
-                    <div className = "post-title">{props.title}</div>
-                    <img src = {props.img.url} width = {30} height = {30} />
+                        <div className = "post-created-at">post date {props.created_at}</div>
+                        <div className = "post-title">{props.title}</div>
+                        <img className = "post-img" src = {props.img.url}/>
                     </NavLink>
-                    <button onClick = {likePost}>Like</button>
+                    <div>
+                        <button onClick = {likePost}>Like</button>
+                    </div>
                 </div>
               );
         } else {
             return (
                 <div className = "feed-post">
                     <NavLink className = "text-link" to={`/board/${props.board.id}`}>
-                        <div className = "post-board">{props.board.title}</div>
+                        <div className = "post-board">b/ {props.board.title}</div>
                     </NavLink>
                     <NavLink className = "text-link" to={`/user/${props.user.id}`}>
-                        <div className = "post-user">{props.user.username}</div>
+                        <div className = "post-user">posted by u/{props.user.username}</div>
                     </NavLink>
                     <NavLink className = "text-link" to={`/post/${props.id}`}>
-                    <div className = "post-created-at">{props.created_at}</div>
-                    <div className = "post-title">{props.title}</div>
+                        <div className = "post-created-at">post date {props.created_at}</div>
+                        <div className = "post-title">{props.title}</div>
                     </NavLink>
-                    <button onClick = {likePost}>Like</button>
+                    <div>
+                        <button onClick = {likePost}>Like</button>
+                    </div>
                 </div>
             )
         }
