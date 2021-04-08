@@ -29,26 +29,31 @@ const ShowUser = (props) => {
       if(userData) {
         return (
         <div>
-            <div>
+          <div className = "container-fluid">
+            <div className = "row">
+              <div className = "user-info col-6">
                 {userData.username}
+                <div>Bio stuff will go here</div>
+              </div>
+              <div className = "user-avatar col-6">
+                  <div>Avatar will go here</div>
+              </div>
             </div>
-            <div className = "container-fluid">
-             <div className = "row">
+              <div className = "row">
                 <div className = "col-6">
-                <UserPosts posts = {userData.posts}/>
+                  <div className = "user-posts">
+                    {userData.username}'s posts
+                    <UserPosts posts = {userData.posts}/>
+                  </div>
                 </div>
-
                 <div className = "col-6">
-                <UserComments comments = {userData.comments}/>
+                  <UserComments comments = {userData.comments}/>
                 </div>
-
                 <div className = "col-6">
-                <UserLikes likedPosts = {userData.liked_posts}/>
+                  <UserLikes likedPosts = {userData.liked_posts}/>
                 </div>
-             </div>
-
             </div>
-
+          </div>
         </div>
         )
       } else {
