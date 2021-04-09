@@ -8,6 +8,9 @@ const Navbar = (props) => {
     return (
         <div className = "site-navbar d-flex justify-content-around align-items-center">
             <div>Website</div>
+                <div>
+                    <NavLink to="/">Home</NavLink>
+                </div>
             {props.currentUser 
             ? <div className = "d-flex navbar-user-controls justify-content-between">
                 <div>

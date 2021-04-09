@@ -9,7 +9,7 @@ const FeedPost = (props) => {
                 if (el.id === props.id) {setLikedPost(true)};
             })
         }
-    })
+    }, [])
 
     const likePost = () => {
         const body = {

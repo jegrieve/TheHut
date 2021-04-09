@@ -4,9 +4,23 @@ import { NavLink } from "react-router-dom";
 
 const PostFeed = (props) => {
     const [loadedFeedPosts, setLoadedFeedPosts] = useState([]);
+    const [currentUser, setCurrentUser] = useState(null);
     const [cachedPosts, setCachedPosts] = useState([]);
     const [fetchedPosts, setFetchedPosts] = useState({offset: 0});
     const [filterPostsValue, setFilterPostsValue] = useState('newest');
+
+    useEffect(() => {
+        const url = "/api/v1/sessions/index";
+        fetch(url)
+          .then(response => {
+            if (response.ok && response) {
+              return response.json();
+            }
+            throw new Error("Could not login this user");
+          })
+          .then(response => setCurrentUser(response))
+          .catch(() => setCurrentUser(null));
+      }, [])
 
     useEffect(() => {
         if (loadedFeedPosts.length > 0) {
@@ -56,7 +70,7 @@ const PostFeed = (props) => {
             {cachedPosts.map((el,i) => {
             return (
                 <div className = "post" key = {i}>
-                    <FeedPost board = {el.board} user = {el.user} created_at = {el.created_at} currentUser = {props.currentUser} id ={el.id} title ={el.title} body ={el.body} img ={el.image}  currentUser = {props.currentUser} />
+                    <FeedPost board = {el.board} user = {el.user} created_at = {el.created_at} id ={el.id} title ={el.title} body ={el.body} img ={el.image}  currentUser = {currentUser} />
                 </div>
             )
             })}
