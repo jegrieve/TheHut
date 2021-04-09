@@ -1,13 +1,11 @@
 import React, {useEffect, useState} from "react";
 import FeedPost from "./FeedPost"
-import { NavLink } from "react-router-dom";
 
 const PostFeed = (props) => {
     const [loadedFeedPosts, setLoadedFeedPosts] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
     const [cachedPosts, setCachedPosts] = useState([]);
     const [fetchedPosts, setFetchedPosts] = useState({offset: 0});
-    const [filterPostsValue, setFilterPostsValue] = useState('newest');
 
     useEffect(() => {
         const url = "/api/v1/sessions/index";
@@ -40,7 +38,8 @@ const PostFeed = (props) => {
 
     const getPosts = () => {
         const limit = 5;
-        const url = `/api/v1/posts/index?limit=${limit}&offset=${fetchedPosts['offset']}&filter=${filterPostsValue}`;
+        console.log(props.filterValue)
+        const url = `/api/v1/posts/index?limit=${limit}&offset=${fetchedPosts['offset']}&filter=${props.filterValue}`;
         fetch(url)
           .then(response => {
             if (response.ok) {
@@ -55,14 +54,14 @@ const PostFeed = (props) => {
           .catch(() => console.log("error"));
     }
     const handleFilterChange = (e) => {
-        setFilterPostsValue(e.target.value)
+        props.setFilterValue(e.target.value)
     }
     
      if (cachedPosts.length > 0) {
         return (
             <div id = "postfeed">
                 <label>Filter by:
-                    <select name = "filter" value = {filterPostsValue} onChange = {handleFilterChange}>
+                    <select name = "filter" value = {props.filterValue} onChange = {handleFilterChange}>
                         <option value = "newest">Newest</option>
                         <option value = "oldest">Oldest</option>
                     </select>
