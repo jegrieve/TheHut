@@ -67,16 +67,28 @@ const renderBoardData = () => {
 
     return (
         <div>
-            <form onSubmit = {submitBoardData}>
-                <label>Title:
-                <input name = "title" type = "text" onChange = {handleChange} value = {boardContent["title"]} />
-                </label>
-                <label>Body:
-                <input name = "body" type = "text" onChange = {handleChange} value = {boardContent["body"]}/>
-                </label>
-                <label>Image:
-                <input type = "file" accept = "image/*" multiple = {false} onChange = {onImageChange} />
-                </label>
+            <form className = "container create-board-form" onSubmit = {submitBoardData}>
+                <div className = "row">
+                    <div className = "col-12">
+                        <label>Title:
+                        <input name = "title" type = "text" onChange = {handleChange} value = {boardContent["title"]} />
+                        </label>
+                    </div>
+                </div>
+                <div className = "row">
+                    <div className = "col-12">
+                        <label>Body:
+                        <input name = "body" type = "text" onChange = {handleChange} value = {boardContent["body"]}/>
+                        </label>
+                    </div>
+                </div>
+                <div className = "row">
+                    <div className = "col-12">
+                        <label>Image:
+                        <input type = "file" accept = "image/*" multiple = {false} onChange = {onImageChange} />
+                        </label>
+                    </div>
+                </div> 
                 <button>Create Board</button>
             </form>
         </div>

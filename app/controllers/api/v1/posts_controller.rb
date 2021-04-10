@@ -22,6 +22,7 @@ class Api::V1::PostsController < ApplicationController
         @post = user.posts.new(post_params)
         @post.board_id = params[:board_id]
         @post.save
+        render json: @post
     end
     private
 

@@ -5,9 +5,10 @@ const CreatePost = (props) => {
     const [postContent, setPostContent] = useState({
         title: '',
         body: '',
-        image: null
+        image: null,
+        videoLink: null
     })
-    const [loadedContent, setLoadedContent] = useState(null)
+    const [submitType, setSubmitType] = useState('text')
     const [loadedBoards, setLoadedBoards] = useState([])
     const [selectBoardValue, setSelectBoardValue] = useState("")
 
@@ -50,9 +51,17 @@ const CreatePost = (props) => {
 
     const submitPostData = (e) => {
         e.preventDefault();
+        if (submitType === "text") {
+            submitWithTextData()
+        } else if (submitType === "image") {
+            submitWithImageData()
+        } else {
+            submitWithVideoData()
+        }
+}
+    const submitWithImageData = () => {
         const formData =  new FormData();
         const board_id = selectBoardValue
-        console.log(board_id)
         formData.append('title', postContent["title"]);
         formData.append('body', postContent["body"]);
         formData.append('image', postContent["image"]);
@@ -72,7 +81,62 @@ const CreatePost = (props) => {
             console.log("did not post")
          }
      })
-}
+    }
+
+    const submitWithTextData = () => {
+        const body = {
+            title: postContent["title"],
+            body: postContent["body"]
+        }
+        const url = `api/v1/posts/create?board_id=${selectBoardValue}`
+        const token = document.querySelector('meta[name="csrf-token"]').content;
+        fetch(url, {
+        method: "POST",
+        headers: {
+        "X-CSRF-Token": token, 
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.json()
+            }
+            throw new Error("Network response was not ok.");
+        })
+        .then(response => {
+            renderPostData();
+        })
+        .catch(error => console.log('did not post'))
+    }
+
+    const submitWithVideoData = () => {
+        const body = {
+            title: postContent["title"],
+            body: postContent["body"],
+            video: postContent["video"]
+        }
+        const url = `api/v1/posts/create?board_id=${selectBoardValue}`
+        const token = document.querySelector('meta[name="csrf-token"]').content;
+        fetch(url, {
+        method: "POST",
+        headers: {
+        "X-CSRF-Token": token, 
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.json()
+            }
+            throw new Error("Network response was not ok.");
+        })
+        .then(response => {
+            renderPostData();
+        })
+        .catch(error => console.log('did not post'))
+    }
 
     const renderPostData = () => {
             const id = props.currentUser.id
@@ -91,29 +155,63 @@ const CreatePost = (props) => {
               .catch(() => console.log("error"));
     }
 
+    const showImageInput = () => {
+        document.getElementById("image-input").classList.remove("d-none")
+        document.getElementById("show-video-btn").classList.add("d-none")
+        document.getElementById("show-image-btn").classList.add("d-none")
+        setSubmitType("image")
+    }
+
+    const showVideoInput = () => {
+        document.getElementById("video-input").classList.remove("d-none")
+        document.getElementById("show-video-btn").classList.add("d-none")
+        document.getElementById("show-image-btn").classList.add("d-none")
+        setSubmitType("video")
+    }
+
     if (loadedBoards) {
         return (
             <div>
-                <form onSubmit = {submitPostData}>
-                    <label>Board:
-                        <select name = "board" value = {selectBoardValue} onChange = {handleBoardChange}>
-                        {loadedBoards.map((el,i) => {
-                    return (
-                        <option key = {i} value = {el.id}>{el.title}</option>
-                    )
-                    })}
+                <form className = "container create-post-form" onSubmit = {submitPostData}>
+                    <div className = "row">
+                        <div className = "col-12">
+                            <label>Board:
+                            <select name = "board" value = {selectBoardValue} onChange = {handleBoardChange}>
+                            {loadedBoards.map((el,i) => {
+                                return (
+                                    <option key = {i} value = {el.id}>{el.title}</option>
+                                )
+                                    })}
                         </select>
-
-                    </label>
-                    <label>Title:
-                    <input name = "title" type = "text" onChange = {handleChange} value = {postContent["title"]} />
-                    </label>
-                    <label>Body:
-                    <input name = "body" type = "text" onChange = {handleChange} value = {postContent["body"]}/>
-                    </label>
-                    <label>Image:
-                    <input type = "file" accept = "image/*" multiple = {false} onChange = {onImageChange} />
-                    </label>
+                            </label>
+                        </div>
+                    </div>
+                    <div className = "row">
+                        <div className = "col-12">
+                            <label>Title:
+                            <input name = "title" type = "text" onChange = {handleChange} value = {postContent["title"]} />
+                            </label>
+                        </div>
+                    </div>
+                    <div className = "row">
+                        <div className = "col-12">
+                            <label>Body:
+                            <input name = "body" type = "text" onChange = {handleChange} value = {postContent["body"]}/>
+                            </label>
+                        </div>
+                    </div>
+                    <div className = "row">
+                        <div className = "col-12">
+                            <button id = "show-image-btn" type = "button" onClick = {showImageInput}>Add Image</button>
+                            <input id = "image-input" className = "d-none" type = "file" accept = "image/*" multiple = {false} onChange = {onImageChange} />
+                        </div>
+                    </div>
+                    <div className = "row">
+                        <div className = "col-12">
+                            <button id = "show-video-btn" type = "button" onClick = {showVideoInput}>Add Video</button>
+                            <input id = "video-input" className = "d-none" type = "text" />
+                        </div>
+                    </div>
                     <button>Create Post</button>
                 </form>
             </div>
