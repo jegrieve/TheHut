@@ -145,12 +145,12 @@ const unLikePost = () => {
       return ( 
           <div className = "container show-post">
             <div className = "row">
-              <div className = "col-6">
+              <div className = "col-12 col-md-6">
                 <ShowPostData data = {postData} userData = {userData} boardData = {boardData} />
                 <button onClick = {unLikePost}>Unlike</button>
                 <CreateComment params = {props.match.params.id} />
               </div>
-              <div className = "col-6">
+              <div className = "col-12 col-md-6">
                 <CommentFeed params = {props.match.params.id}  />
               </div>
             </div>
@@ -168,12 +168,12 @@ const unLikePost = () => {
       return ( 
           <div className = "container show-post">
             <div className = "row">
-              <div className = "col-6">
+              <div className = "col-12 col-md-6">
                 <ShowPostData data = {postData} userData = {userData} boardData = {boardData} />
                 <button onClick = {likePost}>Like</button>
                 <CreateComment params = {props.match.params.id} />
               </div>
-              <div className = "col-6">
+              <div className = "col-12 col-md-6">
                 <CommentFeed params = {props.match.params.id}  />
               </div>
             </div>
