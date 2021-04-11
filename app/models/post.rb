@@ -9,7 +9,7 @@ class Post < ApplicationRecord
     validates :title, presence: true
 
     def created_at
-        attributes['created_at'].strftime("%m/%d/%Y %H:%M")
+        attributes['created_at'].strftime("%^b %d %Y at %l:%M%p")
       end
 end
 

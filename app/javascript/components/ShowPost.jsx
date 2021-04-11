@@ -7,6 +7,8 @@ import CommentFeed from "./CommentFeed"
 const ShowPost = (props) => {
     const [postData, setPostData] = useState(null);
     const [likedPost, setLikedPost] = useState(false);
+    const [userData, setUserData] = useState(null);
+    const [boardData, setBoardData] = useState(null);
 
     useEffect(() => {
       if (props.currentUser && postData && props.currentUser.liked_posts) {
@@ -27,9 +29,50 @@ const ShowPost = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then(response => setPostData(response))
+      .then(response => {
+        console.log(response)
+        setPostData(response)
+      }
+        )
       .catch(() => console.log("error"));
   }, [])
+
+    useEffect(() => {
+      if (postData) {
+        const id = postData.user.id
+        const url = `/api/v1/users/show/${id}`;
+    
+        fetch(url)
+          .then(response => {
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error("Network response was not ok.");
+          })
+          .then(response => {
+            setUserData(response)
+        })
+          .catch(() => console.log("error"));
+      }
+    },[postData])
+
+
+    useEffect(() => {
+      if (postData) {
+        const id = postData.board.id
+        const url = `/api/v1/boards/show/${id}`;
+    
+        fetch(url)
+          .then(response => {
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error("Network response was not ok.");
+          })
+          .then(response => setBoardData(response))
+          .catch(() => console.log("error"));
+      }
+    },[userData])
 
   const likePost = () => {
     const body = {
@@ -83,26 +126,34 @@ const unLikePost = () => {
 }
 
 //if user not signed in
-  if (postData && !props.currentUser) {
+  if (postData && !props.currentUser && userData && boardData) {
     return (
-      <div>
-        <ShowPostData data = {postData} />
-        <div>
-          Please Sign Up/Log In to post comments.
-          <CommentFeed params = {props.match.params.id}  />
+      <div className = "container">
+          <div>
+            <ShowPostData data = {postData} userData = {userData} boardData = {boardData}/>
+            <div>
+            Please Sign Up/Log In to post comments.
+            <CommentFeed params = {props.match.params.id}  />
+            </div>
         </div>
       </div>
     )
   }
 //if use signed in
   if (likedPost) {
-    if(postData) {
+    if(postData && userData && boardData) {
       return ( 
-          <div>
-              <ShowPostData data = {postData} />
-              <button onClick = {unLikePost}>Unlike</button>
-              <CreateComment params = {props.match.params.id} />
-              <CommentFeed params = {props.match.params.id}  />
+          <div className = "container show-post">
+            <div className = "row">
+              <div className = "col-6">
+                <ShowPostData data = {postData} userData = {userData} boardData = {boardData} />
+                <button onClick = {unLikePost}>Unlike</button>
+                <CreateComment params = {props.match.params.id} />
+              </div>
+              <div className = "col-6">
+                <CommentFeed params = {props.match.params.id}  />
+              </div>
+            </div>
           </div>)
           
     } else {
@@ -113,18 +164,24 @@ const unLikePost = () => {
         )
     }
   } else {
-    if(postData) {
+    if(postData && userData && boardData) {
       return ( 
-          <div>
-              <ShowPostData data = {postData} />
-              <button onClick = {likePost}>Like</button>
-              <CreateComment params = {props.match.params.id} />
-              <CommentFeed params = {props.match.params.id}  />
+          <div className = "container show-post">
+            <div className = "row">
+              <div className = "col-6">
+                <ShowPostData data = {postData} userData = {userData} boardData = {boardData} />
+                <button onClick = {likePost}>Like</button>
+                <CreateComment params = {props.match.params.id} />
+              </div>
+              <div className = "col-6">
+                <CommentFeed params = {props.match.params.id}  />
+              </div>
+            </div>
           </div>)
           
     } else {
         return (
-            <div>
+            <div className = "container show-post">
                <Loader type="Puff" color="#00BFFF" height={80} width={80} />
             </div>
         )
