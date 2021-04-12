@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import ShowPostData from "./ShowPostData";
 import Loader from "react-loader-spinner";
-import CreateComment from "./CreateComment"
 import CommentFeed from "./CommentFeed"
 
 const ShowPost = (props) => {
@@ -148,7 +147,7 @@ const unLikePost = () => {
               <div className = "col-12 col-md-6">
                 <ShowPostData data = {postData} userData = {userData} boardData = {boardData} />
                 <button onClick = {unLikePost}>Unlike</button>
-                <CreateComment params = {props.match.params.id} />
+                {/* <CreateComment params = {props.match.params.id} /> */}
               </div>
               <div className = "col-12 col-md-6">
                 <CommentFeed params = {props.match.params.id}  />
@@ -171,7 +170,7 @@ const unLikePost = () => {
               <div className = "col-12 col-md-6">
                 <ShowPostData data = {postData} userData = {userData} boardData = {boardData} />
                 <button onClick = {likePost}>Like</button>
-                <CreateComment params = {props.match.params.id} />
+                {/* <CreateComment params = {props.match.params.id} /> */}
               </div>
               <div className = "col-12 col-md-6">
                 <CommentFeed params = {props.match.params.id}  />

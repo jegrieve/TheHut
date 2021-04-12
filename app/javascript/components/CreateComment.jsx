@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 
 const CreateComment = (props) => { 
     const [commentData, setCommentData] = useState("");
-    //props.params = post id
+
     const submitCommentData = (e) => {
         e.preventDefault();
         const body = {
@@ -25,7 +25,7 @@ const CreateComment = (props) => {
             throw new Error("Network response was not ok.");
         })
         .then(response => {
-            console.log(response)
+            props.setLoadedFeedComments(false);
         })
         .catch(error => console.log(error.message))
     }
@@ -43,8 +43,5 @@ const CreateComment = (props) => {
         </div>
     )
 }
-
-    
-
 
 export default CreateComment;
