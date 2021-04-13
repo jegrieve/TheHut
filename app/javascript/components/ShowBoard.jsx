@@ -64,16 +64,30 @@ const ShowBoard = (props) => {
     
      if (cachedBoardPosts.length > 0 && boardData) {
         return (
-            <div id = "board-postfeed">
-                {console.log(boardData)}
-                <div>{boardData.title}</div>
-                <div>{boardData.body}</div>
-                <div>eventual image</div>
+            <div className = "container">
+                <div className = "show-board-postfeed row">
+                    <div className = "col-12 col-md-6">
+                        <div className = "show-board-title">{boardData.title}</div>
+                         <div className = "show-board-body">{boardData.body}</div>
+                         <div className = "show-board-created">
+                             <NavLink className = "text-link" to={`/user/${boardData.user_id.id}`}>
+                                <div>created by {boardData.user_id.username}</div>
+                             </NavLink>
+                             <div>created on {boardData.created_at}</div>
+                         </div>
+                    </div>
+                    <div className = "col-12 col-md-6">
+                         <img className = "show-board-img" src = {boardData.board_image.url} />
+                    </div>
+                    {console.log(boardData)}
+
+                </div>
+                <hr />
             {cachedBoardPosts.map((el,i) => {
             return (
                 <div className = "board-post" key = {i}>
                     <NavLink to={`/post/${el.id}`}>{el.id}</NavLink>
-                    <FeedPost board = {el.board} user = {el.user} created_at = {el.created_at} id ={el.id} title ={el.title} body ={el.body} img ={el.image} />
+                    <FeedPost currentUser = {props.currentUser} board = {el.board} user = {el.user} created_at = {el.created_at} id ={el.id} title ={el.title} body ={el.body} img ={el.image} />
                 </div>
             )
             })}

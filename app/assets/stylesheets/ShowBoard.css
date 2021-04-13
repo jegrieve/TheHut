@@ -1,0 +1,19 @@
+.show-board-postfeed {
+  text-align: center;
+  hyphens: auto;
+  word-wrap: break-word;
+}
+
+.show-board-title {
+  font-weight: bold;
+  font-size: 48px;
+}
+
+.show-board-body {
+  font-size: 28px;
+}
+
+.show-board-img {
+  width: 300px;
+  height: 300px;
+}

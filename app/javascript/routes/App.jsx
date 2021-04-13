@@ -107,7 +107,16 @@ const Routes = () => {
             />
           )}
         />
-        <Route exact path={"/board/:id"} component = {ShowBoard} />
+        <Route
+          exact
+          path={"/board/:id"}
+          render={(props) => (
+            <ShowBoard
+              {...props}
+              currentUser={currentUser}
+            />
+          )}
+        />
       </Switch>
     </Router>
   );

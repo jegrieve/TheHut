@@ -5,4 +5,12 @@ class Board < ApplicationRecord
 
     validates :title, presence: true
     validates :body, presence: true
+
+    def created_at
+        attributes['created_at'].strftime("%^b %d %Y at%l:%M%p")
+    end
+
+    def user_id
+        User.find(attributes['user_id'])
+    end
 end
