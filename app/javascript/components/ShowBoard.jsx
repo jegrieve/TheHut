@@ -86,7 +86,6 @@ const ShowBoard = (props) => {
             {cachedBoardPosts.map((el,i) => {
             return (
                 <div className = "board-post" key = {i}>
-                    <NavLink to={`/post/${el.id}`}>{el.id}</NavLink>
                     <FeedPost currentUser = {props.currentUser} board = {el.board} user = {el.user} created_at = {el.created_at} id ={el.id} title ={el.title} body ={el.body} img ={el.image} />
                 </div>
             )
