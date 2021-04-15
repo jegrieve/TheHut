@@ -29,27 +29,41 @@ const ShowUser = (props) => {
       if(userData) {
         return (
         <div>
-          <div className = "container-fluid">
+         <div className = "container-fluid">
+          <div className = "show-user-info">
             <div className = "row">
-              <div className = "user-info col-6">
-                {userData.username}
-                <div>Bio stuff will go here</div>
-              </div>
-              <div className = "user-avatar col-6">
-                  <div>Avatar will go here</div>
+               <div className = "col-12 d-flex justify-content-center">
+                  <div className = "user-avatar">Avatar will go here</div> {/*this will be img instead*/}
               </div>
             </div>
+            <div className = "row">
+              <div className = "user-username col-12">
+                {userData.username}
+              </div>
+              </div>
               <div className = "row">
-                <div className = "col-6">
+               <div className = "user-bio col-12">
+                <div>Bio stuff will go here</div>
+               </div>
+              </div>
+            </div>
+            <hr/>
+              <div className = "row">
+                  <div className = "col-12">
+                    Recent Activity:
+                  </div>
+              </div>
+              <div className = "row">
+                <div className = "col-4">
                   <div className = "user-posts">
                     {userData.username}'s posts
                     <UserPosts posts = {userData.posts}/>
                   </div>
                 </div>
-                <div className = "col-6">
+                <div className = "col-4">
                   <UserComments comments = {userData.comments}/>
                 </div>
-                <div className = "col-6">
+                <div className = "col-4">
                   <UserLikes likedPosts = {userData.liked_posts}/>
                 </div>
             </div>

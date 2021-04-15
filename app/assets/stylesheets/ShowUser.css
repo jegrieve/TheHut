@@ -1,0 +1,19 @@
+.show-user-info {
+  text-align: center;
+}
+
+.user-username {
+  font-size: 42px;
+  font-weight: bold;
+}
+
+.user-bio {
+  font-size: 18px;
+}
+
+.user-avatar {
+  border: 1px solid black;
+  border-radius: 90%;
+  height: 250px;
+  width: 250px;
+}
