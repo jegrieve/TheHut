@@ -7,6 +7,7 @@ const UserLikes = (props) => {
         return (
             <div>
                 {props.likedPosts.map((el,i) => {
+                if (i >= props.limit) return;
                 return (
                     <div className = "user-like" key = {i}>
                         <div>

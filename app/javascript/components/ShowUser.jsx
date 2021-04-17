@@ -7,6 +7,9 @@ import UserLikes from "./UserLikes";
 
 const ShowUser = (props) => {
     const [userData, setUserData] = useState(null);
+    const [postLimit, setPostLimit] = useState(10);
+    const [commentLimit, setCommentLimit] = useState(10);
+    const [likeLimit, setLikeLimit] = useState(10);
 
     useEffect(() => {
         const id = props.match.params.id
@@ -25,6 +28,23 @@ const ShowUser = (props) => {
         })
           .catch(() => console.log("error"));
       }, []);
+
+      const updateLimit = (e) => {
+        const element = e.target.id;
+        switch(element) {
+          case 'post-limit':
+            setPostLimit(postLimit + 5)
+          break;
+          case 'like-limit':
+            setLikeLimit(likeLimit + 5)
+          break;
+          case 'comment-limit':
+            setCommentLimit(commentLimit + 5)
+          break;
+          default: 
+          return;
+        }
+      }
 
       if(userData) {
         return (
@@ -53,18 +73,21 @@ const ShowUser = (props) => {
                     Recent Activity:
                   </div>
               </div>
-              <div className = "row">
+              <div className = "row user-activity">
                 <div className = "col-4">
                   <div className = "user-posts">
                     {userData.username}'s posts
-                    <UserPosts posts = {userData.posts}/>
+                    <UserPosts posts = {userData.posts} setPostLimit = {setPostLimit} limit = {postLimit}/>
+                    <button id = "post-limit" onClick = {updateLimit}>Show More</button>
                   </div>
                 </div>
                 <div className = "col-4">
-                  <UserComments comments = {userData.comments}/>
+                  <UserComments comments = {userData.comments} setCommentLimit = {setCommentLimit} limit = {commentLimit}/>
+                  <button id = "comment-limit" onClick = {updateLimit}>Show More</button>
                 </div>
                 <div className = "col-4">
-                  <UserLikes likedPosts = {userData.liked_posts}/>
+                  <UserLikes likedPosts = {userData.liked_posts} setLikeLimit = {setLikeLimit} limit = {likeLimit}/>
+                  <button id = "like-limit" onClick = {updateLimit}>Show More</button> 
                 </div>
             </div>
           </div>

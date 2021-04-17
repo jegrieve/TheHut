@@ -5,6 +5,7 @@ const UserComments = (props) => {
     return (
         <div>
             {props.comments.map((el,i) => {
+            if (i >= props.limit) return;
             return (
                 <div className = "user-comment" key = {i}>
                     <div>

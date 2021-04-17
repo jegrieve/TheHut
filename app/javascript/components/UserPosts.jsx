@@ -8,6 +8,7 @@ const UserPosts = (props) => {
     return (
         <div>
         {props.posts.map((el,i) => {
+            if (i >= props.limit) return;
             return (
                 <div className = "user-post" key = {i}>
                     <div>
