@@ -21,6 +21,7 @@ class Api::V1::PostsController < ApplicationController
         user = User.find_by(id: session[:user_id])
         @post = user.posts.new(post_params)
         @post.board_id = params[:board_id]
+        @post.video_link = params[:video]
         @post.save
         render json: @post
     end

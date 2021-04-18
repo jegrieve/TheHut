@@ -6,7 +6,7 @@ const CreatePost = (props) => {
         title: '',
         body: '',
         image: null,
-        videoLink: null
+        video: ''
     })
     const [submitType, setSubmitType] = useState('text')
     const [loadedBoards, setLoadedBoards] = useState([])
@@ -209,7 +209,7 @@ const CreatePost = (props) => {
                     <div className = "row">
                         <div className = "col-12">
                             <button id = "show-video-btn" type = "button" onClick = {showVideoInput}>Add Video</button>
-                            <input id = "video-input" className = "d-none" type = "text" />
+                            <input name = "video" id = "video-input" className = "d-none" type = "text" value = {postContent["video"]} onChange = {handleChange} />
                         </div>
                     </div>
                     <button>Create Post</button>
