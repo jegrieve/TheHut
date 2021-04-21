@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const FeedPost = (props) => { 
     const [likedPost, setLikedPost] = useState(false)
+    const [videoLinkFormatted, setVideoLinkFormatted] = useState(null);
     useEffect(() => {
         if (props.currentUser && props.currentUser.liked_posts) {
             props.currentUser.liked_posts.forEach((el) => {
@@ -10,6 +11,21 @@ const FeedPost = (props) => {
             })
         }
     }, [])
+
+    useEffect(() => {
+        if (props.video_link) {
+            setVideoLinkFormatted("https://www.youtube.com/embed/" + formatVideoUrl(props.video_link))
+        }
+    },[])
+
+    const formatVideoUrl = (url) => {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url.match(regExp);
+    
+        return (match && match[2].length === 11)
+          ? match[2]
+          : null;
+    }
 
     const likePost = () => {
         const body = {
@@ -80,6 +96,23 @@ const FeedPost = (props) => {
                         <div>Like button removed show heart+counts only</div>
                 </div>
             )
+        } else if (videoLinkFormatted) {
+            return (
+                <div className = "feed-post">
+                    <NavLink className = "text-link" to={`/board/${props.board.id}`}>
+                        <div className = "post-board">b/{props.board.title}</div>
+                    </NavLink>
+                    <NavLink className = "text-link" to={`/user/${props.user.id}`}>
+                        <div className = "post-user">posted by u/{props.user.username}</div>
+                    </NavLink>
+                    <NavLink className = "text-link" to={`/post/${props.id}`}>
+                        <div className = "post-created-at">post date {props.created_at}</div>
+                        <div className = "post-title">{props.title}</div>
+                        <iframe width="315" height="315" src={videoLinkFormatted} />
+                    </NavLink>
+                        <div>Like button removed show heart+counts only</div>
+                </div>
+            )
         } else {
             return (
                 <div className = "feed-post">
@@ -97,7 +130,6 @@ const FeedPost = (props) => {
                 </div>
             )
         }
-
     }
     
     if (likedPost) {
@@ -127,6 +159,23 @@ const FeedPost = (props) => {
                     </div>
                 </div>
               );
+        } else if (videoLinkFormatted) {
+            return (
+                <div className = "feed-post">
+                    <NavLink className = "text-link" to={`/board/${props.board.id}`}>
+                        <div className = "post-board">b/{props.board.title}</div>
+                    </NavLink>
+                    <NavLink className = "text-link" to={`/user/${props.user.id}`}>
+                        <div className = "post-user">posted by u/{props.user.username}</div>
+                    </NavLink>
+                    <NavLink className = "text-link" to={`/post/${props.id}`}>
+                        <div className = "post-created-at">post date {props.created_at}</div>
+                        <div className = "post-title">{props.title}</div>
+                        <iframe className = "feed-post-video" width="315" height="315" src={videoLinkFormatted} />
+                    </NavLink>
+                        <div>Like button removed show heart+counts only</div>
+                </div>
+            )
         } else {
             return (
                 <div className = "feed-post">
