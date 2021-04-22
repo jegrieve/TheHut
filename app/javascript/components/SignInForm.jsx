@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 
 const SignInForm = (props) => {
     const [signInUserInputs, setSignInUserInputs] = useState({
@@ -8,9 +8,11 @@ const SignInForm = (props) => {
 
     const bringUpSignInForm = () => {
         document.querySelector(".sign-in-form").classList.remove("d-none");
+        document.querySelector("body").classList.add("unclickable");
     }
     const exitSignInForm = () => {
         document.querySelector(".sign-in-form").classList.add("d-none");
+        document.querySelector("body").classList.remove("unclickable");
     }
 
     const submitSignInForm = (e) => {
@@ -62,28 +64,27 @@ const SignInForm = (props) => {
     return (
         <div>
             <button className = "btn btn-primary" onClick = {bringUpSignInForm}>Log In</button>
-            <div className = "sign-in-form d-none">
+            <div className = "sign-in-form d-none clickable">
                 <form className = "sign-in-inputs">
+                    <button onClick = {exitSignInForm} type="button" className="close close-btn-container" aria-label="Close">
+                        <span className="close-btn" aria-hidden="true">&times;</span>
+                    </button>
                     <div className = "form-group">
-                    <label>Username:
-                    <small id="signin-usernameHelp" className="form-text red-text"></small>
-                    <input id="sign-in-user-username" name = "username" type="text" className = "form-control" onChange = {enterSignInInputs} value = {signInUserInputs["username"]}/>
-                    </label>
+                        <label>Username:
+                            <small id="signin-usernameHelp" className="form-text red-text"></small>
+                            <input id="sign-in-user-username" name = "username" type="text" className = "form-control" onChange = {enterSignInInputs} value = {signInUserInputs["username"]}/>
+                         </label>
                     </div>
                     <div className = "form-group">
-                    <label>Password:
-                    <input id="sign-in-user-password" name = "password" className = "form-control" type="password" onChange = {enterSignInInputs} value = {signInUserInputs["password"]}/>
+                        <label>Password:
+                        <input id="sign-in-user-password" name = "password" className = "form-control" type="password" onChange = {enterSignInInputs} value = {signInUserInputs["password"]}/>
                     </label>
                     </div>
                     <div className = "sign-in-btn">
-                    <button type = "submit" onClick = {submitSignInForm}>Log In</button>
-                    </div>
-                    <div className = "sign-in-btn">
-                    <button type = "button" onClick = {exitSignInForm}>Exit</button>
+                        <button className = "btn btn-success" type = "submit" onClick = {submitSignInForm}>Log In</button>
                     </div>
                 </form>
             </div>
-
         </div>
     )
 }

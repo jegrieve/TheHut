@@ -15,10 +15,9 @@
 }
 
 .sign-in-form {
-  border: 1px solid black;
   position: fixed;
   width: 400px;
-  min-height: 300px;
+  min-height: 250px;
   top: 35%;
   left: 50%;
   margin-top: -100px;
