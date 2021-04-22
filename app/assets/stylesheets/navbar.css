@@ -1,6 +1,9 @@
 .site-navbar {
-  border-bottom: 1px solid black;
   height: 80px;
+  background-color: rgba(128, 128, 128, 0.9);
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .sign-in-form {

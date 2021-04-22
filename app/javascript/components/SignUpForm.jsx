@@ -19,7 +19,7 @@ const SignUpForm = (props) => {
         }
         if (formErrors) {
             for (const key in formErrors) {
-                console.log(key)
+
                 switch(key) {
                     case 'email':
                         document.getElementById("signup-emailInput").classList.remove("is-valid")
@@ -160,42 +160,40 @@ const SignUpForm = (props) => {
         }));
     }
 
-
-
     return (
         <div>
-            <button onClick = {bringUpSignUpForm}>Sign Up</button>
+            <button className = "btn btn-primary" onClick = {bringUpSignUpForm}>Sign Up</button>
             <div className = "sign-up-form d-none clickable">
                 <form onSubmit = {submitSignUpForm} className = "sign-up-inputs">
+                    <button onClick = {exitSignUpForm} type="button" className="close close-btn-container" aria-label="Close">
+                        <span className="close-btn" aria-hidden="true">&times;</span>
+                    </button>
                     <div className = "form-group">
-                    <label>Email:
-                    <input id = "signup-emailInput" className = "form-control" name = "email" type="email" onChange = {enterSignUpInputs} value = {createUserInputs["email"]} />
-                    </label>
-                    <small id="signup-emailHelp" className="form-text red-text"></small>
+                        <label>Email:
+                            <input id = "signup-emailInput" className = "form-control" name = "email" type="email" onChange = {enterSignUpInputs} value = {createUserInputs["email"]} />
+                        </label>
+                        <small id="signup-emailHelp" className="form-text red-text"></small>
                     </div>
                     <div className = "form-group">
-                    <label>Username:
-                    <input id = "signup-usernameInput" className ="form-control" name = "username" type="text" onChange = {enterSignUpInputs} value = {createUserInputs["username"]} minLength = "5"/>
-                    </label>
-                    <small id="signup-usernameHelp" className="form-text red-text"></small>
+                        <label>Username:
+                            <input id = "signup-usernameInput" className ="form-control" name = "username" type="text" onChange = {enterSignUpInputs} value = {createUserInputs["username"]} minLength = "5"/>
+                        </label>
+                        <small id="signup-usernameHelp" className="form-text red-text"></small>
                     </div>
                     <div className = "form-group">
-                    <label>Password:
-                    <input id = "signup-passwordInput" className ="form-control" name = "password" type="password" onChange = {enterSignUpInputs} value = {createUserInputs["password"]} minLength = "5"/>
-                    </label>
-                    <small id="signup-passwordHelp" className="form-text red-text"></small>
+                        <label>Password:
+                            <input id = "signup-passwordInput" className ="form-control" name = "password" type="password" onChange = {enterSignUpInputs} value = {createUserInputs["password"]} minLength = "5"/>
+                        </label>
+                        <small id="signup-passwordHelp" className="form-text red-text"></small>
                     </div>
                     <div className = "form-group">
-                    <label>Password Confirmation:
-                    <input id = "signup-password-confirmInput" className = "form-control" name = "passwordConfirm" type="password" onChange = {enterSignUpInputs} value = {createUserInputs["passwordConfirm"]} minLength = "5"/>
-                    </label>
+                        <label>Password Confirmation:
+                            <input id = "signup-password-confirmInput" className = "form-control" name = "passwordConfirm" type="password" onChange = {enterSignUpInputs} value = {createUserInputs["passwordConfirm"]} minLength = "5"/>
+                        </label>
                     <small id="signup-password-confirmHelp" className="form-text red-text"></small>
                     </div>
                     <div className = "sign-up-btn">
-                        <button type = "submit">Create Account</button>
-                    </div>
-                    <div className = "sign-up-btn">
-                        <button type = "button" onClick = {exitSignUpForm}>Exit</button>
+                        <button className = "btn btn-success" type = "submit">Create Account</button>
                     </div>
                 </form>
             </div>

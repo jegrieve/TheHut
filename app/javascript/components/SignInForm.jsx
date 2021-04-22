@@ -61,7 +61,7 @@ const SignInForm = (props) => {
 
     return (
         <div>
-            <button onClick = {bringUpSignInForm}>Log In</button>
+            <button className = "btn btn-primary" onClick = {bringUpSignInForm}>Log In</button>
             <div className = "sign-in-form d-none">
                 <form className = "sign-in-inputs">
                     <div className = "form-group">

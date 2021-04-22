@@ -15,10 +15,9 @@
 }
 
 .sign-up-form {
-  border: 1px solid black;
   position: fixed;
   width: 400px;
-  min-height: 500px;
+  min-height: 400px;
   top: 30%;
   left: 50%;
   margin-top: -100px;
@@ -31,11 +30,16 @@
   text-align: center;
 }
 
-.sign-up-btn {
-  margin-top: 25px;
-}
-
 .red-text {
   color: rgb(231, 14, 14);
   font-weight: bold;
+}
+
+.close-btn {
+  font-size: 35px;
+}
+
+.close-btn-container {
+  position: absolute;
+  margin-left: 43%;
 }
