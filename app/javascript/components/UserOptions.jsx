@@ -25,7 +25,7 @@ const UserOptions = (props) => {
 
     return (
     <div>
-        <button onClick = {signOutUser}>Sign Out</button>
+        <button className = "btn btn-dark" onClick = {signOutUser}>Sign Out</button>
     </div>
     )
 

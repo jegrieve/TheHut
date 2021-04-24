@@ -12,7 +12,7 @@ class Api::V1::SessionsController < ApplicationController
             session[:user_id] = user.id
             render json: user.to_json( :include => [:posts, :comments, :boards, :liked_posts])
         else
-            render json: user
+            render json: nil
         end
     end
 

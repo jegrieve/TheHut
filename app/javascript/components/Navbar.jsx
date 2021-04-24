@@ -3,6 +3,8 @@ import SignUpForm from "./SignUpForm";
 import SignInForm from "./SignInForm";
 import UserOptions from "./UserOptions";
 import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPen, faUser } from '@fortawesome/free-solid-svg-icons'
 
 const Navbar = (props) => {
 
@@ -13,12 +15,18 @@ const Navbar = (props) => {
                 </div>
 
             {props.currentUser 
-            ? <div className = "d-flex navbar-user-controls justify-content-between">
+            ? <div className = "d-flex align-items-center navbar-user-controls justify-content-between">
                 <div>
-                    <NavLink to="/create-post">Create Post (+)</NavLink>
+                    <NavLink to="/create-post">
+                    <FontAwesomeIcon icon={faPen} />
+                    Create Post
+                    </NavLink>
                 </div>
                 <div>
-                    <NavLink to={`/user/${props.currentUser.id}`}>{props.currentUser.username}</NavLink>
+                    <NavLink to={`/user/${props.currentUser.id}`}>
+                        <FontAwesomeIcon icon={faUser} />
+                        {props.currentUser.username}
+                    </NavLink>
                 </div>
                 <div>
                     <UserOptions setCurrentUser = {props.setCurrentUser} currentUser = {props.currentUser}/>
