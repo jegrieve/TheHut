@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import FeedPost from "./FeedPost"
+import FeedPost from "./FeedPost";
 
 const PostFeed = (props) => {
     const [loadedFeedPosts, setLoadedFeedPosts] = useState([]);
@@ -8,17 +8,18 @@ const PostFeed = (props) => {
     const [fetchedPosts, setFetchedPosts] = useState({offset: 0});
 
     useEffect(() => {
-        const url = "/api/v1/sessions/index";
-        fetch(url)
-          .then(response => {
-            if (response.ok && response) {
-              return response.json();
+        getUserData();
+    }, [])
+
+    useEffect(() => {
+        if (props.currentUser === null || currentUser === null) {
+            if ((props.currentUser === null && currentUser !== null) || (props.currentUser !== null && currentUser === null)) {
+                getUserData();
             }
-            throw new Error("Could not login this user");
-          })
-          .then(response => setCurrentUser(response))
-          .catch(() => setCurrentUser(null));
-      }, [])
+        } else if (props.currentUser.username !== currentUser.username) {
+            getUserData();
+        }});
+
 
     useEffect(() => {
         if (loadedFeedPosts.length > 0) {
@@ -35,6 +36,19 @@ const PostFeed = (props) => {
     useEffect(() => {
         getPosts();
     }, [])
+
+    const getUserData = () => {
+        const url = "/api/v1/sessions/index";
+        fetch(url)
+          .then(response => {
+            if (response.ok && response) {
+              return response.json();
+            }
+            throw new Error("Could not login this user");
+          })
+          .then(response => setCurrentUser(response))
+          .catch(() => setCurrentUser(null));
+    }
 
     const getPosts = () => {
         const limit = 5;

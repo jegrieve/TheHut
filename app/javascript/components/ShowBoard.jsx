@@ -8,6 +8,21 @@ const ShowBoard = (props) => {
     const [loadedBoardPosts, setLoadedBoardPosts] = useState([]);
     const [cachedBoardPosts, setCachedBoardPosts] = useState([]);
     const [fetchedBoardPosts, setFetchedBoardPosts] = useState({offset: 0});
+    const [currentUser, setCurrentUser] = useState(null);
+
+    useEffect(() => {
+        getUserData();
+    }, [])
+
+    useEffect(() => {
+        if (props.currentUser === null || currentUser === null) {
+            if ((props.currentUser === null && currentUser !== null) || (props.currentUser !== null && currentUser === null)) {
+                getUserData();
+            }
+        } else if (props.currentUser.username !== currentUser.username) {
+            getUserData();
+        }});
+
     
     useEffect(() => {
         if (loadedBoardPosts.length > 0) {
@@ -29,6 +44,20 @@ const ShowBoard = (props) => {
     useEffect(() => {
         getBoardPosts();
     }, [])
+
+    const getUserData = () => {
+        const url = "/api/v1/sessions/index";
+        fetch(url)
+          .then(response => {
+            if (response.ok && response) {
+              return response.json();
+            }
+            throw new Error("Could not login this user");
+          })
+          .then(response => setCurrentUser(response))
+          .catch(() => setCurrentUser(null));
+    }
+
 
     const getBoardData = () => {
         const id = props.match.params.id
@@ -86,7 +115,7 @@ const ShowBoard = (props) => {
             {cachedBoardPosts.map((el,i) => {
             return (
                 <div className = "board-post" key = {i}>
-                    <FeedPost currentUser = {props.currentUser} board = {el.board} user = {el.user} created_at = {el.created_at} id ={el.id} title ={el.title} body ={el.body} img ={el.image} />
+                    <FeedPost currentUser = {currentUser} board = {el.board} user = {el.user} created_at = {el.created_at} id ={el.id} title ={el.title} body ={el.body} img ={el.image} />
                 </div>
             )
             })}

@@ -54,7 +54,16 @@ const Routes = () => {
         )}
       />
       <Route exact path={"/user/:id"} component = {ShowUser} />
-      <Route exact path={"/board/:id"} component = {ShowBoard} />
+      <Route
+          exact
+          path={"/board/:id"}
+          render={(props) => (
+            <ShowBoard
+              {...props}
+              currentUser={currentUser}
+            />
+          )}
+        />
       <Route path="*" component = {Homepage} />
     </Switch>
   </Router>
