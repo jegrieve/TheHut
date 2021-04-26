@@ -1,4 +1,8 @@
 .post {
-  border: 1px solid black;
+  padding-left: 2px;
+  padding-right: 2px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  border-radius: 2px;
+  background-color: grey;
   margin-top: 10px;
 }

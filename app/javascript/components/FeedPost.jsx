@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from "react";
 import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons'
 
 const FeedPost = (props) => { 
     const [likedPost, setLikedPost] = useState(false)
@@ -83,14 +86,14 @@ const FeedPost = (props) => {
             return (
                 <div className = "feed-post">
                     <NavLink className = "text-link" to={`/board/${props.board.id}`}>
-                        <div className = "post-board">b/{props.board.title}</div>
+                        <div className = "post-board"><span className = "underline">b/{props.board.title}</span> • </div>
                     </NavLink>
                     <NavLink className = "text-link" to={`/user/${props.user.id}`}>
-                        <div className = "post-user">posted by u/{props.user.username}</div>
+                        <div className = "post-user">posted by <span className = "underline">u/{props.user.username}</span> • </div>
                     </NavLink>
                     <NavLink className = "text-link" to={`/post/${props.id}`}>
                         <div className = "post-created-at">post date {props.created_at}</div>
-                        <div className = "post-title">{props.title}</div>
+                        <div className = "post-title"><span className = "underline">{props.title}</span></div>
                         <img className = "post-img" src = {props.img.url}/>
                     </NavLink>
                         <div>Like button removed show heart+counts only</div>
@@ -100,77 +103,14 @@ const FeedPost = (props) => {
             return (
                 <div className = "feed-post">
                     <NavLink className = "text-link" to={`/board/${props.board.id}`}>
-                        <div className = "post-board">b/{props.board.title}</div>
+                        <div className = "post-board"><span className = "underline">b/{props.board.title}</span> • </div>
                     </NavLink>
                     <NavLink className = "text-link" to={`/user/${props.user.id}`}>
-                        <div className = "post-user">posted by u/{props.user.username}</div>
+                        <div className = "post-user">posted by <span className = "underline">u/{props.user.username}</span> • </div>
                     </NavLink>
                     <NavLink className = "text-link" to={`/post/${props.id}`}>
                         <div className = "post-created-at">post date {props.created_at}</div>
-                        <div className = "post-title">{props.title}</div>
-                        <iframe width="315" height="315" src={videoLinkFormatted} />
-                    </NavLink>
-                        <div>Like button removed show heart+counts only</div>
-                </div>
-            )
-        } else {
-            return (
-                <div className = "feed-post">
-                    <NavLink className = "text-link" to={`/board/${props.board.id}`}>
-                        <div className = "post-board">b/{props.board.title}</div>
-                    </NavLink>
-                    <NavLink className = "text-link" to={`/user/${props.user.id}`}>
-                        <div className = "post-user">posted by u/{props.user.username}</div>
-                    </NavLink>
-                    <NavLink className = "text-link" to={`/post/${props.id}`}>
-                        <div className = "post-created-at">post date {props.created_at}</div>
-                        <div className = "post-title">{props.title}</div>
-                    </NavLink>
-                        <div>Like button removed show heart+counts only</div>
-                </div>
-            )
-        }
-    }
-    
-    if (likedPost) {
-        return (
-            <div>
-                This post was liked
-                <button onClick = {unLikePost}>Unlike</button>
-            </div>
-        )
-    } else {
-        if (props.img) {
-            return (
-                <div className = "feed-post">
-                    <NavLink className = "text-link" to={`/board/${props.board.id}`}>
-                        <div className = "post-board">b/{props.board.title}</div>
-                    </NavLink>
-                    <NavLink className = "text-link" to={`/user/${props.user.id}`}>
-                        <div className = "post-user">posted by u/{props.user.username}</div>
-                    </NavLink>
-                    <NavLink className = "text-link" to={`/post/${props.id}`}>
-                        <div className = "post-created-at">post date {props.created_at}</div>
-                        <div className = "post-title">{props.title}</div>
-                        <img className = "post-img" src = {props.img.url}/>
-                    </NavLink>
-                    <div>
-                        <button onClick = {likePost}>Like</button>
-                    </div>
-                </div>
-              );
-        } else if (videoLinkFormatted) {
-            return (
-                <div className = "feed-post">
-                    <NavLink className = "text-link" to={`/board/${props.board.id}`}>
-                        <div className = "post-board">b/{props.board.title}</div>
-                    </NavLink>
-                    <NavLink className = "text-link" to={`/user/${props.user.id}`}>
-                        <div className = "post-user">posted by u/{props.user.username}</div>
-                    </NavLink>
-                    <NavLink className = "text-link" to={`/post/${props.id}`}>
-                        <div className = "post-created-at">post date {props.created_at}</div>
-                        <div className = "post-title">{props.title}</div>
+                        <div className = "post-title"><span className = "underline">{props.title}</span></div>
                         <iframe className = "feed-post-video" width="315" height="315" src={videoLinkFormatted} />
                     </NavLink>
                         <div>Like button removed show heart+counts only</div>
@@ -180,22 +120,96 @@ const FeedPost = (props) => {
             return (
                 <div className = "feed-post">
                     <NavLink className = "text-link" to={`/board/${props.board.id}`}>
-                        <div className = "post-board">b/ {props.board.title}</div>
+                        <div className = "post-board"><span className = "underline">b/{props.board.title}</span> • </div>
                     </NavLink>
                     <NavLink className = "text-link" to={`/user/${props.user.id}`}>
-                        <div className = "post-user">posted by u/{props.user.username}</div>
+                        <div className = "post-user">posted by <span className = "underline">u/{props.user.username}</span> • </div>
                     </NavLink>
                     <NavLink className = "text-link" to={`/post/${props.id}`}>
                         <div className = "post-created-at">post date {props.created_at}</div>
-                        <div className = "post-title">{props.title}</div>
+                        <div className = "post-title"><span className = "underline">{props.title}</span></div>
                     </NavLink>
-                    <div>
-                        <button onClick = {likePost}>Like</button>
-                    </div>
+                        <div>Like button removed show heart+counts only</div>
                 </div>
             )
         }
     }
+    
+        if (props.img) {
+            return (
+                <div className = "feed-post">
+                    <NavLink className = "text-link" to={`/board/${props.board.id}`}>
+                        <div className = "post-board"><span className = "underline">b/{props.board.title}</span> • </div>
+                    </NavLink>
+                    <NavLink className = "text-link" to={`/user/${props.user.id}`}>
+                        <div className = "post-user">posted by <span className = "underline">u/{props.user.username}</span> • </div>
+                    </NavLink>
+                    <NavLink className = "text-link" to={`/post/${props.id}`}>
+                        <div className = "post-created-at">post date {props.created_at}</div>
+                        <div className = "post-title"><span className = "underline">{props.title}</span></div>
+                        <img className = "post-img" src = {props.img.url}/>
+                    </NavLink>
+                    <div>
+                        {likedPost ? 
+                        <div className = "unlike-post-btn" onClick = {unLikePost}><FontAwesomeIcon icon={faHeart} /></div>
+                        : <div className = "like-post-btn" onClick = {likePost}><FontAwesomeIcon icon={farHeart} /></div>}
+                        {props.userLikes.length} likes
+                    </div>
+                    <div>
+                        {props.userComments.length} comments
+                    </div>
+                </div>
+              );
+        } else if (videoLinkFormatted) {
+            return (
+                <div className = "feed-post">
+                    <NavLink className = "text-link" to={`/board/${props.board.id}`}>
+                        <div className = "post-board"><span className = "underline">b/{props.board.title}</span> • </div>
+                    </NavLink>
+                    <NavLink className = "text-link" to={`/user/${props.user.id}`}>
+                        <div className = "post-user">posted by <span className = "underline">u/{props.user.username}</span> • </div>
+                    </NavLink>
+                    <NavLink className = "text-link" to={`/post/${props.id}`}>
+                        <div className = "post-created-at">post date {props.created_at}</div>
+                        <div className = "post-title"><span className = "underline">{props.title}</span></div>
+                        <iframe className = "feed-post-video" width="315" height="315" src={videoLinkFormatted} />
+                    </NavLink>
+                    <div>
+                        {likedPost ? 
+                        <div className = "unlike-post-btn" onClick = {unLikePost}><FontAwesomeIcon icon={faHeart} /></div>
+                        : <div className = "like-post-btn" onClick = {likePost}><FontAwesomeIcon icon={farHeart} /></div>}
+                        {props.userLikes.length} likes
+                    </div>
+                    <div>
+                        {props.userComments.length} comments
+                    </div>
+                </div>
+            )
+        } else {
+            return (
+                <div className = "feed-post">
+                    <NavLink className = "text-link" to={`/board/${props.board.id}`}>
+                        <div className = "post-board"><span className = "underline">b/{props.board.title}</span> • </div>
+                    </NavLink>
+                    <NavLink className = "text-link" to={`/user/${props.user.id}`}>
+                        <div className = "post-user">posted by <span className = "underline">u/{props.user.username}</span> • </div>
+                    </NavLink>
+                    <NavLink className = "text-link" to={`/post/${props.id}`}>
+                        <div className = "post-created-at">post date {props.created_at}</div>
+                        <div className = "post-title"><span className = "underline">{props.title}</span></div>
+                    </NavLink>
+                    <div>
+                        {likedPost ? 
+                        <div className = "unlike-post-btn" onClick = {unLikePost}><FontAwesomeIcon icon={faHeart} /></div>
+                        : <div className = "like-post-btn" onClick = {likePost}><FontAwesomeIcon icon={farHeart} /></div>}
+                        {props.userLikes.length} likes
+                    </div>
+                    <div>
+                        {props.userComments.length} comments
+                    </div>
+                </div>
+            )
+        }
 }
 
     
