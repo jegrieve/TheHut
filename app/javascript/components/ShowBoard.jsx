@@ -115,7 +115,8 @@ const ShowBoard = (props) => {
             {cachedBoardPosts.map((el,i) => {
             return (
                 <div className = "board-post" key = {i}>
-                    <FeedPost currentUser = {currentUser} board = {el.board} user = {el.user} created_at = {el.created_at} id ={el.id} title ={el.title} body ={el.body} img ={el.image} />
+                    <FeedPost currentUser = {currentUser} board = {el.board} user = {el.user} created_at = {el.created_at} id ={el.id} title ={el.title} body ={el.body} img ={el.image} userLikes = {el.liking_users} userComments = {el.comments}  />
+                    <hr />
                 </div>
             )
             })}

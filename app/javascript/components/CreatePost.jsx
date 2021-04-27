@@ -171,48 +171,39 @@ const CreatePost = (props) => {
 
     if (loadedBoards) {
         return (
-            <div>
-                <form className = "container create-post-form" onSubmit = {submitPostData}>
-                    <div className = "row">
-                        <div className = "col-12">
-                            <label>Board:
-                            <select name = "board" value = {selectBoardValue} onChange = {handleBoardChange}>
+            <div className = "create-post-container d-flex justify-content-center">
+                <form className = "create-post-form form-group" onSubmit = {submitPostData}>
+                    <div className = "form-group">
+                    <label for="select-board-value">Board</label>
+                            <select id = "select-board-value" className = "form-control" name = "board" value = {selectBoardValue} onChange = {handleBoardChange}>
                             {loadedBoards.map((el,i) => {
                                 return (
                                     <option key = {i} value = {el.id}>{el.title}</option>
                                 )
                                     })}
                         </select>
-                            </label>
-                        </div>
                     </div>
-                    <div className = "row">
-                        <div className = "col-12">
-                            <label>Title:
-                            <input name = "title" type = "text" onChange = {handleChange} value = {postContent["title"]} />
-                            </label>
-                        </div>
+                    <div className = "form-group">                            
+                            <label for="post-title-value">Title</label>
+                            <input className = "form-control" id = "post-title-value" name = "title" type = "text" onChange = {handleChange} value = {postContent["title"]} />
                     </div>
-                    <div className = "row">
-                        <div className = "col-12">
-                            <label>Body:
-                            <input name = "body" type = "text" onChange = {handleChange} value = {postContent["body"]}/>
-                            </label>
-                        </div>
+                    <div className = "form-group">
+                    <label for="post-body-value">Body</label>
+                            <textarea className = "form-control" id = "post-body-value" name = "body" type = "text" onChange = {handleChange} value = {postContent["body"]} rows = {3}/>
                     </div>
-                    <div className = "row">
-                        <div className = "col-12">
-                            <button id = "show-image-btn" type = "button" onClick = {showImageInput}>Add Image</button>
-                            <input id = "image-input" className = "d-none" type = "file" accept = "image/*" multiple = {false} onChange = {onImageChange} />
+
+                        <div className = "form-group">
+                            <input id = "image-input" className = "d-none form-control" type = "file" accept = "image/*" multiple = {false} onChange = {onImageChange} />
                         </div>
-                    </div>
-                    <div className = "row">
-                        <div className = "col-12">
-                            <button id = "show-video-btn" type = "button" onClick = {showVideoInput}>Add Video</button>
-                            <input name = "video" id = "video-input" className = "d-none" type = "text" value = {postContent["video"]} onChange = {handleChange} />
+                        <div className = "form-group">
+                            <input name = "video" id = "video-input" className = "d-none form-control" type = "text" value = {postContent["video"]} onChange = {handleChange} />
                         </div>
-                    </div>
-                    <button>Create Post</button>
+                            <button id = "show-image-btn" className = "btn btn-primary" type = "button" onClick = {showImageInput}>Add Image</button>
+                            or
+                            <button id = "show-video-btn" className = "btn btn-primary" type = "button" onClick = {showVideoInput}>Add Video</button>
+                            <div>
+                                <button className = "btn btn-success">Create Post</button>
+                            </div>
                 </form>
             </div>
         )
