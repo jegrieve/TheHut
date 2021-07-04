@@ -7,13 +7,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faUser } from '@fortawesome/free-solid-svg-icons'
 
 const Navbar = (props) => {
-
     return (
         <div className = "site-navbar d-flex justify-content-around align-items-center">
                 <div>
                     <NavLink to="/">Website Logo</NavLink>
                 </div>
-
             {props.currentUser 
             ? <div className = "d-flex align-items-center navbar-user-controls justify-content-between">
                 <div>
@@ -42,7 +40,6 @@ const Navbar = (props) => {
             </div>
             }
         </div>
-
     )
 };
 

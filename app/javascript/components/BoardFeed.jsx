@@ -37,47 +37,25 @@ const BoardFeed = (props) => {
           })
           .catch(() => console.log("error"));
     }
-    
-     if (cachedBoards.length > 0) {
-         if (!props.currentUser) {
-            return (
-                <div id = "boardfeed">
-                <div>Boards</div>
+
+    return (
+        <div id = "boardfeed">
+            <div className = "board-title">Boards</div>
+            {props.currentUser ? <NavLink className = "board-link" to="/create-board">(+) Create a new board</NavLink> : false}
+            {cachedBoards.length ? 
+              <div>
                 {cachedBoards.map((el,i) => {
                 return (
-                    <div className = "board" key = {i}>
-                        <NavLink to={`/board/${el.id}`}>{el.title}</NavLink>
-                    </div>
-                )
-                })}
-                <button onClick = {getBoards}>Load more</button>
-                </div>
-            )
-         } else {
-            return (
-                <div id = "boardfeed">
-                <div className = "board-title">Boards</div>
-                    <NavLink className = "board-link" to="/create-board">(+) Create a new board</NavLink>
-                {cachedBoards.map((el,i) => {
-                return (
-                    <div className = "board" key = {i}>
+                    <div className = "board" key = {"b" + i}>
                         <NavLink className = "board-link" to={`/board/${el.id}`}>{el.title}</NavLink>
                     </div>
                 )
                 })}
-                <button onClick = {getBoards}>Load more</button>
-                </div>
-            )
-         }
-}
-        else {
-            return (
-                <div id = "boardfeed">
-                    <NavLink className = "board-link" to="/create-board">(+) Create a new board</NavLink>
-                    No boards to show. Create a new one.
-                </div>
-            )
-        }
+              </div>
+            : false}
+            <button onClick = {getBoards}>Load more</button>
+        </div>
+    )
  }
 
 
