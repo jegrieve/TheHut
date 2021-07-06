@@ -52,9 +52,10 @@ const CommentFeed = (props) => {
           })
           .catch(() => console.log("error"));
     }
-    
-     if (cachedComments.length > 0) {
-        return (
+
+    return (
+        <div>
+            {cachedComments.length ? 
             <div id = "commentfeed">
             <CreateComment setLoadedFeedComments = {setLoadedFeedComments} params = {props.params} />
             {cachedComments.map((el,i) => {
@@ -68,15 +69,13 @@ const CommentFeed = (props) => {
             })}
             <button onClick = {getComments}>Load more</button>
             </div>
-        )}
-        else {
-            return (
-                <div id = "commentfeed">
-                    <CreateComment setLoadedFeedComments = {setLoadedFeedComments} params = {props.params} />
-                    No comments to show.
-                </div>
-            )
-        }
+            : 
+            <div id = "commentfeed">
+                <CreateComment setLoadedFeedComments = {setLoadedFeedComments} params = {props.params} />
+                No comments to show.
+            </div>}
+        </div>
+    )
 }
 
 export default CommentFeed;
