@@ -124,19 +124,6 @@ const unLikePost = () => {
           .catch(error => console.log(error.message));
 }
 
-    // const formatVideoUrl = (url) => {
-    //     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-    //     const match = url.match(regExp);
-    
-    //     return (match && match[2].length === 11)
-    //       ? match[2]
-    //       : null;
-    // }
-    // const videoId = formatVideoUrl('http://www.youtube.com/watch?v=zbYf5_S7oJo');
-    // const formattedVideoLink = 'www.youtube.com/embed/' + videoId
-      // <iframe width="420" height="315" src='https://www.youtube.com/embed/n7KommHWRDE' />
-      // https://www.youtube.com/watch?v=TKFdu0oR8Gs&ab_channel=FanaticClub
-  
 
 //if user not signed in
   if (postData && !props.currentUser && userData && boardData) {
@@ -152,54 +139,22 @@ const unLikePost = () => {
       </div>
     )
   }
-//if use signed in
-  if (likedPost) {
-    if(postData && userData && boardData) {
-      return ( 
-          <div className = "container show-post">
-            <div className = "row">
-              <div className = "col-12 col-md-6">
-                <ShowPostData data = {postData} userData = {userData} boardData = {boardData} />
-                <button onClick = {unLikePost}>Unlike</button>
-                {/* <CreateComment params = {props.match.params.id} /> */}
-              </div>
-              <div className = "col-12 col-md-6">
-                <CommentFeed params = {props.match.params.id}  />
-              </div>
-            </div>
-          </div>)
-          
-    } else {
-        return (
-            <div>
-               <Loader type="Puff" color="#00BFFF" height={80} width={80} />
-            </div>
-        )
-    }
-  } else {
-    if(postData && userData && boardData) {
-      return ( 
-          <div className = "container show-post">
-            <div className = "row">
-              <div className = "col-12 col-md-6">
-                <ShowPostData data = {postData} userData = {userData} boardData = {boardData} />
-                <button onClick = {likePost}>Like</button>
-                {/* <CreateComment params = {props.match.params.id} /> */}
-              </div>
-              <div className = "col-12 col-md-6">
-                <CommentFeed params = {props.match.params.id}  />
-              </div>
-            </div>
-          </div>)
-          
-    } else {
-        return (
-            <div className = "container show-post">
-               <Loader type="Puff" color="#00BFFF" height={80} width={80} />
-            </div>
-        )
-    }
-  }
+
+  return (
+    <div className = "container show-post">
+    <div className = "row">
+      <div className = "col-12 col-md-6">
+        {postData && userData && boardData ? <ShowPostData data = {postData} userData = {userData} boardData = {boardData} />
+        :
+        <div>No post data found.</div> }
+        {likedPost ? <button onClick = {unLikePost}>Unlike</button> : <button onClick = {likePost}>Like</button>}
+      </div>
+      <div className = "col-12 col-md-6">
+        <CommentFeed params = {props.match.params.id}  />
+      </div>
+    </div>
+  </div>
+  )
 }
 
 
