@@ -70,36 +70,31 @@ const PostFeed = (props) => {
     const handleFilterChange = (e) => {
         props.setFilterValue(e.target.value)
     }
-    
-     if (cachedPosts.length > 0) {
-        return (
-            <div id = "postfeed">
+
+    return (
+        <div id = "postfeed">
+            {cachedPosts.length ? 
+            <div>
                 <label>Filter by:
                     <select name = "filter" value = {props.filterValue} onChange = {handleFilterChange}>
                         <option value = "newest">Newest</option>
                         <option value = "oldest">Oldest</option>
                     </select>
                 </label>
-            {cachedPosts.map((el,i) => {
-            return (
-                <div className = "post" key = {i}>
+                {cachedPosts.map((el,i) => {
+                return (
+                <div className = "post" key = {"p" + i}>
                     <FeedPost video_link = {el.video_link} board = {el.board} user = {el.user} created_at = {el.created_at} id ={el.id} title ={el.title} body ={el.body} img ={el.image}  currentUser = {currentUser} userLikes = {el.liking_users} userComments = {el.comments} />
                 </div>
             )
             })}
-            <button onClick = {getPosts}>Load more</button>
-            </div>
-        )}
-        else {
-            return (
-                <div id = "postfeed">
-                    No posts to show.
-                </div>
-            )
-        }
+            <button onClick = {getPosts}>Load more</button>     
+            </div> 
+            : 
+            <div>
+                No posts to show.
+            </div>}
+        </div>)
      }
-
-
-
 
 export default PostFeed;
