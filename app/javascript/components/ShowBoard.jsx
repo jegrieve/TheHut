@@ -91,46 +91,45 @@ const ShowBoard = (props) => {
           .catch(() => console.log("error"));
     }
     
-     if (cachedBoardPosts.length > 0 && boardData) {
-        return (
+    return (
+        <div>
+            {cachedBoardPosts.length && boardData ? 
             <div className = "container">
-                <div className = "show-board-postfeed row">
-                    <div className = "col-12 col-md-6">
-                        <div className = "show-board-title">{boardData.title}</div>
-                         <div className = "show-board-body">{boardData.body}</div>
-                         <div className = "show-board-created">
-                             <NavLink className = "text-link" to={`/user/${boardData.user_id.id}`}>
-                                <div>created by {boardData.user_id.username}</div>
-                             </NavLink>
-                             <div>created on {boardData.created_at}</div>
-                         </div>
-                    </div>
-                    <div className = "col-12 col-md-6">
-                         <img className = "show-board-img" src = {boardData.board_image.url} />
-                    </div>
-                    {console.log(boardData)}
+            <div className = "show-board-postfeed row">
+                <div className = "col-12 col-md-6">
+                    <div className = "show-board-title">{boardData.title}</div>
+                     <div className = "show-board-body">{boardData.body}</div>
+                     <div className = "show-board-created">
+                         <NavLink className = "text-link" to={`/user/${boardData.user_id.id}`}>
+                            <div>created by {boardData.user_id.username}</div>
+                         </NavLink>
+                         <div>created on {boardData.created_at}</div>
+                     </div>
+                </div>
+                <div className = "col-12 col-md-6">
+                     <img className = "show-board-img" src = {boardData.board_image.url} />
+                </div>
+                {console.log(boardData)}
 
-                </div>
-                <hr />
-            {cachedBoardPosts.map((el,i) => {
-            return (
-                <div className = "board-post" key = {i}>
-                    <FeedPost currentUser = {currentUser} board = {el.board} user = {el.user} created_at = {el.created_at} id ={el.id} title ={el.title} body ={el.body} img ={el.image} userLikes = {el.liking_users} userComments = {el.comments}  />
-                    <hr />
-                </div>
-            )
-            })}
-            <button onClick = {getBoardPosts}>Load more</button>
             </div>
-        )}
-        else {
-            return (
-                <div id = "board-postfeed">
-                    <button onClick = {getBoardPosts}>Get Posts</button>
-                    No posts to show.
-                </div>
-            )
-        }
+            <hr />
+        {cachedBoardPosts.map((el,i) => {
+        return (
+            <div className = "board-post" key = {"b" + i}>
+                <FeedPost postData = {el} currentUser = {currentUser} />
+                <hr />
+            </div>
+        )
+        })}
+        <button onClick = {getBoardPosts}>Load more</button>
+        </div>
+            : 
+            <div id = "board-postfeed">
+            <button onClick = {getBoardPosts}>Get Posts</button>
+            No posts to show.
+        </div>}
+        </div>
+    )
 }
 
 
