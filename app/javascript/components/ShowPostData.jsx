@@ -23,12 +23,11 @@ const formatVideoUrl = (url) => {
       : null;
 }
 
-    if (props.data.image) {
-        return (
+    return (
         <div>
             <div className = "show-post-title">
                 {props.data.title}
-            </div>
+            </div>  
             <div className = "show-post-meta">
                 <span>Posted by  
                     <NavLink to={`/user/${props.userData.id}`}>
@@ -44,64 +43,18 @@ const formatVideoUrl = (url) => {
             </div>
             <div className = "show-post-body">
                 {props.data.body}
-            </div>              
+            </div> 
+            {props.data.image ? 
             <div>
                 <img src = {props.data.image.url} width = {300} height = {300} />
+            </div> : false}             
+            {videoLinkFormatted ? 
+            <div>
+                <iframe width="420" height="315" src={videoLinkFormatted} />
             </div>
+             : false}
         </div>
-        )
-    } else if (videoLinkFormatted) {
-     return (
-      <div>
-        <div className = "show-post-title">
-            {props.data.title}
-        </div>
-        <div className = "show-post-meta">
-            <span>Posted by  
-                <NavLink to={`/user/${props.userData.id}`}>
-                    {" " + props.userData.username}
-                </NavLink>
-            </span>
-            <span> to b/
-                 <NavLink to={`/board/${props.boardData.id}`}>
-                    {props.boardData.title}
-                </NavLink>
-            </span>
-            <div>Posted on {props.data.created_at}</div>
-        </div>
-        <div className = "show-post-body">
-            {props.data.body}
-        </div>              
-        <div>
-            <iframe width="420" height="315" src={videoLinkFormatted} />
-        </div>
-     </div>
-     )
-    } else {
-        return (
-        <div>
-            <div className = "show-post-title">
-                {props.data.title}
-            </div>
-            <div className = "show-post-meta">
-            <span>Posted by 
-                    <NavLink to={`/user/${props.userData.id}`}>
-                        {" " + props.userData.username}
-                    </NavLink>
-                </span>
-                <span> to b/
-                     <NavLink to={`/board/${props.boardData.id}`}>
-                        {props.boardData.title}
-                    </NavLink>
-                </span>
-                <div>Posted on {props.data.created_at}</div>
-            </div>
-            <div className = "show-post-body">
-                {props.data.body}
-            </div>
-        </div>
-        )    
-    }
+    )
 }
 
 
