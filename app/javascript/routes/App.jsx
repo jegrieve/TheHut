@@ -31,6 +31,7 @@ const Routes = () => {
   return (
     <Router>
         <Navbar setCurrentUser = {setCurrentUser} currentUser = {currentUser} />
+      <div className = "app-page">
       <Switch>
       <Route
           exact
@@ -85,6 +86,7 @@ const Routes = () => {
         />
       <Route path="*" component = {Homepage} />
       </Switch>
+     </div>
     </Router>
   );
 };

@@ -1,6 +1,7 @@
 .site-navbar {
-  height: 80px;
-  background-color: rgba(128, 128, 128, 0.9);
+  height: 60px;
+  background-color: white;
+  border-bottom: 1px solid #f9a826;
   position: sticky;
   top: 0;
   z-index: 1;
@@ -13,3 +14,8 @@
 .signed-out {
   min-width: 200px;
 }
+
+/* potential app background 
+.container {
+  background-color: rgba(135, 138, 140, 0.5);
+} */

@@ -5,8 +5,8 @@ import BoardFeed from "./BoardFeed"
 const Homepage = (props) => {
   const [filterValue, setFilterValue] = useState("newest")
   return (
-    <div>
-        <div className = "container">
+    <div className = "homepage">
+        <div className = "homepage-container container">
           <div className = "row">
             <div className = "col-md-12 col-lg-9">
               <PostFeed currentUser = {props.currentUser} filterValue = {filterValue} setFilterValue = {setFilterValue}/>

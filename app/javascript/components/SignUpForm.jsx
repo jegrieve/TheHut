@@ -162,7 +162,7 @@ const SignUpForm = (props) => {
 
     return (
         <div>
-            <button className = "btn btn-primary" onClick = {bringUpSignUpForm}>Sign Up</button>
+            <button className = "btn btn-secondary" onClick = {bringUpSignUpForm}>Sign Up</button>
             <div className = "sign-up-form d-none clickable">
                 <form onSubmit = {submitSignUpForm} className = "sign-up-inputs">
                     <button onClick = {exitSignUpForm} type="button" className="close close-btn-container" aria-label="Close">

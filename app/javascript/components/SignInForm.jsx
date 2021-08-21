@@ -63,7 +63,7 @@ const SignInForm = (props) => {
 
     return (
         <div>
-            <button className = "btn btn-primary" onClick = {bringUpSignInForm}>Log In</button>
+            <button className = "btn btn-secondary" onClick = {bringUpSignInForm}>Log In</button>
             <div className = "sign-in-form d-none clickable">
                 <form className = "sign-in-inputs">
                     <button onClick = {exitSignInForm} type="button" className="close close-btn-container" aria-label="Close">
