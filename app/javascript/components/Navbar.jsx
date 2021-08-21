@@ -16,14 +16,18 @@ const Navbar = (props) => {
             ? <div className = "d-flex align-items-center navbar-user-controls justify-content-between">
                 <div>
                     <NavLink to="/create-post">
-                    <FontAwesomeIcon icon={faPen} />
-                    Create Post
+                        <span className = "nav-create-post">
+                        <FontAwesomeIcon icon={faPen} />
+                        Create Post
+                        </span>
                     </NavLink>
                 </div>
                 <div>
                     <NavLink to={`/user/${props.currentUser.id}`}>
-                        <FontAwesomeIcon icon={faUser} />
-                        {props.currentUser.username}
+                        <span className = "nav-user">
+                            <FontAwesomeIcon icon={faUser} />
+                            {props.currentUser.username}
+                        </span>
                     </NavLink>
                 </div>
                 <div>

@@ -15,7 +15,7 @@
   min-width: 200px;
 }
 
-/* potential app background 
-.container {
-  background-color: rgba(135, 138, 140, 0.5);
-} */
+.nav-create-post,
+.nav-user {
+  color: rgb(52, 58, 64);
+}
