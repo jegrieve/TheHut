@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const SignUpForm = (props) => {
     const [createUserInputs, setCreateUserInputs] = useState({
@@ -165,29 +167,33 @@ const SignUpForm = (props) => {
             <button className = "btn btn-secondary" onClick = {bringUpSignUpForm}>Sign Up</button>
             <div className = "sign-up-form d-none clickable">
                 <form onSubmit = {submitSignUpForm} className = "sign-up-inputs">
-                    <button onClick = {exitSignUpForm} type="button" className="close close-btn-container" aria-label="Close">
-                        <span className="close-btn" aria-hidden="true">&times;</span>
-                    </button>
+                    <div>
+                    <span className = "sign-up-title">Sign Up</span>
+                    <span onClick = {exitSignUpForm} type="button" className="close close-btn-container" aria-label="Close">
+                        <FontAwesomeIcon icon={faTimes} />
+                        {/* <span className="close-btn" aria-hidden="true">&times;</span> */}
+                    </span>
+                    </div>
                     <div className = "form-group">
-                        <label>Email:
+                        <label className = "sign-up-label email-label">Email:
                             <input id = "signup-emailInput" className = "form-control" name = "email" type="email" onChange = {enterSignUpInputs} value = {createUserInputs["email"]} />
                         </label>
                         <small id="signup-emailHelp" className="form-text red-text"></small>
                     </div>
                     <div className = "form-group">
-                        <label>Username:
+                        <label className = "sign-up-label">Username:
                             <input id = "signup-usernameInput" className ="form-control" name = "username" type="text" onChange = {enterSignUpInputs} value = {createUserInputs["username"]} minLength = "5"/>
                         </label>
                         <small id="signup-usernameHelp" className="form-text red-text"></small>
                     </div>
                     <div className = "form-group">
-                        <label>Password:
+                        <label className = "sign-up-label">Password:
                             <input id = "signup-passwordInput" className ="form-control" name = "password" type="password" onChange = {enterSignUpInputs} value = {createUserInputs["password"]} minLength = "5"/>
                         </label>
                         <small id="signup-passwordHelp" className="form-text red-text"></small>
                     </div>
                     <div className = "form-group">
-                        <label>Password Confirmation:
+                        <label className = "sign-up-label">Password Confirmation:
                             <input id = "signup-password-confirmInput" className = "form-control" name = "passwordConfirm" type="password" onChange = {enterSignUpInputs} value = {createUserInputs["passwordConfirm"]} minLength = "5"/>
                         </label>
                     <small id="signup-password-confirmHelp" className="form-text red-text"></small>

@@ -45,7 +45,8 @@
   font-size: 16px;
 }
 
-.sign-in-title {
+.sign-in-title,
+.sign-up-title {
   font-size: 26px;
   margin-left: 10px;
   font-weight: bold;
