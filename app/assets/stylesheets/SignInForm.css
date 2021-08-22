@@ -15,18 +15,20 @@
 }
 
 .sign-in-form {
+  border: 1px solid grey;
   position: fixed;
   width: 400px;
-  min-height: 250px;
+  min-height: 350px;
   top: 35%;
   left: 50%;
   margin-top: -100px;
   margin-left: -200px;
   z-index: 1;
-  background-color: grey;
+  background-color: rgb(228, 228, 228);
 }
 
 .sign-in-inputs {
+  /* margin-top: 30px; */
   text-align: center;
 }
 
@@ -37,4 +39,19 @@
 .red-text {
   color: rgb(231, 14, 14);
   font-weight: bold;
+}
+
+.sign-in-label {
+  font-size: 16px;
+}
+
+.sign-in-title {
+  font-size: 26px;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.sign-in-username-input,
+.sign-in-username-password {
+  margin-top: 25px;
 }

@@ -27,6 +27,7 @@
 }
 
 .sign-up-inputs {
+  margin-top: 10px;
   text-align: center;
 }
 
@@ -36,10 +37,11 @@
 }
 
 .close-btn {
-  font-size: 35px;
+  /* font-size: 35px; */
 }
 
 .close-btn-container {
-  position: absolute;
-  margin-left: 43%;
+  /* position: absolute;
+  margin-left: 43%; */
+  margin-right: 5px;
 }
