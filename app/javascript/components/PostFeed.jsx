@@ -2,30 +2,30 @@ import React, {useEffect, useState} from "react";
 import FeedPost from "./FeedPost";
 
 const PostFeed = (props) => {
-    const [loadedFeedPosts, setLoadedFeedPosts] = useState([]);
-    const [cachedPosts, setCachedPosts] = useState([]);
-    const [fetchedPosts, setFetchedPosts] = useState({offset: 0});
-
-    useEffect(() => {
-        if (loadedFeedPosts.length > 0) {
-            setFetchedPosts({offset: fetchedPosts['offset'] + 5})
-        } 
-    }, [loadedFeedPosts])
-
-    useEffect(() => {
-        setCachedPosts((prevState) => (
-            [...prevState].concat(loadedFeedPosts)
-        ))
-    }, [fetchedPosts])
+    const [fetchedPosts, setFetchedPosts] =  useState([]);
+    const [postLimit, setPostLimit] = useState(5);
+    const [currentFilter, setCurrentFilter] = useState("newest")
 
     useEffect(() => {
         getPosts();
-    }, [])
+    }, [postLimit])
+
+    useEffect(() => {
+        if (currentFilter !== props.filterValue) {
+            setCurrentFilter(props.filterValue);
+        }
+    })
+
+    useEffect(() => {
+        if (postLimit === 5) {
+            setPostLimit(postLimit + 1);
+        } else {
+            setPostLimit(5);
+        }
+    }, [currentFilter])
 
     const getPosts = () => {
-        const limit = 5;
-        console.log(props.filterValue)
-        const url = `/api/v1/posts/index?limit=${limit}&offset=${fetchedPosts['offset']}&filter=${props.filterValue}`;
+        const url = `/api/v1/posts/index?limit=${postLimit}&filter=${props.filterValue}`;
         fetch(url)
           .then(response => {
             if (response.ok) {
@@ -35,17 +35,22 @@ const PostFeed = (props) => {
           })
           .then(response => {
               console.log(response)
-            setLoadedFeedPosts(response)
+            setFetchedPosts(response)
           })
           .catch(() => console.log("error"));
     }
+
+    const loadMorePosts = () => {
+        setPostLimit(postLimit + 5)
+    }
+
     const handleFilterChange = (e) => {
         props.setFilterValue(e.target.value)
     }
 
     return (
         <div id = "postfeed">
-            {cachedPosts.length ? 
+            {fetchedPosts.length ? 
             <div>
                 <label>Filter by:
                     <select name = "filter" value = {props.filterValue} onChange = {handleFilterChange}>
@@ -53,14 +58,14 @@ const PostFeed = (props) => {
                         <option value = "oldest">Oldest</option>
                     </select>
                 </label>
-                {cachedPosts.map((el,i) => {
+                {fetchedPosts.map((el,i) => {
                 return (
                 <div className = "post" key = {"p" + i}>
                     <FeedPost postData = {el} currentUser = {props.currentUser} />
                 </div>
             )
             })}
-            <button onClick = {getPosts}>Load more</button>     
+            <button onClick = {loadMorePosts}>Load more</button>     
             </div> 
             : 
             <div>
