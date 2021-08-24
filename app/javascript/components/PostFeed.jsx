@@ -3,10 +3,8 @@ import FeedPost from "./FeedPost";
 
 const PostFeed = (props) => {
     const [loadedFeedPosts, setLoadedFeedPosts] = useState([]);
-    const [currentUser, setCurrentUser] = useState(null);
     const [cachedPosts, setCachedPosts] = useState([]);
     const [fetchedPosts, setFetchedPosts] = useState({offset: 0});
-
 
     useEffect(() => {
         if (loadedFeedPosts.length > 0) {
@@ -58,7 +56,7 @@ const PostFeed = (props) => {
                 {cachedPosts.map((el,i) => {
                 return (
                 <div className = "post" key = {"p" + i}>
-                    <FeedPost postData = {el} currentUser = {currentUser} />
+                    <FeedPost postData = {el} currentUser = {props.currentUser} />
                 </div>
             )
             })}

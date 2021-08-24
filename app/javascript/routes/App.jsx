@@ -88,7 +88,15 @@ const Routes = () => {
             />
           )}
         />
-      <Route path="*" component = {Homepage} />
+        <Route
+          path="*"
+          render={(props) => (
+            <Homepage
+              {...props}
+              currentUser={currentUser}
+            />
+          )}
+        />
       </Switch>
      </div>
     </Router>
