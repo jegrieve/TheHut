@@ -16,17 +16,21 @@ const Routes = () => {
   }
 
   useEffect(() => {
+    getUserSession();
+  }, [])
+  
+  const getUserSession = () => {
     const url = "/api/v1/sessions/index";
     fetch(url)
       .then(response => {
-        if (response.ok && response) {
+        if (response.ok) { 
           return response.json();
         }
         throw new Error("Could not login this user");
       })
       .then(response => setCurrentUser(response))
       .catch(() => setCurrentUser(null));
-  }, [])
+  }
 
   return (
     <Router>

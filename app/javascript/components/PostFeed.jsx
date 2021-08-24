@@ -7,19 +7,6 @@ const PostFeed = (props) => {
     const [cachedPosts, setCachedPosts] = useState([]);
     const [fetchedPosts, setFetchedPosts] = useState({offset: 0});
 
-    useEffect(() => {
-        getUserData();
-    }, [])
-
-    useEffect(() => {
-        if (props.currentUser === null || currentUser === null) {
-            if ((props.currentUser === null && currentUser !== null) || (props.currentUser !== null && currentUser === null)) {
-                getUserData();
-            }
-        } else if (props.currentUser.username !== currentUser.username) {
-            getUserData();
-        }});
-
 
     useEffect(() => {
         if (loadedFeedPosts.length > 0) {
@@ -36,19 +23,6 @@ const PostFeed = (props) => {
     useEffect(() => {
         getPosts();
     }, [])
-
-    const getUserData = () => {
-        const url = "/api/v1/sessions/index";
-        fetch(url)
-          .then(response => {
-            if (response.ok && response) {
-              return response.json();
-            }
-            throw new Error("Could not login this user");
-          })
-          .then(response => setCurrentUser(response))
-          .catch(() => setCurrentUser(null));
-    }
 
     const getPosts = () => {
         const limit = 5;
