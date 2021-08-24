@@ -5,4 +5,9 @@
   border-radius: 2px;
   background-color: rgb(202, 202, 202);
   margin-top: 10px;
+  border: 1px solid transparent;
+}
+
+.post:hover {
+  border: 1px solid black;
 }
