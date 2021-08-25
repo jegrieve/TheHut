@@ -4,15 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons'
 const FeedPost = (props) => { 
-    const [likedPost, setLikedPost] = useState(false)
+    const [likedPost, setLikedPost] = useState(null)
     const [videoLinkFormatted, setVideoLinkFormatted] = useState(null);
+
     useEffect(() => {
-        if (props.currentUser && props.currentUser.liked_posts) {
-            props.currentUser.liked_posts.forEach((el) => {
-                if (el.id === props.postData.id) {setLikedPost(true)};
-            })
+        if (likedPost !== props.likedPost) {
+            setLikedPost(props.likedPost);
         }
-    }, [])
+    }) 
 
     useEffect(() => {
         if (props.postData.video_link) {
@@ -50,8 +49,7 @@ const FeedPost = (props) => {
             throw new Error("Network response was not ok.");
         })
         .then(response => {
-            console.log(response)
-            setLikedPost(true)
+            props.getPosts();
         })
         .catch(error => console.log(error.message))
     }
@@ -74,8 +72,7 @@ const FeedPost = (props) => {
                 throw new Error("Network response was not ok.");
               })
               .then((response) => {
-                  console.log(response)
-                  setLikedPost(false);
+                props.getPosts();
               })
               .catch(error => console.log(error.message));
     }
@@ -97,14 +94,15 @@ const FeedPost = (props) => {
             {props.currentUser ? 
             <div>
                 <div className = "d-flex align-items-center">
-                    {likedPost ? 
+                    {likedPost === true ? 
                     <div className = "unlike-post-btn" onClick = {unLikePost}>
                         <FontAwesomeIcon icon={faHeart} />
                     </div>
-                    : 
+                    : likedPost === false ? 
                     <div className = "like-post-btn" onClick = {likePost}>
                         <FontAwesomeIcon icon={farHeart} />
-                    </div>}
+                    </div>
+                    : false}
                     <div className = "post-likes-count">
                         {props.postData.liking_users.length} likes
                     </div>

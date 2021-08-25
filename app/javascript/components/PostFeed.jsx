@@ -59,9 +59,10 @@ const PostFeed = (props) => {
                     </select>
                 </label>
                 {fetchedPosts.map((el,i) => {
+                    let likedPost = (props.currentUser ? el.liking_users.some((ele) => ele.id === props.currentUser.id) : false)
                 return (
                 <div className = "post" key = {"p" + i}>
-                    <FeedPost postData = {el} currentUser = {props.currentUser} />
+                    <FeedPost postData = {el} currentUser = {props.currentUser} getPosts = {getPosts} likedPost = {likedPost} />
                 </div>
             )
             })}
