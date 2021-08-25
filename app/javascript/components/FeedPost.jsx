@@ -96,32 +96,37 @@ const FeedPost = (props) => {
         </NavLink>
             {props.currentUser ? 
             <div>
-                <div>
+                <div className = "d-flex align-items-center">
                     {likedPost ? 
-                    <div className = "unlike-post-btn" onClick = {unLikePost}><FontAwesomeIcon icon={faHeart} /></div>
-                    : <div className = "like-post-btn" onClick = {likePost}><FontAwesomeIcon icon={farHeart} /></div>}
+                    <div className = "unlike-post-btn" onClick = {unLikePost}>
+                        <FontAwesomeIcon icon={faHeart} />
                     </div>
-                    <div>
-                    <span className = "post-likes-count">
+                    : 
+                    <div className = "like-post-btn" onClick = {likePost}>
+                        <FontAwesomeIcon icon={farHeart} />
+                    </div>}
+                    <div className = "post-likes-count">
                         {props.postData.liking_users.length} likes
-                    </span>
-                    <span className = "post-comments-count">
+                    </div>
+                    <div className = "post-comments-count">
                         {props.postData.comments.length} comments
-                    </span>
+                    </div>
+                   </div>
+                  <div>
                 </div>
             </div>
             : 
             <div>
-                <div>
+                <div className = "d-flex align-items-center">
                     <div className = "not-signed-in-btn">
                         <FontAwesomeIcon icon={farHeart} />
                     </div>
-                    <span className = "post-likes-count">
+                    <div className = "post-likes-count">
                         {props.postData.liking_users.length} likes
-                    </span>
-                    <span className = "post-comments-count">
+                    </div>
+                    <div className = "post-comments-count">
                         {props.postData.comments.length} comments
-                    </span>
+                    </div>
                 </div>
             </div>}
     </div>

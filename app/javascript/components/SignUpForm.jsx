@@ -176,19 +176,19 @@ const SignUpForm = (props) => {
                     </div>
                     <div className = "form-group">
                         <label className = "sign-up-label email-label">Email:
-                            <input id = "signup-emailInput" className = "form-control" name = "email" type="email" onChange = {enterSignUpInputs} value = {createUserInputs["email"]}  minlength = "5" maxLength = "64"/>
+                            <input id = "signup-emailInput" className = "form-control" name = "email" type="email" onChange = {enterSignUpInputs} value = {createUserInputs["email"]}  minLength = "5" maxLength = "64"/>
                         </label>
                         <small id="signup-emailHelp" className="form-text red-text"></small>
                     </div>
                     <div className = "form-group">
                         <label className = "sign-up-label">Username:
-                            <input id = "signup-usernameInput" className ="form-control" name = "username" type="text" onChange = {enterSignUpInputs} value = {createUserInputs["username"]} placeholder = "5-15 characters" minlength = "5" maxLength = "15" />
+                            <input id = "signup-usernameInput" className ="form-control" name = "username" type="text" onChange = {enterSignUpInputs} value = {createUserInputs["username"]} placeholder = "5-15 characters" minLength = "5" maxLength = "15" />
                         </label>
                         <small id="signup-usernameHelp" className="form-text red-text"></small>
                     </div>
                     <div className = "form-group">
                         <label className = "sign-up-label">Password:
-                            <input id = "signup-passwordInput" className ="form-control" name = "password" type="password" onChange = {enterSignUpInputs} value = {createUserInputs["password"]} placeholder = "5-16 characters" minlength = "5" maxLength = "16" />
+                            <input id = "signup-passwordInput" className ="form-control" name = "password" type="password" onChange = {enterSignUpInputs} value = {createUserInputs["password"]} placeholder = "5-16 characters" minLength = "5" maxLength = "16" />
                         </label>
                         <small id="signup-passwordHelp" className="form-text red-text"></small>
                     </div>

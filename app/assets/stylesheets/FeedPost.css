@@ -47,6 +47,7 @@
   color: #f9a826;
 }
 
-.post-comments-count {
+.post-comments-count,
+.post-likes-count {
   margin-left: 10px;
 }
