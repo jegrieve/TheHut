@@ -89,7 +89,7 @@ const FeedPost = (props) => {
             <div className = "post-user">posted by <span className = "underline">u/{props.postData.user.username}</span> • </div>
         </NavLink>
         <NavLink className = "text-link" to={`/post/${props.postData.id}`}>
-            <div className = "post-created-at">post date {props.postData.created_at}</div>
+            <div className = "post-created-at">posted on {props.postData.created_at}</div>
             <div className = "post-title"><span className = "underline">{props.postData.title}</span></div>
             {props.postData.image ? <img className = "post-img" src = {props.postData.image.url}/> : false}
             {props.postData.video_link ? <iframe className = "feed-post-video" width="315" height="315" src={videoLinkFormatted} /> : false}
