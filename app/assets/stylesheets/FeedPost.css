@@ -39,5 +39,14 @@
 .like-post-btn {
   cursor: pointer;
   font-size: 25px;
-  color: red;
+  color: #f9a826;
+}
+
+.not-signed-in-btn {
+  font-size: 25px;
+  color: #f9a826;
+}
+
+.post-comments-count {
+  margin-left: 10px;
 }

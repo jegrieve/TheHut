@@ -100,14 +100,30 @@ const FeedPost = (props) => {
                     {likedPost ? 
                     <div className = "unlike-post-btn" onClick = {unLikePost}><FontAwesomeIcon icon={faHeart} /></div>
                     : <div className = "like-post-btn" onClick = {likePost}><FontAwesomeIcon icon={farHeart} /></div>}
-                    {props.postData.liking_users.length} likes
                     </div>
                     <div>
-                    {props.postData.comments.length} comments
+                    <span className = "post-likes-count">
+                        {props.postData.liking_users.length} likes
+                    </span>
+                    <span className = "post-comments-count">
+                        {props.postData.comments.length} comments
+                    </span>
                 </div>
             </div>
             : 
-            <div>Like button removed show heart+counts only</div>}
+            <div>
+                <div>
+                    <div className = "not-signed-in-btn">
+                        <FontAwesomeIcon icon={farHeart} />
+                    </div>
+                    <span className = "post-likes-count">
+                        {props.postData.liking_users.length} likes
+                    </span>
+                    <span className = "post-comments-count">
+                        {props.postData.comments.length} comments
+                    </span>
+                </div>
+            </div>}
     </div>
     )
 }
