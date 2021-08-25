@@ -65,7 +65,9 @@ const PostFeed = (props) => {
                 </div>
             )
             })}
-            <button onClick = {loadMorePosts}>Load more</button>     
+            <div className = "d-flex justify-content-center">
+                <button className = "btn btn-secondary load-more-posts-btn" onClick = {loadMorePosts}>Load more</button>     
+            </div>
             </div> 
             : 
             <div>

@@ -11,3 +11,7 @@
 .post:hover {
   border: 1px solid black;
 }
+
+.load-more-posts-btn {
+  margin-top: 5px;
+}
