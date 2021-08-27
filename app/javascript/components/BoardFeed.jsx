@@ -43,7 +43,7 @@ const BoardFeed = (props) => {
             <div className = "board-title">Boards</div>
             {props.currentUser ? <NavLink className = "board-link" to="/create-board">(+) Create a new board</NavLink> : false}
             {cachedBoards.length ? 
-              <div>
+              <div className = "board-feed-container">
                 {cachedBoards.map((el,i) => {
                 return (
                     <div className = "board" key = {"b" + i}>
