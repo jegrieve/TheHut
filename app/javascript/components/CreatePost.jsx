@@ -183,7 +183,7 @@ const CreatePost = (props) => {
             <div className = "d-flex justify-content-center">
                 <form className = "create-post-form form-group create-form-container" onSubmit = {submitPostData}>
                     <div className = "form-group">
-                    <label className = "create-label" for="select-board-value">Board</label>
+                    <label className = "create-label" htmlFor="select-board-value">Board</label>
                             <select id = "select-board-value" className = "form-control" name = "board" value = {selectBoardValue} onChange = {handleBoardChange}>
                             {loadedBoards.map((el,i) => {
                                 return (
@@ -193,32 +193,39 @@ const CreatePost = (props) => {
                         </select>
                     </div>
                     <div className = "form-group">                            
-                            <label className = "create-label" for="post-title-value">Title</label>
-                            <input className = "form-control" id = "post-title-value" name = "title" type = "text" onChange = {handleChange} value = {postContent["title"]} minLength = {1} maxLength = {300} placeholder = "Title required" />
+                            <label className = "create-label" htmlFor="post-title-value">Title</label>
+                            <input className = "form-control" id = "post-title-value" name = "title" type = "text" onChange = {handleChange} value = {postContent["title"]} minLength = {1} maxLength = {300} placeholder = "Title required" required/>
                     </div>
                     <div className = "form-group">
-                    <label className = "create-label" for="post-body-value">Body</label>
+                    <label className = "create-label" htmlFor="post-body-value">Body</label>
                             <textarea className = "form-control" id = "post-body-value" name = "body" type = "text" onChange = {handleChange} value = {postContent["body"]} rows = {4} placeholder = "Body optional" />
                     </div>
                         {submitType === "image" ? 
                         <div className = "form-group">
-                            <input id = "image-input" className = "form-control" type = "file" accept = "image/*" multiple = {false} onChange = {onImageChange} />
-                            <button onClick = {cancelInput}>Cancel</button>
+                            <input id = "image-input" className = "form-control" type = "file" accept = "image/*" multiple = {false} onChange = {onImageChange} required/>
+                            <button className = "btn btn-danger cancel-btn" onClick = {cancelInput}>Cancel</button>
                         </div>
                         : submitType === "video" ?
                         <div className = "form-group">
-                            <input name = "video" id = "video-input" className = "form-control" type = "text" value = {postContent["video"]} onChange = {handleChange} />
-                            <button onClick = {cancelInput}>Cancel</button>
+                            <input name = "video" id = "video-input" className = "form-control" type = "text" value = {postContent["video"]} onChange = {handleChange} placeholder = "Valid YouTube Link" required/>
+                            <button className = "btn btn-danger cancel-btn" onClick = {cancelInput}>Cancel</button>
                         </div> 
                         : 
                         <div>
-                            <FontAwesomeIcon icon={faImage} />
-                            <FontAwesomeIcon icon={faYoutube} />
-                            <button id = "show-image-btn" className = "btn btn-primary" type = "button" onClick = {showImageInput}>Add Image</button>
-                            <button id = "show-video-btn" className = "btn btn-primary" type = "button" onClick = {showVideoInput}>Add Video</button>
+                          <div className = "attachment-title">Attach Image/Video (optional)</div>
+                          <div className = "d-flex">
+                            <div className = "add-post-attachment image-input-btn" onClick = {showImageInput}>
+                                <FontAwesomeIcon icon={faImage} size = "2x" title = "Add Image"/>
+                            </div>
+                            <div className = "add-post-attachment video-input-btn" onClick = {showVideoInput}>
+                                <FontAwesomeIcon icon={faYoutube} size = "2x" title = "Add YouTube Video"/>
+                            </div>
+                          </div>
+                            {/* <button id = "show-image-btn" className = "btn btn-primary" type = "button" onClick = {showImageInput}>Add Image</button>
+                            <button id = "show-video-btn" className = "btn btn-primary" type = "button" onClick = {showVideoInput}>Add Video</button> */}
                         </div>
                         }
-                            <div>
+                            <div className = "create-post-btn">
                                 <button className = "btn btn-success">Create Post</button>
                             </div>
                 </form>

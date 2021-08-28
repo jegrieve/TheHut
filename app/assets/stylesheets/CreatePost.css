@@ -15,3 +15,30 @@
 .create-label {
   font-weight: bold;
 }
+
+.add-post-attachment {
+  font-size: 26px;
+}
+
+.add-post-attachment:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.create-post-btn {
+  text-align: center;
+}
+
+.video-input-btn {
+  margin-left: 30px;
+}
+
+.attachment-title {
+  text-decoration: underline;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.cancel-btn {
+  margin-top: 3px;
+}
