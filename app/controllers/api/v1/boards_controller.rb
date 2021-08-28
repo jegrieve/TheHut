@@ -11,6 +11,7 @@ class Api::V1::BoardsController < ApplicationController
     def create
         user = User.find_by(id: session[:user_id])
         @board = user.boards.create(board_params)
+        render json: @board
     end
 
     def show
