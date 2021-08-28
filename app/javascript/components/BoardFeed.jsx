@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 const BoardFeed = (props) => {
     const [loadedBoards, setLoadedBoards] = useState([]);
@@ -41,19 +43,25 @@ const BoardFeed = (props) => {
     return (
         <div id = "boardfeed">
             <div className = "board-title">Boards</div>
-            {props.currentUser ? <NavLink className = "board-link" to="/create-board">(+) Create a new board</NavLink> : false}
+            {props.currentUser ? <NavLink className = "board-link" to="/create-board">
+              <div className = "create-new-board">
+                <FontAwesomeIcon icon = {faPlus} /> <span>new board</span>
+              </div>
+            </NavLink> : false}
             {cachedBoards.length ? 
               <div className = "board-feed-container">
                 {cachedBoards.map((el,i) => {
                 return (
                     <div className = "board" key = {"b" + i}>
-                        <NavLink className = "board-link" to={`/board/${el.id}`}>{el.title}</NavLink>
+                        <NavLink className = "board-link" to={`/board/${el.id}`}>b/{el.title}</NavLink>
                     </div>
                 )
                 })}
               </div>
             : false}
-            <button onClick = {getBoards}>Load more</button>
+            <div className = "d-flex justify-content-center">
+              <button className = "btn btn-secondary load-more-boards" onClick = {getBoards}>Load more</button>
+            </div>
         </div>
     )
  }
