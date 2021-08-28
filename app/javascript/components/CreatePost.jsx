@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faImage } from '@fortawesome/free-solid-svg-icons'
 import {faYoutube } from '@fortawesome/free-brands-svg-icons';
-import Loader from "react-loader-spinner";
 
 const CreatePost = (props) => {
     const [postContent, setPostContent] = useState({
