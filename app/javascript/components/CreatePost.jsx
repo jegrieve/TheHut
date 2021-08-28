@@ -1,4 +1,7 @@
 import React, {useState, useEffect} from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faImage } from '@fortawesome/free-solid-svg-icons'
+import {faYoutube } from '@fortawesome/free-brands-svg-icons';
 import Loader from "react-loader-spinner";
 
 const CreatePost = (props) => {
@@ -156,25 +159,31 @@ const CreatePost = (props) => {
     }
 
     const showImageInput = () => {
-        document.getElementById("image-input").classList.remove("d-none")
-        document.getElementById("show-video-btn").classList.add("d-none")
-        document.getElementById("show-image-btn").classList.add("d-none")
+        // document.getElementById("image-input").classList.remove("d-none")
+        // document.getElementById("show-video-btn").classList.add("d-none")
+        // document.getElementById("show-image-btn").classList.add("d-none")
         setSubmitType("image")
     }
 
     const showVideoInput = () => {
-        document.getElementById("video-input").classList.remove("d-none")
-        document.getElementById("show-video-btn").classList.add("d-none")
-        document.getElementById("show-image-btn").classList.add("d-none")
+        // document.getElementById("video-input").classList.remove("d-none")
+        // document.getElementById("show-video-btn").classList.add("d-none")
+        // document.getElementById("show-image-btn").classList.add("d-none")
         setSubmitType("video")
     }
 
-    if (loadedBoards) {
-        return (
-            <div className = "create-post-container d-flex justify-content-center">
-                <form className = "create-post-form form-group" onSubmit = {submitPostData}>
+    const cancelInput = () => {
+        setSubmitType("text")
+    }
+
+    return (
+        <div>
+            <div className = "create-title">Create Post</div>
+            {loadedBoards ? 
+            <div className = "d-flex justify-content-center">
+                <form className = "create-post-form form-group create-form-container" onSubmit = {submitPostData}>
                     <div className = "form-group">
-                    <label for="select-board-value">Board</label>
+                    <label className = "create-label" for="select-board-value">Board</label>
                             <select id = "select-board-value" className = "form-control" name = "board" value = {selectBoardValue} onChange = {handleBoardChange}>
                             {loadedBoards.map((el,i) => {
                                 return (
@@ -184,35 +193,40 @@ const CreatePost = (props) => {
                         </select>
                     </div>
                     <div className = "form-group">                            
-                            <label for="post-title-value">Title</label>
-                            <input className = "form-control" id = "post-title-value" name = "title" type = "text" onChange = {handleChange} value = {postContent["title"]} />
+                            <label className = "create-label" for="post-title-value">Title</label>
+                            <input className = "form-control" id = "post-title-value" name = "title" type = "text" onChange = {handleChange} value = {postContent["title"]} minLength = {1} maxLength = {300} placeholder = "Title required" />
                     </div>
                     <div className = "form-group">
-                    <label for="post-body-value">Body</label>
-                            <textarea className = "form-control" id = "post-body-value" name = "body" type = "text" onChange = {handleChange} value = {postContent["body"]} rows = {3}/>
+                    <label className = "create-label" for="post-body-value">Body</label>
+                            <textarea className = "form-control" id = "post-body-value" name = "body" type = "text" onChange = {handleChange} value = {postContent["body"]} rows = {4} placeholder = "Body optional" />
                     </div>
-
+                        {submitType === "image" ? 
                         <div className = "form-group">
-                            <input id = "image-input" className = "d-none form-control" type = "file" accept = "image/*" multiple = {false} onChange = {onImageChange} />
+                            <input id = "image-input" className = "form-control" type = "file" accept = "image/*" multiple = {false} onChange = {onImageChange} />
+                            <button onClick = {cancelInput}>Cancel</button>
                         </div>
+                        : submitType === "video" ?
                         <div className = "form-group">
-                            <input name = "video" id = "video-input" className = "d-none form-control" type = "text" value = {postContent["video"]} onChange = {handleChange} />
-                        </div>
+                            <input name = "video" id = "video-input" className = "form-control" type = "text" value = {postContent["video"]} onChange = {handleChange} />
+                            <button onClick = {cancelInput}>Cancel</button>
+                        </div> 
+                        : 
+                        <div>
+                            <FontAwesomeIcon icon={faImage} />
+                            <FontAwesomeIcon icon={faYoutube} />
                             <button id = "show-image-btn" className = "btn btn-primary" type = "button" onClick = {showImageInput}>Add Image</button>
-                            or
                             <button id = "show-video-btn" className = "btn btn-primary" type = "button" onClick = {showVideoInput}>Add Video</button>
+                        </div>
+                        }
                             <div>
                                 <button className = "btn btn-success">Create Post</button>
                             </div>
                 </form>
-            </div>
-        )
-    } else {
-        return (
-            <Loader type="Puff" color="#00BFFF" height={80} width={80} />
-        )
-    }
-
+            </div> 
+            : 
+            <div>Loading</div>}
+        </div>
+    )
 };
 
 export default CreatePost;

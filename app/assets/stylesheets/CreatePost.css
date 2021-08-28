@@ -1,4 +1,17 @@
+.create-form-container {
+  max-width: 600px;
+}
+
 .create-post-form {
   /* text-align: center; */
-  /* max-width: 400px; */
+  width: 100%;
+}
+
+.create-title {
+  text-align: center;
+  font-size: 36px;
+}
+
+.create-label {
+  font-weight: bold;
 }
