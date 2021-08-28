@@ -159,16 +159,10 @@ const CreatePost = (props) => {
     }
 
     const showImageInput = () => {
-        // document.getElementById("image-input").classList.remove("d-none")
-        // document.getElementById("show-video-btn").classList.add("d-none")
-        // document.getElementById("show-image-btn").classList.add("d-none")
         setSubmitType("image")
     }
 
     const showVideoInput = () => {
-        // document.getElementById("video-input").classList.remove("d-none")
-        // document.getElementById("show-video-btn").classList.add("d-none")
-        // document.getElementById("show-image-btn").classList.add("d-none")
         setSubmitType("video")
     }
 
@@ -221,8 +215,6 @@ const CreatePost = (props) => {
                                 <FontAwesomeIcon icon={faYoutube} size = "2x" title = "Add YouTube Video"/>
                             </div>
                           </div>
-                            {/* <button id = "show-image-btn" className = "btn btn-primary" type = "button" onClick = {showImageInput}>Add Image</button>
-                            <button id = "show-video-btn" className = "btn btn-primary" type = "button" onClick = {showVideoInput}>Add Video</button> */}
                         </div>
                         }
                             <div className = "create-post-btn">
