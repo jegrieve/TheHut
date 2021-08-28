@@ -134,7 +134,9 @@ const renderBoardData = () => {
                             <FontAwesomeIcon icon={faImage} size = "2x" title = "Add Image"/>
                         </div>                
                     </div>}
-                <button className = "btn btn-success">Create Board</button>
+                    <div className = "d-flex justify-content-center">
+                        <button className = "btn btn-success">Create Board</button>
+                    </div>
                 </form>
             </div>
         </div>
