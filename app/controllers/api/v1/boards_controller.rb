@@ -16,13 +16,17 @@ class Api::V1::BoardsController < ApplicationController
 
     def show
         @board = Board.find(params[:id])
-        if @board && params[:limit]
-            @posts = @board.posts.limit(params[:limit]).offset(params[:offset])
-            render json: @posts
-            #render :json => @board.to_json( :include => [:posts])
+        if @board && params[:posts]
+            if (params[:filter] == "newest")
+                @posts = @board.posts.order(created_at: :desc).limit(params[:limit])
+            else
+                @posts = @board.posts.order(created_at: :asc).limit(params[:limit])
+            end
+                render json: @posts
         else
             render json: @board
         end
+
     end
     private
     def board_params

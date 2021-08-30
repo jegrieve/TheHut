@@ -9,7 +9,7 @@ const Homepage = (props) => {
         <div className = "homepage-container container">
           <div className = "row">
             <div className = "col-md-12 col-lg-9">
-              <PostFeed currentUser = {props.currentUser} filterValue = {filterValue} setFilterValue = {setFilterValue}/>
+              <PostFeed currentUser = {props.currentUser} filterValue = {filterValue} setFilterValue = {setFilterValue} board = {false} />
             </div>
             <div className = "col-3 d-none d-lg-block">
               <BoardFeed currentUser = {props.currentUser} />

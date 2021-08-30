@@ -25,7 +25,7 @@ const PostFeed = (props) => {
     }, [currentFilter])
 
     const getPosts = () => {
-        const url = `/api/v1/posts/index?limit=${postLimit}&filter=${props.filterValue}`;
+        const url = props.board ? `/api/v1/boards/show/${props.board}?limit=${postLimit}&posts=${true}&filter=${props.filterValue}` : `/api/v1/posts/index?limit=${postLimit}&filter=${props.filterValue}`;
         fetch(url)
           .then(response => {
             if (response.ok) {
