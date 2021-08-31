@@ -191,7 +191,7 @@ const CreatePost = (props) => {
                     </div>
                     <div className = "form-group">
                     <label className = "create-label" htmlFor="post-body-value">Body</label>
-                            <textarea className = "form-control" id = "post-body-value" name = "body" type = "text" onChange = {handleChange} value = {postContent["body"]} rows = {4} placeholder = "Body optional" />
+                            <textarea className = "form-control" id = "post-body-value" name = "body" type = "text" onChange = {handleChange} value = {postContent["body"]} rows = {4} placeholder = "Body optional" maxLength = {10000} />
                     </div>
                         {submitType === "image" ? 
                         <div className = "form-group">
