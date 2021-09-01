@@ -5,156 +5,62 @@ import CommentFeed from "./CommentFeed"
 
 const ShowPost = (props) => {
     const [postData, setPostData] = useState(null);
-    const [likedPost, setLikedPost] = useState(false);
-    const [userData, setUserData] = useState(null);
-    const [boardData, setBoardData] = useState(null);
+    const [likedPost, setLikedPost] = useState(false);    
+    const [videoLinkFormatted, setVideoLinkFormatted] = useState(null);
 
     useEffect(() => {
-      if (props.currentUser && postData && props.currentUser.liked_posts) {
-          props.currentUser.liked_posts.forEach((el) => {
-              if (el.id === postData.id) {setLikedPost(true)};
-          })
-      }
-  })
-
-  useEffect(() => {
-    const id = props.match.params.id
-    const url = `/api/v1/posts/show/${id}`;
-
-    fetch(url)
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then(response => {
-        console.log(response)
-        setPostData(response)
-      }
-        )
-      .catch(() => console.log("error"));
-  }, [])
-
-    useEffect(() => {
-      if (postData) {
-        const id = postData.user.id
-        const url = `/api/v1/users/show/${id}`;
-    
-        fetch(url)
-          .then(response => {
-            if (response.ok) {
-              return response.json();
-            }
-            throw new Error("Network response was not ok.");
-          })
-          .then(response => {
-            setUserData(response)
-        })
-          .catch(() => console.log("error"));
-      }
-    },[postData])
-
-
-    useEffect(() => {
-      if (postData) {
-        const id = postData.board.id
-        const url = `/api/v1/boards/show/${id}`;
-    
-        fetch(url)
-          .then(response => {
-            if (response.ok) {
-              return response.json();
-            }
-            throw new Error("Network response was not ok.");
-          })
-          .then(response => setBoardData(response))
-          .catch(() => console.log("error"));
-      }
-    },[userData])
-
-  const likePost = () => {
-    const body = {
-        post_id: postData.id,
-    }
-    const url = '/api/v1/likes/create';
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-    fetch(url, {
-    method: "POST",
-    headers: {
-    "X-CSRF-Token": token, 
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify(body)
-})
-    .then(response => {
-        if (response.ok) {
-            return response.json()
-        }
-        throw new Error("Network response was not ok.");
-    })
-    .then(response => {
-        console.log(response)
-        setLikedPost(true)
-    })
-    .catch(error => console.log(error.message))
-}
-
-const unLikePost = () => {
-        const url = `/api/v1/likes/destroy/${postData.id}`;
-        const token = document.querySelector('meta[name="csrf-token"]').content;
-    
-        fetch(url, {
-          method: "DELETE",
-          headers: {
-            "X-CSRF-Token": token,
-            "Content-Type": "application/json"
+      const id = props.match.params.id
+      const url = `/api/v1/posts/show/${id}`;
+  
+      fetch(url)
+        .then(response => {
+          if (response.ok) {
+            return response.json();
           }
+          throw new Error("Network response was not ok.");
         })
-          .then(response => {
-            if (response.ok) {
-              return response.json();
-            }
-            throw new Error("Network response was not ok.");
-          })
-          .then((response) => {
-              console.log(response)
-              setLikedPost(false);
-          })
-          .catch(error => console.log(error.message));
-}
+        .then(response => {
+          console.log(response)
+          setPostData(response)
+        }
+          )
+        .catch(() => console.log("error"));
+    }, [])
+    
+    useEffect(() => {
+        if (!videoLinkFormatted && postData && postData.video_link) {
+            setVideoLinkFormatted("https://www.youtube.com/embed/" + formatVideoUrl(postData.video_link))
+        }
+    },[postData])
+    
+    const formatVideoUrl = (url) => {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url.match(regExp);
+    
+        return (match && match[2].length === 11)
+          ? match[2]
+          : null;
+    }
 
-
-//if user not signed in
-  if (postData && !props.currentUser && userData && boardData) {
     return (
-      <div className = "container">
-          <div>
-            <ShowPostData data = {postData} userData = {userData} boardData = {boardData}/>
-            <div>
-            Please Sign Up/Log In to post comments.
-            <CommentFeed params = {props.match.params.id}  />
+      <div className = "postpage">
+        <div className = "postpage-container container">
+          <div className = "row">
+            <div className = "col-lg-12">
+              {postData ? 
+              <ShowPostData  data = {postData} formattedVideoLink = {videoLinkFormatted}/> : false
+              }
             </div>
-        </div>
+          </div>
+          <hr></hr>
+            <div className = "row"> {/* comment stuff*/}
+              <div className = "col-lg-12">
+                Comment Stuff
+              </div>
+            </div>
+          </div>
       </div>
     )
-  }
-
-  return (
-    <div className = "container show-post">
-    <div className = "row">
-      <div className = "col-12 col-md-6">
-        {postData && userData && boardData ? <ShowPostData data = {postData} userData = {userData} boardData = {boardData} />
-        :
-        <div>No post data found.</div> }
-        {likedPost ? <button onClick = {unLikePost}>Unlike</button> : <button onClick = {likePost}>Like</button>}
-      </div>
-      <div className = "col-12 col-md-6">
-        <CommentFeed params = {props.match.params.id}  />
-      </div>
-    </div>
-  </div>
-  )
 }
 
 

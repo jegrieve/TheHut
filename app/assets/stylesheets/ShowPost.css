@@ -1,12 +1,50 @@
 .show-post-title {
   font-weight: bold;
-  font-size: 42px;
+  font-size: 28px;
+  hyphens: auto;
+  word-wrap: break-word;
+}
+
+.postpage-container {
+  padding: 0;
+  margin-top: 0 !important;
+  padding-top: 15px;
 }
 
 .show-post-body {
-  font-size: 26px;
+  font-size: 18px;
+  hyphens: auto;
+  word-wrap: break-word;
 }
 
-.show-post-meta {
+.post-create-data {
+  font-style: italic;
   font-size: 14px;
+}
+
+.post-user-link,
+.post-board-link {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.post-user-link:hover,
+.post-board-link:hover {
+  color: inherit;
+}
+
+.show-post-info {
+  font-size: 14px;
+  font-style: italic;
+  color: rgb(91, 91, 91);
+}
+
+.show-post-image-container {
+  padding-top: 15px;
+  text-align: center;
+}
+
+.show-post-image {
+  max-height: 700px;
+  width: auto;
 }

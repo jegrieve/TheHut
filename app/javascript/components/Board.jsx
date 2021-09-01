@@ -9,7 +9,7 @@ const Board = (props) => {
                 <div className = "row">
                     <div className = "col-sm-12 col-lg-8">
                         <div className = "show-board-title">{props.data.title}</div>
-                        <div className = "board-create-data">Created by <NavLink className = "board-user-link" to={`/user/${props.data.user_id.id}`}>{props.data.user_id.username}</NavLink> • {props.data.created_at} </div>
+                        <div className = "board-create-data">Created by <NavLink className = "board-user-link" to={`/user/${props.data.user_id.id}`}>u/{props.data.user_id.username}</NavLink> • {props.data.created_at} </div>
                         <div className = "show-board-body">{props.data.body}</div>
                     </div>
                     <div className = "col-4 d-none d-lg-block">

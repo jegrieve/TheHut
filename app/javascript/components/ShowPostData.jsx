@@ -3,56 +3,35 @@ import { NavLink } from "react-router-dom";
 
 
 const ShowPostData = (props) => {
-    const [videoLinkFormatted, setVideoLinkFormatted] = useState(null);
-//     <NavLink className = "text-link" to={`/board/${props.board.id}`}>
-//     <div className = "post-board">b/{props.board.title}</div>
-// </NavLink>
-
-useEffect(() => {
-    if (props.data.video_link) {
-        setVideoLinkFormatted("https://www.youtube.com/embed/" + formatVideoUrl(props.data.video_link))
-    }
-},[])
-
-const formatVideoUrl = (url) => {
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-    const match = url.match(regExp);
-
-    return (match && match[2].length === 11)
-      ? match[2]
-      : null;
-}
 
     return (
         <div>
             <div className = "show-post-title">
                 {props.data.title}
-            </div>  
-            <div className = "show-post-meta">
-                <span>Posted by  
-                    <NavLink to={`/user/${props.userData.id}`}>
-                        {" " + props.userData.username}
-                    </NavLink>
+            </div>
+            <div className = "show-post-info">
+                <span className = "show-post-board">
+                    <NavLink className = "post-board-link" to={`/board/${props.data.board.id}`}> b/{props.data.board.title} </NavLink>
                 </span>
-                <span> to b/
-                     <NavLink to={`/board/${props.boardData.id}`}>
-                        {props.boardData.title}
-                    </NavLink>
+                <span className = "show-post-user">
+                    • posted by <NavLink className = "post-user-link" to={`/user/${props.data.user.id}`}> u/{props.data.user.username} </NavLink>
                 </span>
-                <div>Posted on {props.data.created_at}</div>
+                <span className = "show-post-date">
+                   created on {props.data.created_at}
+                </span>
             </div>
             <div className = "show-post-body">
                 {props.data.body}
-            </div> 
-            {props.data.image ? 
-            <div>
-                <img src = {props.data.image.url} width = {300} height = {300} />
-            </div> : false}             
-            {videoLinkFormatted ? 
-            <div>
-                <iframe width="420" height="315" src={videoLinkFormatted} />
             </div>
-             : false}
+            {props.data.image ? 
+                <div className = "show-post-image-container">
+                    <img className = "show-post-image" src = {props.data.image.url} />
+                </div>
+                : props.formattedVideoLink ? 
+                <div className = "show-post-video-container">
+                    <iframe frameBorder="0" className = "show-post-video" width="850" height="480" src={props.formattedVideoLink} />
+                </div> 
+                : false}
         </div>
     )
 }
