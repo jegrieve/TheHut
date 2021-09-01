@@ -5,6 +5,7 @@ import CreateComment from "./CreateComment"
 const CommentFeed = (props) => { 
         const [loadedComments, setLoadedComments] = useState([]); 
         const [commentLimit, setCommentLimit] = useState(10);
+        const [createCommentData, setCreateCommentData] = useState("");
 
         useEffect(() => {
             getComments();
@@ -13,6 +14,7 @@ const CommentFeed = (props) => {
         useEffect(() => {
             if (commentLimit > 10) {
                 getComments();
+                setCreateCommentData("");
             }
         }, [commentLimit])
 
@@ -32,9 +34,13 @@ const CommentFeed = (props) => {
               .catch(() => console.log("error"));
         }
 
+        const getMoreComments = () => {
+            setCommentLimit(commentLimit + 10);
+        }
+
         return (
             <div>
-                <CreateComment postId = {props.postId} setCommentLimit = {setCommentLimit} commentLimit = {commentLimit} />
+                <CreateComment postId = {props.postId} setCommentLimit = {setCommentLimit} commentLimit = {commentLimit} createCommentData = {createCommentData} setCreateCommentData = {setCreateCommentData} />
                 {loadedComments.length ? 
                 <div>
                     {loadedComments.map((el,i) => {
@@ -45,7 +51,8 @@ const CommentFeed = (props) => {
                             </div>
                         </div>
                         )
-                    })}            
+                    })}
+                    <button className = "btn btn-secondary" onClick = {getMoreComments}>Load more</button>            
                 </div> 
                 : <div>No Comments.</div>}
             </div>

@@ -1,12 +1,10 @@
 import React, {useState, useEffect} from "react";
 
 const CreateComment = (props) => { 
-    const [commentData, setCommentData] = useState("");
-
     const submitCommentData = (e) => {
         e.preventDefault();
         const body = {
-            body: commentData,
+            body: props.createCommentData,
         }
         const url = `/api/v1/comments/create/${props.postId}`;
         const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -31,13 +29,13 @@ const CreateComment = (props) => {
     }
 
     const changeCommentData = (e) => {
-        setCommentData(e.target.value)
+        props.setCreateCommentData(e.target.value);
     }
 
     return (
         <div>
             <form onSubmit = {submitCommentData}>
-                <input onChange = {changeCommentData} type = "text" value = {commentData} />
+                <input onChange = {changeCommentData} type = "text" value = {props.createCommentData} />
                 <button>Post</button>
             </form>
         </div>
