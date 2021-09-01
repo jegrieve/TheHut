@@ -1,6 +1,6 @@
 class Api::V1::CommentsController < ApplicationController
     def index
-        @comments = Post.find(params[:id]).comments.order(created_at: :desc).limit(params[:limit]).offset(params[:offset])
+        @comments = Post.find(params[:id]).comments.order(created_at: :desc).limit(params[:limit])
         if @comments
             render json: @comments
         else
@@ -12,9 +12,11 @@ class Api::V1::CommentsController < ApplicationController
         user = User.find_by(id: session[:user_id])
         @comment = user.comments.new(comment_params)
         @comment.post_id = params[:id]
-        @comment.save
-
-        render json: @comment
+        if @comment.save
+            render json: @comment
+        else
+            render json: @comment.errors
+        end
     end
 
     private

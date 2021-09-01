@@ -1,0 +1,42 @@
+.comment-info {
+  font-size: 14px;
+  font-style: italic;
+  color: rgb(91, 91, 91);
+}
+
+.comment-user-link {
+  color: inherit;
+  text-decoration: inherit;
+  padding-left: 5px;
+}
+
+.show-post-date {
+  padding-left: 5px;
+}
+
+.comment-user-link:hover {
+  color: inherit;
+}
+
+.comment-avatar-img {
+  width: 31px;
+  height: 31px;
+  border-radius: 30px;
+}
+
+.comment-avatar-img:hover {
+  opacity: 0.8;
+}
+
+.comment-avatar-fa {
+  font-size: 32px;
+}
+
+.comment-avatar-link {
+  color: #f9a826;
+}
+
+.comment-avatar-link:hover {
+  color: #f9a826;
+  opacity: 0.8;
+}

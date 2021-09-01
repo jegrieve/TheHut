@@ -3,79 +3,55 @@ import FeedComment from "./FeedComment"
 import CreateComment from "./CreateComment"
 
 const CommentFeed = (props) => { 
-        const [loadedFeedComments, setLoadedFeedComments] = useState([]); 
-        const [cachedComments, setCachedComments] = useState([]);
-        const [fetchedComments, setFetchedComments] = useState({offset: 0});
+        const [loadedComments, setLoadedComments] = useState([]); 
+        const [commentLimit, setCommentLimit] = useState(10);
 
-    useEffect(() => { 
-        if (loadedFeedComments === false) {
-            setFetchedComments({offset: 0})
-        } else if (loadedFeedComments.length > 0) {
-            setFetchedComments({offset: fetchedComments['offset'] + 5})
-        } 
-    }, [loadedFeedComments])
-
-    useEffect(() => {
-        if (loadedFeedComments === false && fetchedComments.offset === 0) {
-            setCachedComments([])
-        } else {
-            setCachedComments((prevState) => (
-                [...prevState].concat(loadedFeedComments)
-            ))
-        }
-    }, [fetchedComments])
-
-    useEffect(() => {
-        getComments();
-    }, [])
-
-    useEffect(() => {
-        if (loadedFeedComments === false && fetchedComments.offset === 0) {
+        useEffect(() => {
             getComments();
-        }
-    }, [cachedComments])
+        }, [])
 
-    const getComments = () => {
-        const limit = 10;
-        const id = props.params
-        const url = `/api/v1/comments/index?id=${id}&limit=${limit}&offset=${fetchedComments['offset']}`;
-        fetch(url)
-          .then(response => {
-            if (response.ok) {
-              return response.json();
+        useEffect(() => {
+            if (commentLimit > 10) {
+                getComments();
             }
-            throw new Error("Network response was not ok.");
-          })
-          .then(response => {
-              console.log(response);
-            setLoadedFeedComments(response);
-          })
-          .catch(() => console.log("error"));
-    }
+        }, [commentLimit])
 
-    return (
-        <div>
-            {cachedComments.length ? 
-            <div id = "commentfeed">
-            <CreateComment setLoadedFeedComments = {setLoadedFeedComments} params = {props.params} />
-            {cachedComments.map((el,i) => {
-            return (
-                <div className = "comment" key = {i}>
-                    <div>
-                        <FeedComment body ={el.body} user = {el.user_id}/>
-                    </div>
-                </div>
-            )
-            })}
-            <button onClick = {getComments}>Load more</button>
+        const getComments = () => {
+            const url = `/api/v1/comments/index?id=${props.postId}&limit=${commentLimit}`;
+            fetch(url)
+              .then(response => {
+                if (response.ok) {
+                  return response.json();
+                }
+                throw new Error("Network response was not ok.");
+              })
+              .then(response => {
+                console.log(response);
+                setLoadedComments(response);
+              })
+              .catch(() => console.log("error"));
+        }
+
+        return (
+            <div>
+                <CreateComment postId = {props.postId} setCommentLimit = {setCommentLimit} commentLimit = {commentLimit} />
+                {loadedComments.length ? 
+                <div>
+                    {loadedComments.map((el,i) => {
+                    return (
+                        <div className = "comment" key = {i}>
+                            <div>
+                                <FeedComment data = {el}/>
+                            </div>
+                        </div>
+                        )
+                    })}            
+                </div> 
+                : <div>No Comments.</div>}
             </div>
-            : 
-            <div id = "commentfeed">
-                <CreateComment setLoadedFeedComments = {setLoadedFeedComments} params = {props.params} />
-                No comments to show.
-            </div>}
-        </div>
-    )
+        )
+
+        //real quick remember props.params changed to props.postId
 }
 
 export default CommentFeed;

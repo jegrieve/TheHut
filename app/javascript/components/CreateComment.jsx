@@ -8,7 +8,7 @@ const CreateComment = (props) => {
         const body = {
             body: commentData,
         }
-        const url = `/api/v1/comments/create/${props.params}`;
+        const url = `/api/v1/comments/create/${props.postId}`;
         const token = document.querySelector('meta[name="csrf-token"]').content;
         fetch(url, {
         method: "POST",
@@ -25,7 +25,7 @@ const CreateComment = (props) => {
             throw new Error("Network response was not ok.");
         })
         .then(response => {
-            props.setLoadedFeedComments(false);
+            props.setCommentLimit(props.commentLimit + 1)
         })
         .catch(error => console.log(error.message))
     }

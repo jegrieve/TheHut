@@ -53,9 +53,9 @@ const ShowPost = (props) => {
             </div>
           </div>
           <hr></hr>
-            <div className = "row"> {/* comment stuff*/}
+            <div className = "row"> 
               <div className = "col-lg-12">
-                Comment Stuff
+                {postData ? <CommentFeed postId = {postData.id} /> : false}
               </div>
             </div>
           </div>
