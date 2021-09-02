@@ -33,10 +33,10 @@ const CreateComment = (props) => {
     }
 
     return (
-        <div>
-            <form onSubmit = {submitCommentData}>
-                <input onChange = {changeCommentData} type = "text" value = {props.createCommentData} />
-                <button>Post</button>
+        <div className = "create-comment-data">
+            <form className = "d-flex text-align-center" onSubmit = {submitCommentData}>
+                <textarea className = "create-comment-input" onChange = {changeCommentData} type = "text" value = {props.createCommentData} rows = "2" minLength = {1} maxLength = {1000} placeholder = "Add a comment" />
+                <button className = "btn btn-dark">Post</button>
             </form>
         </div>
     )

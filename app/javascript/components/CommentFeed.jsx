@@ -39,8 +39,10 @@ const CommentFeed = (props) => {
         }
 
         return (
-            <div>
-                <CreateComment postId = {props.postId} setCommentLimit = {setCommentLimit} commentLimit = {commentLimit} createCommentData = {createCommentData} setCreateCommentData = {setCreateCommentData} />
+            <div className = "comment-feed">
+                <div className = "create-comment">
+                    <CreateComment postId = {props.postId} setCommentLimit = {setCommentLimit} commentLimit = {commentLimit} createCommentData = {createCommentData} setCreateCommentData = {setCreateCommentData} />
+                </div>
                 {loadedComments.length ? 
                 <div>
                     {loadedComments.map((el,i) => {
