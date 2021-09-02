@@ -54,7 +54,9 @@ const CommentFeed = (props) => {
                         </div>
                         )
                     })}
-                    <button className = "btn btn-secondary" onClick = {getMoreComments}>Load more</button>            
+                    <div className = "load-more-comments-btn">
+                        <button className = "btn btn-secondary" onClick = {getMoreComments}>Load more</button>            
+                    </div>
                 </div> 
                 : <div>No Comments.</div>}
             </div>

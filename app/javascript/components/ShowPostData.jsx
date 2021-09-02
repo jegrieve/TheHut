@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import { NavLink } from "react-router-dom";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons'
 
 const ShowPostData = (props) => {
 
@@ -32,6 +34,22 @@ const ShowPostData = (props) => {
                     <iframe frameBorder="0" className = "show-post-video" width="850" height="480" src={props.formattedVideoLink} />
                 </div> 
                 : false}
+                {props.data ? 
+                <div>
+                    <div>
+                        {props.currentUser ? (props.data.liking_users.some((ele) => ele.id === props.currentUser.id) && props.userLiked !== false)
+                        ? 
+                        <div onClick = {props.unLikePost}>
+                            <FontAwesomeIcon icon = {faHeart} /> {props.likedPost} Likes
+                        </div> 
+                        : 
+                        <div onClick = {props.likePost}>
+                            <FontAwesomeIcon icon = {farHeart} /> {props.likedPost} Likes
+                        </div>
+                        : false}
+                    </div>
+                    <div></div>
+                </div> : false}
         </div>
     )
 }
