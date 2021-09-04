@@ -7,8 +7,9 @@ const ShowPost = (props) => {
     const [postData, setPostData] = useState(null);
     const [likedPost, setLikedPost] = useState(0);   
     const [userLiked, setUserLiked] = useState(null); 
+    const [commentLength, setCommentLength] = useState(0);
     const [videoLinkFormatted, setVideoLinkFormatted] = useState(null);
-
+  console.log(commentLength)
     useEffect(() => {
       const id = props.match.params.id
       const url = `/api/v1/posts/show/${id}`;
@@ -26,6 +27,10 @@ const ShowPost = (props) => {
         }
           )
         .catch(() => console.log("error"));
+    }, [])
+
+    useEffect(() => {
+      getCommentLength();
     }, [])
     
     useEffect(() => {
@@ -47,7 +52,7 @@ const ShowPost = (props) => {
         setLikedPost(likedPost - 1) 
       }
     }, [userLiked])
-    
+
     const formatVideoUrl = (url) => {
         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
         const match = url.match(regExp);
@@ -106,6 +111,23 @@ const ShowPost = (props) => {
             .catch(error => console.log(error.message));
   }
 
+  
+  const getCommentLength = () => {
+    const id = props.match.params.id
+    const url = `/api/v1/comments/index?id=${id}&length=${true}`;
+    fetch(url)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then(response => {
+        setCommentLength(response.comment_length)
+      })
+      .catch(() => console.log("error"));
+      }
+
     return (
       <div className = "postpage">
         <div className = "postpage-container container">
@@ -113,14 +135,15 @@ const ShowPost = (props) => {
             <div className = "col-lg-12">
               {postData ? 
               <ShowPostData  data = {postData} currentUser = {props.currentUser} formattedVideoLink = {videoLinkFormatted} 
-              likedPost = {likedPost} likePost = {likePost} unLikePost = {unLikePost} userLiked = {userLiked} /> 
+              likedPost = {likedPost} likePost = {likePost} unLikePost = {unLikePost} userLiked = {userLiked} commentLength = {commentLength}
+              /> 
               : false}
             </div>
           </div>
           <hr></hr>
             <div className = "row"> 
               <div className = "col-lg-12">
-                {postData ? <CommentFeed postId = {postData.id} /> : false}
+                {postData ? <CommentFeed postId = {postData.id} getCommentLength = {getCommentLength} /> : false}
               </div>
             </div>
           </div>

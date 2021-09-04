@@ -6,7 +6,6 @@ const CommentFeed = (props) => {
         const [loadedComments, setLoadedComments] = useState([]); 
         const [commentLimit, setCommentLimit] = useState(10);
         const [createCommentData, setCreateCommentData] = useState("");
-
         useEffect(() => {
             getComments();
         }, [])
@@ -17,6 +16,12 @@ const CommentFeed = (props) => {
                 setCreateCommentData("");
             }
         }, [commentLimit])
+
+        useEffect(() => {
+            if (createCommentData === "") {
+                props.getCommentLength();
+            }
+        }, [createCommentData])
 
         const getComments = () => {
             const url = `/api/v1/comments/index?id=${props.postId}&limit=${commentLimit}`;
@@ -41,7 +46,8 @@ const CommentFeed = (props) => {
         return (
             <div className = "comment-feed">
                 <div className = "create-comment">
-                    <CreateComment postId = {props.postId} setCommentLimit = {setCommentLimit} commentLimit = {commentLimit} createCommentData = {createCommentData} setCreateCommentData = {setCreateCommentData} />
+                    <CreateComment postId = {props.postId} setCommentLimit = {setCommentLimit} commentLimit = {commentLimit} 
+                    createCommentData = {createCommentData} setCreateCommentData = {setCreateCommentData}/>
                 </div>
                 {loadedComments.length ? 
                 <div>
@@ -61,8 +67,6 @@ const CommentFeed = (props) => {
                 : <div>No Comments.</div>}
             </div>
         )
-
-        //real quick remember props.params changed to props.postId
 }
 
 export default CommentFeed;

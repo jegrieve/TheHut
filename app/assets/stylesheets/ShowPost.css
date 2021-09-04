@@ -48,3 +48,18 @@
   max-height: 700px;
   width: auto;
 }
+
+.post-comments-likes {
+  margin-top: 15px;
+}
+
+.post-likes-count,
+.post-comments-count {
+  font-size: 14px;
+  font-weight: bold;
+  color: rgb(91, 91, 91);
+}
+
+.post-comments-count {
+  margin-left: 5px;
+}

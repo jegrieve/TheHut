@@ -35,8 +35,8 @@ const ShowPostData = (props) => {
                 </div> 
                 : false}
                 {props.data ? 
-                <div>
-                    <div>
+                <div className = "d-flex align-items-center post-comments-likes">
+                    <div className = "post-likes-count">
                         {props.currentUser ? (props.data.liking_users.some((ele) => ele.id === props.currentUser.id) && props.userLiked !== false)
                         ? 
                         <div onClick = {props.unLikePost}>
@@ -48,7 +48,9 @@ const ShowPostData = (props) => {
                         </div>
                         : false}
                     </div>
-                    <div></div>
+                    <div className = "post-comments-count">
+                        • {props.commentLength} Comments
+                    </div>
                 </div> : false}
         </div>
     )
