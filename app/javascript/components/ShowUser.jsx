@@ -5,11 +5,22 @@ import ActivityFeed from "./ActivityFeed";
 
 const ShowUser = (props) => {
     const [userData, setUserData] = useState(null);
+    const [userEdit, setUserEdit] = useState(false);
     console.log(userData)
 
     useEffect(() => {
       getUserData();
     }, [])
+
+    useEffect(() => {
+      if (props.currentUser && userData && 
+        props.currentUser.id === userData.id && 
+        userEdit === false) {
+        setUserEdit(true);
+      } else if (userEdit && !props.currentUser) {
+        setUserEdit(false);
+      }
+    })
 
     const getUserData = () => {
       const id = props.match.params.id
@@ -60,7 +71,7 @@ const ShowUser = (props) => {
           <div className = "row">
             <div className = "col-6">
               {userData ? 
-                <UserInfo userData = {userData} updateProfileImage = {updateProfileImage} /> : 
+                <UserInfo userData = {userData} updateProfileImage = {updateProfileImage} currentUser = {props.currentUser} userEdit = {userEdit} /> : 
                 false}
             </div>
             <div className = "col-6">

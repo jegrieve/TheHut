@@ -64,17 +64,18 @@ const UserInfo = (props) => {
                         <FontAwesomeIcon icon = {faUserCircle} color = "#f9a826" size = "6x"/>
                     </div>
                 }
-                {editImage === true ? 
+                {props.userEdit &&
+                editImage === true ? 
                  <div>
                   <div className = "form-group" >
                     <input className = "form-control" name = "image" type="file" accept="image/*" multiple={false} onChange={onImageChange} /> 
                   </div>
                   <button className = "btn btn-success" onClick = {saveEditImage}>Save</button>
                   <button  className = "btn btn-danger" onClick = {exitEditImage}>Cancel</button>
-                 </div> :
+                 </div> : props.userEdit ?
                   <div>
                       <button onClick = {handleImage}>Edit</button>
-                 </div>}
+                 </div> : false}
             </div>
         </div>
     )
