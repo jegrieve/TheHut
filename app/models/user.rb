@@ -5,6 +5,7 @@ class User < ApplicationRecord
     has_many :boards
     has_many :likes
     has_many :liked_posts, :through => :likes, :source => :post
+    has_one_attached :profile_image
 
     validates :email, presence: true, uniqueness: true
     validates :username, presence: true, uniqueness: true

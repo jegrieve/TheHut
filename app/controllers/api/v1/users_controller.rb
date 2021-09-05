@@ -8,7 +8,7 @@ class Api::V1::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     if @user
-        render :json => @user.to_json( :include => [:posts, :comments, :boards, :liked_posts])
+        render json: @user
     else
         render json: @user.errors
     end
@@ -18,6 +18,14 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-  end
+    user = User.find(params[:id])
+    if user && params[:profile_image]
+        user.update(profile_image: params[:profile_image])
+        render json: user
+    elsif user && params[:bio]
+        user.update(bio: params[:bio])
+        render json: user   
+    end
+end
 end
 

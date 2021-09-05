@@ -13,6 +13,7 @@ const Routes = () => {
 
   if (currentUser) {
     console.log(`current user is ${currentUser.username}`)
+    console.log(currentUser)
   }
 
   useEffect(() => {
@@ -67,7 +68,16 @@ const Routes = () => {
             />
           )}
         />
-        <Route exact path={"/user/:id"} component = {ShowUser} />
+        <Route
+          exact
+          path="/user/:id"
+          render={(props) => (
+            <ShowUser
+              {...props}
+              currentUser={currentUser}
+            />
+          )}
+        />
         <Route
           exact
           path="/create-board"

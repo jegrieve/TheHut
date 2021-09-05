@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.user-username {
+.show-user-username {
   font-size: 42px;
   font-weight: bold;
 }
@@ -11,11 +11,15 @@
   font-size: 18px;
 }
 
-.user-avatar {
+.show-user-placeholder {
+  font-size: 55px;
+}
+
+.show-user-img {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
   border: 1px solid black;
-  border-radius: 90%;
-  height: 250px;
-  width: 250px;
 }
 
 .user-activity {

@@ -108,7 +108,7 @@ const FeedPost = (props) => {
                         {props.postData.liking_users.length} likes
                     </div>
                     <div className = "post-comments-count">
-                        {props.postData.comments.length} comments
+                        • {props.postData.comments.length} comments
                     </div>
                    </div>
                   <div>
