@@ -3,7 +3,7 @@
 }
 
 .show-user-username {
-  font-size: 42px;
+  font-size: 44px;
   font-weight: bold;
 }
 
@@ -24,4 +24,41 @@
 
 .user-activity {
   font-size: 18px;
+}
+
+.show-user-edit:hover {
+  cursor: pointer;
+}
+
+.show-user-edit {
+  font-size: 32px;
+}
+
+.show-user-bio {
+  font-size: 24px;
+}
+
+.show-user-bio-title {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.show-user-bio-edit {
+  width: 100%;
+  height: 150px;
+  font-size: 24px !important;
+}
+
+.show-user-info-page {
+  hyphens: auto;
+  word-wrap: break-word;
+}
+
+@media only screen and (max-width: 600px) {
+  .show-user-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
 }

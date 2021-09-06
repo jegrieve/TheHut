@@ -64,6 +64,32 @@ const ShowUser = (props) => {
       .catch(error => console.log(error.message))
     }
 
+    const updateProfileBio = (userId, bioText) => {
+      const body = {
+        bio: bioText,
+    }
+      const url = `/api/v1/users/update/${userId}`;
+      const token = document.querySelector('meta[name="csrf-token"]').content;
+      fetch(url, {
+      method: "PATCH",
+      headers: {
+      "X-CSRF-Token": token, 
+      "Content-Type": "application/json"
+    },
+      body: JSON.stringify(body)
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json()
+        }
+        throw new Error("Network response was not ok.");
+    })
+    .then(response => {
+        getUserData();
+    })
+    .catch(error => console.log(error.message))
+    }
+
 
     return(
       <div>
@@ -71,8 +97,9 @@ const ShowUser = (props) => {
           <div className = "row">
             <div className = "col-6">
               {userData ? 
-                <UserInfo userData = {userData} updateProfileImage = {updateProfileImage} currentUser = {props.currentUser} userEdit = {userEdit} /> : 
-                false}
+                <UserInfo userData = {userData} updateProfileImage = {updateProfileImage} currentUser = {props.currentUser} 
+                userEdit = {userEdit} updateProfileBio = {updateProfileBio} /> : 
+                false} {/* this would show a page with "no userdata for this user"*/}
             </div>
             <div className = "col-6">
               {userData ? 
@@ -83,9 +110,6 @@ const ShowUser = (props) => {
         </div>
       </div>
     )
-
-    //create a component for activity feed, but i can put all the stuff here. Also, create a component for the user stuff, can put the stuff here
-    //aswell.
 }
 
 
