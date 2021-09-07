@@ -75,6 +75,7 @@ const Routes = () => {
             <ShowUser
               {...props}
               currentUser={currentUser}
+              setCurrentUser = {setCurrentUser}
             />
           )}
         />

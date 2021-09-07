@@ -9,7 +9,8 @@ const UserInfo = (props) => {
     const [editImage, setEditImage] = useState(false);
     const [bioText, setBioText] = useState("");
     const [editBio, setEditBio] = useState(false);
-
+    const [confirmDelete, setConfirmDelete] = useState(false);
+      console.log("pineapples")
     useEffect(() => {
         if (props.userData.bio) {
           setBioText(props.userData.bio)
@@ -76,6 +77,38 @@ const UserInfo = (props) => {
         setEditBio(!editBio)
       }
 
+      const toggleConfirmDelete = () => {
+        setConfirmDelete(!confirmDelete)
+      }
+
+      const cancelDelete = () => {
+        setConfirmDelete(false);
+      }
+
+      const deleteUser = () => {
+        const url = `/api/v1/users/destroy/${props.userData.id}`;
+        const token = document.querySelector('meta[name="csrf-token"]').content;
+      
+        fetch(url, {
+          method: "DELETE",
+          headers: {
+            "X-CSRF-Token": token,
+            "Content-Type": "application/json"
+          }
+        })
+          .then(response => {
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error("Network response was not ok.");
+          })
+          .then((response) => {
+            props.setCurrentUser(null);
+            props.history.push("/")
+          })
+          .catch(error => console.log(error.message));    
+      }
+
     return (
         <div className = "show-user-info-page">
             <div className = "show-user-info">
@@ -128,8 +161,20 @@ const UserInfo = (props) => {
                         <div>Bio</div>
                     </div>
                      : false}
-            </div>}
+            </div>} 
             </div>
+            {props.userEdit ? 
+             !confirmDelete ?
+                  <div className = "delete-user-btn">
+                    <button className = "btn btn-warning" onClick = {toggleConfirmDelete}>Delete User</button>
+                  </div> 
+                  : 
+                  <div className = "delete-user-btn">
+                    <div className = "red-text">Warning: delete user and all associated posts/boards/comments/likes.</div>
+                    <button className = "btn btn-danger save-btn" onClick = {deleteUser}>Confirm Delete</button>
+                    <button className = "btn btn-primary cancel-btn" onClick = {cancelDelete}>Cancel</button>
+                  </div> 
+                  : false}
         </div>
     )
 }
