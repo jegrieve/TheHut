@@ -95,8 +95,8 @@ const UserInfo = (props) => {
                   <div className = "form-group" >
                     <input className = "form-control" name = "image" type="file" accept="image/*" multiple={false} onChange={onImageChange} /> 
                   </div>
-                  <button className = "btn btn-success" onClick = {saveEditImage}>Save</button>
-                  <button  className = "btn btn-danger" onClick = {exitEditImage}>Cancel</button>
+                  <button className = "btn btn-success save-btn" onClick = {saveEditImage}>Save</button>
+                  <button  className = "btn btn-danger cancel-btn" onClick = {exitEditImage}>Cancel</button>
                  </div> : props.userEdit ?
                   <div onClick = {handleImage} className = "d-flex justify-content-center align-items-center show-user-edit">
                         <FontAwesomeIcon icon = {faEdit} color = "#f9a826" />
@@ -110,7 +110,7 @@ const UserInfo = (props) => {
                 <div className = "show-user-bio-title">Bio</div>
                 <textarea  className = "show-user-bio-edit" value = {bioText} onChange = {onBioInputChange} maxLength = "400"/>
               </div>
-                <button className = "btn btn-success" onClick = {saveEditBio}>Save</button>
+                <button className = "btn btn-success save-btn" onClick = {saveEditBio}>Save</button>
                 <button className = "btn btn-danger cancel-btn" onClick = {exitEditBio}>Cancel</button>
             </div> 
             : 
