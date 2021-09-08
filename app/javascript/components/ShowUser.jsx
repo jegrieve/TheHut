@@ -92,7 +92,7 @@ const ShowUser = (props) => {
 
 
     return(
-      <div>
+      <div className = "activity-feed">
         <div className = "container-fluid">
           <div className = "row">
             <div className = "col-6">

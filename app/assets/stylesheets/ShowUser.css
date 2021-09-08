@@ -60,6 +60,22 @@
   margin-left: 5px;
 }
 
+.activity-feed-box {
+  border: 1px solid black;
+  width: 70%;
+}
+
+.activity-feed-title {
+  font-size: 22px;
+  text-align: center;
+  margin-top: 14px;
+  font-weight: bold;
+}
+
+.activity-feed-options {
+  border-bottom: 1px solid black;
+}
+
 @media only screen and (max-width: 600px) {
   .show-user-img {
     width: 200px;
