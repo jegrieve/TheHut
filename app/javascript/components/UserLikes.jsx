@@ -17,7 +17,7 @@ const UserLikes = (props) => {
                         )
                     })}
                 </div> 
-                : <div>No comments.</div>}
+                : <div>No Likes.</div>}
         </div>
     )
 }
