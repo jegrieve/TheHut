@@ -56,7 +56,9 @@ const ActivityFeed = (props) => {
                     </div>
                 </div>
             </div>
-
+            <div className = "d-flex justify-content-center load-activity-btn">
+                <button className = "btn btn-secondary" onClick = {increaseActivityLimit}>Load More</button>
+            </div>
         </div>
     )
 }

@@ -95,14 +95,14 @@ const ShowUser = (props) => {
       <div className = "activity-feed">
         <div className = "container-fluid">
           <div className = "row">
-            <div className = "col-6">
+            <div className = "col-sm-12 col-md-6">
               {userData ? 
                 <UserInfo userData = {userData} updateProfileImage = {updateProfileImage} currentUser = {props.currentUser} 
                 setCurrentUser = {props.setCurrentUser} userEdit = {userEdit} updateProfileBio = {updateProfileBio} 
                 history = {props.history} /> : 
                 false} {/* this would show a page with "no userdata for this user"*/}
             </div>
-            <div className = "col-6">
+            <div className = "col-6 d-none d-md-block">
               {userData ? 
                 <ActivityFeed userData = {userData} /> :
                 false}

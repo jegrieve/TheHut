@@ -4,26 +4,22 @@ import { NavLink } from "react-router-dom";
 const UserComments = (props) => {
     return (
         <div>
-            <div>Comments:</div>
             {props.comments.length ? 
                 <div>
                     {props.comments.map((el,i) => {
                     return (
                         <div className = "user-comment" key = {"c" + i}>
-                            <div>
-                                <div>Commented {el.created_at}</div>
-                                Made a comment on this
-                                <NavLink to={`/post/${el.post_id}`}>post.</NavLink>
-                            </div>
+                            <div className = "user-post-date">Commented {el.created_at}</div>
+                            {el.body.length <= 300 ? 
+                            <NavLink className = "user-post-link" to={`/post/${el.post_id}`}>{el.body}</NavLink> :
+                            <NavLink className = "user-post-link" to={`/post/${el.post_id}`}>Long comment here.</NavLink> }
                         </div>
                         )
                     })}
                 </div> 
                 : <div>No comments.</div>}
-            <button className = "btn btn-secondary" onClick = {props.increaseActivityLimit}>Load More</button>
         </div>
     )
 }
-
 
 export default UserComments;

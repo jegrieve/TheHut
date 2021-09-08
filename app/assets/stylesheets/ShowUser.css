@@ -80,9 +80,42 @@
   cursor: pointer;
 }
 
-.user-post {
-  border-top: 1px solid black;
+.user-post-date {
+  font-size: 14px;
+  font-style: italic;
+  color: rgb(91, 91, 91);
+}
+
+.user-post-link {
+  font-size: 16px;
+}
+
+.load-activity-btn {
+  margin-top: 5px;
+}
+
+.user-post,
+.user-like,
+.user-comment {
   border-bottom: 1px solid black;
+  hyphens: auto;
+  word-wrap: break-word;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.user-post:last-child,
+.user-like:last-child,
+.user-comment:last-child {
+  border-bottom: none;
+}
+
+.activity-options {
+  font-size: 22px;
+}
+
+.activity-options:hover {
+  text-decoration: underline;
 }
 
 @media only screen and (max-width: 600px) {
