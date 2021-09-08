@@ -76,6 +76,15 @@
   border-bottom: 1px solid black;
 }
 
+.activity-options:hover {
+  cursor: pointer;
+}
+
+.user-post {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
 @media only screen and (max-width: 600px) {
   .show-user-img {
     width: 200px;
