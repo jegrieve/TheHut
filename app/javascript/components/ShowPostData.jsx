@@ -8,6 +8,7 @@ const ShowPostData = (props) => {
     const [editMessageData, setEditMessageData] = useState(null);
     const [editMessage, setEditMessage] = useState(false);
     console.log(editMessageData)
+
     useEffect(() => {
         setEditMessageData({...props.data})
     },[])
@@ -18,10 +19,18 @@ const ShowPostData = (props) => {
         }
     }
 
+    const handleEditMessage = (e) => {
+        setEditMessageData((prev) => ({
+          ...prev,
+          [e.target.name]: e.target.value
+        }));
+      }
+    
+
     return (
         <div>
             <div>
-                {editMessage === "text" ? <textarea value = {editMessageData["title"]} /> : <div  className = "show-post-title">{props.data.title}</div>}
+                {editMessage === "text" ? <textarea name = "title" value = {editMessageData["title"]} onChange = {handleEditMessage}/> : <div  className = "show-post-title">{props.data.title}</div>}
             </div>
             <div className = "show-post-info">
                 <span className = "show-post-board">
@@ -35,7 +44,7 @@ const ShowPostData = (props) => {
                 </span>
             </div>
             <div>
-                {editMessage === "text" ? <textarea value = {editMessageData["body"]} /> : <div className = "show-post-body">{props.data.body}</div>}
+                {editMessage === "text" ? <textarea name = "body" value = {editMessageData["body"]} onChange = {handleEditMessage}/> : <div className = "show-post-body">{props.data.body}</div>}
             </div>
             <button onClick = {editPostText}>Edit Post</button>
             {props.data.image ? 
@@ -45,7 +54,7 @@ const ShowPostData = (props) => {
                 : props.formattedVideoLink ? 
                 <div className = "show-post-video-container">
                     <iframe frameBorder="0" className = "show-post-video" width="850" height="480" src={props.formattedVideoLink} />
-                    {editMessage === "text" ? <div><input type = "text" value = {props.formattedVideoLink}/></div> : false}
+                    {editMessage === "text" ? <div><input name = "video_link" type = "text" value = {editMessageData["video_link"]} onChange = {handleEditMessage} /></div> : false}
                 </div> 
                 : false}
                 {props.data ? 
