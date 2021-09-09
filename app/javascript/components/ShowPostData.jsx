@@ -5,32 +5,60 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons'
 
 const ShowPostData = (props) => {
-    const [editMessageData, setEditMessageData] = useState(null);
-    const [editMessage, setEditMessage] = useState(false);
-    console.log(editMessageData)
+    const [editPostData, setEditPostData] = useState(null);
+    const [editPost, setEditPost] = useState(false);
+    console.log(editPostData)
 
     useEffect(() => {
-        setEditMessageData({...props.data})
+        setEditPostData({...props.data})
     },[])
 
+    useEffect(() => {
+        if (editPost === "submitted") {
+          props.submitEditPost(editPostData.id, editPostData);
+        } else if (editPost === "submitted-image") {
+          props.submitEditPostImage(editPostData.id, editPostData)
+        }
+      }, [editPost])
+
     const editPostText = () => {
-        if (editMessageData) {
-            setEditMessage("text");
+        if (editPostData) {
+            setEditPost("text");
         }
     }
 
-    const handleEditMessage = (e) => {
-        setEditMessageData((prev) => ({
+    const handleEditPost = (e) => {
+        setEditPostData((prev) => ({
           ...prev,
           [e.target.name]: e.target.value
         }));
       }
-    
+
+    const submitEditPostData = () => {
+        if (editPost === "text") {
+            setEditPost("submitted");
+        } else {
+            setEditPost("submitted-image")
+        }
+      }
+
+    const editPostImage = () => {
+        if (editPostData) {
+            setEditPost("image");
+        }
+    }
+
+    const onImageChange = (e) => {
+        setEditPostData((prev) => ({
+            ...prev,
+            image: e.target.files[0]
+        }))
+    };
 
     return (
         <div>
             <div>
-                {editMessage === "text" ? <textarea name = "title" value = {editMessageData["title"]} onChange = {handleEditMessage}/> : <div  className = "show-post-title">{props.data.title}</div>}
+                {editPost === "text" ? <textarea name = "title" value = {editPostData["title"]} onChange = {handleEditPost}/> : <div  className = "show-post-title">{props.data.title}</div>}
             </div>
             <div className = "show-post-info">
                 <span className = "show-post-board">
@@ -44,17 +72,20 @@ const ShowPostData = (props) => {
                 </span>
             </div>
             <div>
-                {editMessage === "text" ? <textarea name = "body" value = {editMessageData["body"]} onChange = {handleEditMessage}/> : <div className = "show-post-body">{props.data.body}</div>}
+                {editPost === "text" ? <textarea name = "body" value = {editPostData["body"]} onChange = {handleEditPost}/> : <div className = "show-post-body">{props.data.body}</div>}
             </div>
             <button onClick = {editPostText}>Edit Post</button>
+            <button onClick = {submitEditPostData}>Submit</button>
             {props.data.image ? 
                 <div className = "show-post-image-container">
-                    <img className = "show-post-image" src = {props.data.image.url} />
+                    {editPost === "image" ?  <input name = "image" className = "form-control" type = "file" accept = "image/*" multiple = {false} onChange = {onImageChange} required/> : <img className = "show-post-image" src = {props.data.image.url} />}
+                    <button onClick = {editPostImage}>Edit Image</button>
+                    <button onClick = {submitEditPostData}>Submit</button>
                 </div>
                 : props.formattedVideoLink ? 
                 <div className = "show-post-video-container">
                     <iframe frameBorder="0" className = "show-post-video" width="850" height="480" src={props.formattedVideoLink} />
-                    {editMessage === "text" ? <div><input name = "video_link" type = "text" value = {editMessageData["video_link"]} onChange = {handleEditMessage} /></div> : false}
+                    {editPost === "text" ? <div><input name = "video_link" type = "text" value = {editPostData["video_link"]} onChange = {handleEditPost} /></div> : false}
                 </div> 
                 : false}
                 {props.data ? 

@@ -9,24 +9,9 @@ const ShowPost = (props) => {
     const [userLiked, setUserLiked] = useState(null); 
     const [commentLength, setCommentLength] = useState(0);
     const [videoLinkFormatted, setVideoLinkFormatted] = useState(null);
-  console.log(commentLength)
+
     useEffect(() => {
-      const id = props.match.params.id
-      const url = `/api/v1/posts/show/${id}`;
-  
-      fetch(url)
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw new Error("Network response was not ok.");
-        })
-        .then(response => {
-          console.log(response)
-          setPostData(response)
-        }
-          )
-        .catch(() => console.log("error"));
+      getPostData();
     }, [])
 
     useEffect(() => {
@@ -51,7 +36,26 @@ const ShowPost = (props) => {
       } else if (userLiked === false) {
         setLikedPost(likedPost - 1) 
       }
-    }, [userLiked])
+    }, [userLiked]);
+
+    const getPostData = () => {
+      const id = props.match.params.id
+      const url = `/api/v1/posts/show/${id}`;
+  
+      fetch(url)
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error("Network response was not ok.");
+        })
+        .then(response => {
+          console.log(response)
+          setPostData(response)
+        }
+          )
+        .catch(() => console.log("error"));
+    }
 
     const formatVideoUrl = (url) => {
         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -128,6 +132,58 @@ const ShowPost = (props) => {
       .catch(() => console.log("error"));
       }
 
+      const submitEditPost = (postId, editPostData) => {
+        const body = {
+          title: editPostData["title"],
+          body: editPostData["body"],
+          video_link: editPostData["video_link"]
+      }
+        const url = `/api/v1/posts/update/${postId}`;
+        const token = document.querySelector('meta[name="csrf-token"]').content;
+        fetch(url, {
+        method: "PATCH",
+        headers: {
+        "X-CSRF-Token": token, 
+        "Content-Type": "application/json"
+      },
+        body: JSON.stringify(body)
+      })
+      .then(response => {
+          if (response.ok) {
+              return response.json()
+          }
+          throw new Error("Network response was not ok.");
+      })
+      .then(response => {
+          getPostData();
+      })
+      .catch(error => console.log(error.message))
+      }
+
+      const submitEditPostImage = (postId, editPostData) => {
+        const formData =  new FormData();
+        formData.append('image', editPostData["image"]);
+        const url = `/api/v1/posts/update/${postId}?type=${"image"}`;
+        const token = document.querySelector('meta[name="csrf-token"]').content;
+        fetch(url, {
+        method: "PATCH",
+        body: formData,
+        headers: {
+        "X-CSRF-Token": token, 
+      },
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.json()
+            }
+            throw new Error("Network response was not ok.");
+        })
+        .then(response => {
+            getPostData();
+        })
+        .catch(error => console.log(error.message))
+      }
+
     return (
       <div className = "postpage">
         <div className = "postpage-container container">
@@ -136,7 +192,7 @@ const ShowPost = (props) => {
               {postData ? 
               <ShowPostData  data = {postData} currentUser = {props.currentUser} formattedVideoLink = {videoLinkFormatted} 
               likedPost = {likedPost} likePost = {likePost} unLikePost = {unLikePost} userLiked = {userLiked} commentLength = {commentLength}
-              /> 
+              submitEditPost = {submitEditPost} submitEditPostImage = {submitEditPostImage} /> 
               : false}
             </div>
           </div>
