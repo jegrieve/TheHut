@@ -25,6 +25,15 @@ class Api::V1::PostsController < ApplicationController
         @post.save
         render json: @post
     end
+
+    def update
+        post = Post.find(params[:id])
+        if post
+            post.update(body: params[:body], video_link: params[:video_link], title: params[:title])
+            render json: post
+        end
+    end
+
     private
 
     def post_params
