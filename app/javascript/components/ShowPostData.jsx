@@ -5,11 +5,23 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons'
 
 const ShowPostData = (props) => {
+    const [editMessageData, setEditMessageData] = useState(null);
+    const [editMessage, setEditMessage] = useState(false);
+    console.log(editMessageData)
+    useEffect(() => {
+        setEditMessageData({...props.data})
+    },[])
+
+    const editPostText = () => {
+        if (editMessageData) {
+            setEditMessage("text");
+        }
+    }
 
     return (
         <div>
-            <div className = "show-post-title">
-                {props.data.title}
+            <div>
+                {editMessage === "text" ? <textarea value = {editMessageData["title"]} /> : <div  className = "show-post-title">{props.data.title}</div>}
             </div>
             <div className = "show-post-info">
                 <span className = "show-post-board">
@@ -22,9 +34,10 @@ const ShowPostData = (props) => {
                    created on {props.data.created_at}
                 </span>
             </div>
-            <div className = "show-post-body">
-                {props.data.body}
+            <div>
+                {editMessage === "text" ? <textarea value = {editMessageData["body"]} /> : <div className = "show-post-body">{props.data.body}</div>}
             </div>
+            <button onClick = {editPostText}>Edit Post</button>
             {props.data.image ? 
                 <div className = "show-post-image-container">
                     <img className = "show-post-image" src = {props.data.image.url} />
@@ -32,6 +45,7 @@ const ShowPostData = (props) => {
                 : props.formattedVideoLink ? 
                 <div className = "show-post-video-container">
                     <iframe frameBorder="0" className = "show-post-video" width="850" height="480" src={props.formattedVideoLink} />
+                    {editMessage === "text" ? <div><input type = "text" value = {props.formattedVideoLink}/></div> : false}
                 </div> 
                 : false}
                 {props.data ? 
