@@ -28,7 +28,10 @@ class Api::V1::PostsController < ApplicationController
 
     def update
         post = Post.find(params[:id])
-        if post
+        if post && params[:type] == "image"
+            post.update(image: params[:image])
+            render json: post
+        elsif post
             post.update(body: params[:body], video_link: params[:video_link], title: params[:title])
             render json: post
         end
