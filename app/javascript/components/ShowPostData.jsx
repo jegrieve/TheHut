@@ -121,9 +121,14 @@ const ShowPostData = (props) => {
                     <span className = "show-post-user">
                         • posted by <NavLink className = "post-user-link" to={`/user/${props.data.user.id}`}> u/{props.data.user.username} </NavLink>
                     </span>
-                    <span className = "show-post-date">
-                       created on {props.data.created_at}
+                    <span className = "show-post-user-date">
+                       • created on {props.data.created_at}
                     </span>
+                    {props.data.created_at !== props.data.updated_at ? 
+                    <span className = "show-post-updated-date">
+                         • edited on {props.data.updated_at}
+                    </span>
+                    :false}
                 </div>
                 <div>
                     <div className = "show-post-body">{props.data.body}</div>

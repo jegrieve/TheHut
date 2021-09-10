@@ -101,3 +101,8 @@
 .edit-btns {
   margin-top: 10px;
 }
+
+.show-post-updated-date {
+  font-weight: bold;
+  margin-left: 5px;
+}
