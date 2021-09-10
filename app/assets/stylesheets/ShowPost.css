@@ -67,3 +67,14 @@
 .show-post-heart-btn:hover {
   cursor: pointer;
 }
+
+.show-post-title-edit,
+.show-post-body-edit,
+.show-post-video-edit {
+  width: 100%;
+}
+
+.show-post-title-edit {
+  font-weight: bold;
+  font-size: 28px;
+}

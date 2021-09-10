@@ -18,6 +18,9 @@ const ShowPostData = (props) => {
           props.submitEditPost(editPostData.id, editPostData);
         } else if (editPost === "submitted-image") {
           props.submitEditPostImage(editPostData.id, editPostData)
+        } else if (editPost === "cancel") {
+            setEditPostData({...props.data});
+            setEditPost(false);
         }
       }, [editPost])
 
@@ -55,10 +58,15 @@ const ShowPostData = (props) => {
         }))
     };
 
+    const cancelSubmit = () => {
+        setEditPost("cancel")
+    }
+
     return (
         <div>
             <div>
-                {editPost === "text" ? <textarea name = "title" value = {editPostData["title"]} onChange = {handleEditPost}/> : <div  className = "show-post-title">{props.data.title}</div>}
+                {editPost === "text" ? <textarea className = "show-post-title-edit" name = "title" value = {editPostData["title"]} onChange = {handleEditPost}/> 
+                : <div  className = "show-post-title">{props.data.title}</div>}
             </div>
             <div className = "show-post-info">
                 <span className = "show-post-board">
@@ -72,20 +80,22 @@ const ShowPostData = (props) => {
                 </span>
             </div>
             <div>
-                {editPost === "text" ? <textarea name = "body" value = {editPostData["body"]} onChange = {handleEditPost}/> : <div className = "show-post-body">{props.data.body}</div>}
+                {editPost === "text" ? <textarea className = "show-post-body-edit" name = "body" value = {editPostData["body"]} onChange = {handleEditPost}/> : <div className = "show-post-body">{props.data.body}</div>}
             </div>
             <button onClick = {editPostText}>Edit Post</button>
             <button onClick = {submitEditPostData}>Submit</button>
+            <button onClick = {cancelSubmit}>Cancel</button>
             {props.data.image ? 
                 <div className = "show-post-image-container">
-                    {editPost === "image" ?  <input name = "image" className = "form-control" type = "file" accept = "image/*" multiple = {false} onChange = {onImageChange} required/> : <img className = "show-post-image" src = {props.data.image.url} />}
+                    {editPost === "image" ?  <input name = "image" className = "form-control show-post-image-edit" type = "file" accept = "image/*" multiple = {false} onChange = {onImageChange} required/> : <img className = "show-post-image" src = {props.data.image.url} />}
                     <button onClick = {editPostImage}>Edit Image</button>
                     <button onClick = {submitEditPostData}>Submit</button>
+                    <button onClick = {cancelSubmit}>Cancel</button>
                 </div>
                 : props.formattedVideoLink ? 
                 <div className = "show-post-video-container">
                     <iframe frameBorder="0" className = "show-post-video" width="850" height="480" src={props.formattedVideoLink} />
-                    {editPost === "text" ? <div><input name = "video_link" type = "text" value = {editPostData["video_link"]} onChange = {handleEditPost} /></div> : false}
+                    {editPost === "text" ? <div><input className = "show-post-video-edit" name = "video_link" type = "text" value = {editPostData["video_link"]} onChange = {handleEditPost} /></div> : false}
                 </div> 
                 : false}
                 {props.data ? 
