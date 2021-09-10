@@ -78,3 +78,26 @@
   font-weight: bold;
   font-size: 28px;
 }
+
+.show-post-body-edit {
+  font-size: 18px;
+}
+
+.show-post-title-edit,
+.show-post-body-edit {
+  height: 150px;
+}
+
+.edit-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.edit-post-btn:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.edit-btns {
+  margin-top: 10px;
+}

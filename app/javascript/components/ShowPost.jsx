@@ -19,7 +19,7 @@ const ShowPost = (props) => {
     }, [])
     
     useEffect(() => {
-        if (!videoLinkFormatted && postData && postData.video_link) {
+        if (postData && postData.video_link) {
             setVideoLinkFormatted("https://www.youtube.com/embed/" + formatVideoUrl(postData.video_link))
         }
     },[postData])

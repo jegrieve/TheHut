@@ -6,6 +6,8 @@
   background-color: rgb(202, 202, 202);
   margin-top: 10px;
   border: 1px solid transparent;
+  hyphens: auto;
+  word-wrap: break-word;
 }
 
 .post:hover {
