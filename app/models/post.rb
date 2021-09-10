@@ -11,5 +11,8 @@ class Post < ApplicationRecord
     def created_at
         attributes['created_at'].strftime("%b %d %Y at %l:%M%P")
     end
+    def updated_at
+        attributes['updated_at'].strftime("%b %d %Y at %l:%M%P")
+    end
 end
 
