@@ -1,10 +1,10 @@
 class Post < ApplicationRecord
     has_one_attached :image
     belongs_to :user
-    has_many :comments
+    has_many :comments, dependent: :destroy
     belongs_to :board
-    has_many :likes
-    has_many :liking_users, :through => :likes, :source => :user 
+    has_many :likes, dependent: :destroy
+    has_many :liking_users, :through => :likes, :source => :user, dependent: :destroy
 
     validates :title, presence: true
 
