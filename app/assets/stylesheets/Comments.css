@@ -64,3 +64,10 @@
   text-align: center;
   margin-top: 5px;
 }
+
+.edit-delete-btns {
+  margin-top: 5px;
+  font-size: 13px;
+  font-weight: bold;
+  color: rgb(91, 91, 91);
+}

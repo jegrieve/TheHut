@@ -43,6 +43,55 @@ const CommentFeed = (props) => {
             setCommentLimit(commentLimit + 10);
         }
 
+        const submitEditComment = (commentId, editCommentData) => {
+            const body = {
+              body: editCommentData["body"]
+          }
+            const url = `/api/v1/comments/update/${commentId}`;
+            const token = document.querySelector('meta[name="csrf-token"]').content;
+            fetch(url, {
+            method: "PATCH",
+            headers: {
+            "X-CSRF-Token": token, 
+            "Content-Type": "application/json"
+          },
+            body: JSON.stringify(body)
+          })
+          .then(response => {
+              if (response.ok) {
+                  return response.json()
+              }
+              throw new Error("Network response was not ok.");
+          })
+          .then(response => {
+              getComments();
+          })
+          .catch(error => console.log(error.message))
+          }
+
+          const confirmDeleteComment= (commentId) => {
+            const url = `/api/v1/comments/destroy/${commentId}`;
+            const token = document.querySelector('meta[name="csrf-token"]').content;
+          
+            fetch(url, {
+              method: "DELETE",
+              headers: {
+                "X-CSRF-Token": token,
+                "Content-Type": "application/json"
+              }
+            })
+              .then(response => {
+                if (response.ok) {
+                  return response.json();
+                }
+                throw new Error("Network response was not ok.");
+              })
+              .then((response) => {
+                getComments();
+              })
+              .catch(error => console.log(error.message));
+          }
+
         return (
             <div className = "comment-feed">
                 <div className = "create-comment">
@@ -55,7 +104,8 @@ const CommentFeed = (props) => {
                     return (
                         <div className = "comment" key = {i}>
                             <div>
-                                <FeedComment data = {el}/>
+                                <FeedComment data = {el} currentUser = {props.currentUser} submitEditComment = {submitEditComment}
+                                confirmDeleteComment = {confirmDeleteComment} />
                             </div>
                         </div>
                         )

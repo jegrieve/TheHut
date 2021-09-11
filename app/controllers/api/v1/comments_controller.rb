@@ -22,6 +22,24 @@ class Api::V1::CommentsController < ApplicationController
         end
     end
 
+    
+    def update
+        comment = Comment.find(params[:id])
+        if comment
+            comment.update(body: params[:body])
+            render json: comment
+        end
+    end
+
+    def destroy
+        if (session[:user_id] && params[:id])
+            Comment.find(params[:id]).destroy
+            render json: {message: "Comment Deleted"}
+        end
+      end
+    
+
+
     private
 
     def comment_params

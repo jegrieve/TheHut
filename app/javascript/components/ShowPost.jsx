@@ -223,7 +223,7 @@ const ShowPost = (props) => {
           <hr></hr>
             <div className = "row"> 
               <div className = "col-lg-12">
-                {postData ? <CommentFeed postId = {postData.id} getCommentLength = {getCommentLength} /> : false}
+                {postData ? <CommentFeed postId = {postData.id} getCommentLength = {getCommentLength} currentUser = {props.currentUser} /> : false}
               </div>
             </div>
           </div>
