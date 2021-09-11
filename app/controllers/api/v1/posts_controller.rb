@@ -37,6 +37,14 @@ class Api::V1::PostsController < ApplicationController
         end
     end
 
+    def destroy
+        if (session[:user_id] && params[:id])
+            Post.find(params[:id]).destroy
+            render json: {message: "Post Deleted"}
+        end
+      end
+    
+
     private
 
     def post_params
