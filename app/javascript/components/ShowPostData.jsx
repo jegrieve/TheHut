@@ -7,6 +7,7 @@ import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons'
 const ShowPostData = (props) => {
     const [editPostData, setEditPostData] = useState(null);
     const [editPost, setEditPost] = useState(false);
+    const [confirmDelete, setConfirmDelete] = useState(false);
     console.log(editPostData)
 
     useEffect(() => {
@@ -23,6 +24,7 @@ const ShowPostData = (props) => {
             setEditPost(false);
         }
       }, [editPost])
+
 
     const editPostText = () => {
         if (editPostData) {
@@ -63,7 +65,22 @@ const ShowPostData = (props) => {
         setEditPost("cancel")
     }
 
-    if (editPost === "text") {
+    const deletePostConfirm = () => {
+        setConfirmDelete(true);
+    }
+
+    const cancelDeletePost = () => {
+        setConfirmDelete(false);
+    }
+
+    const confirmDeletePost = () => {
+        props.confirmDeletePost(props.data.id)
+    }
+
+
+    if (editPost === "text" 
+        && props.currentUser
+        && props.currentUser.id === props.data.user.id) {
         return (
             <div>
                 <form onSubmit = {submitEditPostData}>
@@ -93,7 +110,9 @@ const ShowPostData = (props) => {
                 </form>
             </div>
         )
-    } else if (editPost === "image") {
+    } else if (editPost === "image"
+                && props.currentUser
+                && props.currentUser.id === props.data.user.id) {
         return (
             <div>
                 <form onSubmit = {submitEditPostData}>
@@ -143,7 +162,7 @@ const ShowPostData = (props) => {
                     </div> 
                     : false}
                     {props.data ? 
-                    <div className = "d-flex align-items-center post-comments-likes">
+                    <div className = "d-flex align-items-center post-comments-options">
                         <div className = "show-post-likes-count">
                             {props.currentUser ? (props.data.liking_users.some((ele) => ele.id === props.currentUser.id) && props.userLiked !== false)
                             ? 
@@ -154,14 +173,30 @@ const ShowPostData = (props) => {
                             <div className = "show-post-heart-btn" onClick = {props.likePost}>
                                 <FontAwesomeIcon icon = {farHeart} /> {props.likedPost} Likes
                             </div>
-                            : false}
+                            :
+                            <div className = "show-post-heart-btn">
+                            <FontAwesomeIcon icon = {farHeart} /> {props.likedPost} Likes
+                            </div>}
                         </div>
                         <div className = "show-post-comments-count">
-                            • {props.commentLength} Comments
-                            • <span className = "edit-post-btn" onClick = {editPostText}> Edit Post </span>
-                            {props.data.image ? <span>•<span className = "edit-post-btn" onClick = {editPostImage}> Edit Image </span></span> : false}
+                            • {props.commentLength} Comments&nbsp;
+                            {props.currentUser
+                            && props.currentUser.id === props.data.user.id ? 
+                            <span>
+                                • <span className = "edit-post-btn" onClick = {editPostText}>Edit Post </span>
+                                {props.data.image ? <span>• <span className = "edit-post-btn" onClick = {editPostImage}>Edit Image</span> </span> : false}
+                                • <span className = "delete-post-btn" onClick = {deletePostConfirm}>Delete Post</span>
+                            </span> : false}
                         </div>
                     </div> : false}
+                    {confirmDelete
+                    && props.currentUser
+                    && props.currentUser.id === props.data.user.id ? 
+                            <div>
+                                <div className = "red-text">WARNING: Delete post and all associated comments.</div>
+                                <span><button className = "btn btn-primary" onClick = {cancelDeletePost}>Cancel</button></span>
+                                <span className = "show-post-dlt"><button className = "btn btn-warning" onClick = {confirmDeletePost}>Confirm</button></span>
+                            </div> : false}
             </div>
         )
     }

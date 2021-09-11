@@ -184,6 +184,30 @@ const ShowPost = (props) => {
         .catch(error => console.log(error.message))
       }
 
+      
+  const confirmDeletePost = (postId) => {
+    const url = `/api/v1/posts/destroy/${postId}`;
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+  
+    fetch(url, {
+      method: "DELETE",
+      headers: {
+        "X-CSRF-Token": token,
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => {
+        props.history.push("/");
+      })
+      .catch(error => console.log(error.message));
+  }
+
     return (
       <div className = "postpage">
         <div className = "postpage-container container">
@@ -192,7 +216,7 @@ const ShowPost = (props) => {
               {postData ? 
               <ShowPostData  data = {postData} currentUser = {props.currentUser} formattedVideoLink = {videoLinkFormatted} 
               likedPost = {likedPost} likePost = {likePost} unLikePost = {unLikePost} userLiked = {userLiked} commentLength = {commentLength}
-              submitEditPost = {submitEditPost} submitEditPostImage = {submitEditPostImage} /> 
+              submitEditPost = {submitEditPost} submitEditPostImage = {submitEditPostImage} confirmDeletePost = {confirmDeletePost} /> 
               : false}
             </div>
           </div>

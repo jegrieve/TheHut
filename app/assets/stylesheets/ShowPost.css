@@ -49,7 +49,7 @@
   width: auto;
 }
 
-.show-post-comments-likes {
+.post-comments-options {
   margin-top: 15px;
 }
 
@@ -93,7 +93,8 @@
   font-weight: bold;
 }
 
-.edit-post-btn:hover {
+.edit-post-btn:hover,
+.delete-post-btn:hover {
   text-decoration: underline;
   cursor: pointer;
 }
@@ -104,5 +105,9 @@
 
 .show-post-updated-date {
   font-weight: bold;
+  margin-left: 5px;
+}
+
+.show-post-dlt {
   margin-left: 5px;
 }
