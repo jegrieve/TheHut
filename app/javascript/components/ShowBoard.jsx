@@ -79,6 +79,31 @@ const ShowBoard = (props) => {
         })
         .catch(error => console.log(error.message));
     }
+
+    const submitEditBoardImage = (boardId, editBoardData) => {
+      const formData =  new FormData();
+      formData.append('board_image', editBoardData["board_image"]);
+      const url = `/api/v1/boards/update/${boardId}?type=${"image"}`;
+      const token = document.querySelector('meta[name="csrf-token"]').content;
+      fetch(url, {
+      method: "PATCH",
+      body: formData,
+      headers: {
+      "X-CSRF-Token": token, 
+    },
+  })
+      .then(response => {
+          if (response.ok) {
+              return response.json()
+          }
+          throw new Error("Network response was not ok.");
+      })
+      .then(response => {
+          getBoardData();
+      })
+      .catch(error => console.log(error.message))
+    }
+
     
     return (
       <div className = "boardpage">
@@ -86,7 +111,7 @@ const ShowBoard = (props) => {
           <div className = "row">
             <div className = "col-md-12 col-lg-12">
               {boardData ? <Board data = {boardData} currentUser = {props.currentUser} submitEditBoardData = {submitEditBoardData} 
-              confirmDeleteBoard = {confirmDeleteBoard} /> : false}
+              confirmDeleteBoard = {confirmDeleteBoard} submitEditBoardImage = {submitEditBoardImage}/> : false}
             </div>
           </div>
           <hr></hr>

@@ -44,6 +44,28 @@ const Board = (props) => {
           [e.target.name]: e.target.value
         }));
       }
+    
+    const editBoardImage = () => {
+        setEditBoard("image");
+    }
+
+    const onImageChange = (e) => {
+        setEditBoardData((prev) => ({
+            ...prev,
+            board_image: e.target.files[0]
+        }))
+    };
+
+    const cancelImageSubmit = () => {
+        setEditBoard(false);
+        setEditBoardData({...props.data});
+    }
+
+    const submitEditBoardImage = (e) => {
+        e.preventDefault();
+        props.submitEditBoardImage(editBoardData.id, editBoardData)
+        setEditBoard(false);
+    }
 
       if (editBoard === "text"
         && props.currentUser
@@ -70,8 +92,13 @@ const Board = (props) => {
         && props.currentUser.id === props.data.user_id.id)  {
             return (
                 <div>
-                    <form>
-
+                    <form onSubmit = {submitEditBoardImage}>
+                        <div className = "form-group">
+                            <div>Image</div>
+                            <input name = "board_image" className = "form-control" type = "file" accept = "image/*" multiple = {false} onChange = {onImageChange} required/>
+                        </div>
+                        <button className = "btn btn-success submit-btn">Submit</button>
+                        <button className = "btn btn-danger cancel-btn" onClick = {cancelImageSubmit}>Cancel</button>
                     </form>
                 </div>
             )
@@ -91,6 +118,7 @@ const Board = (props) => {
                                 <div>
                                     <span onClick = {confirmEditBoardData}>Edit Board </span>
                                     • <span onClick = {deleteBoard}>Delete Board</span>
+                                    {props.data.board_image ? <span> • <span onClick = {editBoardImage}>Edit Image</span></span> : false}
                                 </div>: false}
                                 {props.currentUser 
                                 && props.currentUser.id === props.data.user_id.id
