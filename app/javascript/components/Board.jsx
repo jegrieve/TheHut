@@ -29,7 +29,7 @@ const Board = (props) => {
     }
 
     const confirmDeleteBoard = () => {
-        //delete props stuff here.
+        props.confirmDeleteBoard(editBoardData.id)
     }
 
     const submitEditBoardData = (e) => {
@@ -92,6 +92,14 @@ const Board = (props) => {
                                     <span onClick = {confirmEditBoardData}>Edit Board </span>
                                     • <span onClick = {deleteBoard}>Delete Board</span>
                                 </div>: false}
+                                {props.currentUser 
+                                && props.currentUser.id === props.data.user_id.id
+                                && confirmDelete ? 
+                                <div>
+                                    <div className = "red-text">WARNING: Delete board and all associated posts.</div>
+                                    <span><button className = "btn btn-primary" onClick = {cancelDeleteBoard}>Cancel</button></span>
+                                    <span className = "show-post-dlt"><button className = "btn btn-warning" onClick = {confirmDeleteBoard}>Confirm</button></span>
+                                </div> : false}
                                 <div className = "show-board-body">
                                     {props.data.body}
                                 </div>

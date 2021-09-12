@@ -56,13 +56,37 @@ const ShowBoard = (props) => {
     })
     .catch(error => console.log(error.message))
     }
+
+    const confirmDeleteBoard = (boardId) => {
+      const url = `/api/v1/boards/destroy/${boardId}`;
+      const token = document.querySelector('meta[name="csrf-token"]').content;
+    
+      fetch(url, {
+        method: "DELETE",
+        headers: {
+          "X-CSRF-Token": token,
+          "Content-Type": "application/json"
+        }
+      })
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error("Network response was not ok.");
+        })
+        .then((response) => {
+          props.history.push("/");
+        })
+        .catch(error => console.log(error.message));
+    }
     
     return (
       <div className = "boardpage">
         <div className = "boardpage-container container">
           <div className = "row">
             <div className = "col-md-12 col-lg-12">
-              {boardData ? <Board data = {boardData} currentUser = {props.currentUser} submitEditBoardData = {submitEditBoardData} /> : false}
+              {boardData ? <Board data = {boardData} currentUser = {props.currentUser} submitEditBoardData = {submitEditBoardData} 
+              confirmDeleteBoard = {confirmDeleteBoard} /> : false}
             </div>
           </div>
           <hr></hr>
