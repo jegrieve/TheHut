@@ -1,6 +1,6 @@
 class Board < ApplicationRecord
     has_one_attached :board_image
-    has_many :posts
+    has_many :posts, dependent: :destroy
     belongs_to :user
 
     validates :title, presence: true
