@@ -26,6 +26,7 @@ class Api::V1::BoardsController < ApplicationController
         else
             render json: @board
         end
+    end
 
     def update
         board = Board.find(params[:id])
@@ -38,7 +39,14 @@ class Api::V1::BoardsController < ApplicationController
         end
     end
 
-    end
+    def destroy
+        if (session[:user_id] && params[:id])
+            Board.find(params[:id]).destroy
+            render json: {message: "Board Deleted"}
+        end
+      end
+
+
     private
     def board_params
         params.permit(:title, :body, :board_image)
