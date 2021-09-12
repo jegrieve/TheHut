@@ -31,7 +31,7 @@ class Api::V1::BoardsController < ApplicationController
     def update
         board = Board.find(params[:id])
         if board && params[:type] == "image"
-            board.update(image: params[:image])
+            board.update(board_image: params[:board_image])
             render json: board
         elsif board
             board.update(body: params[:body], title: params[:title])
