@@ -1,6 +1,7 @@
 class Comment < ApplicationRecord
     belongs_to :user
     belongs_to :post
+    has_many :replies, dependent: :destroy
 
     def created_at
         attributes['created_at'].strftime("%b %d %Y")
