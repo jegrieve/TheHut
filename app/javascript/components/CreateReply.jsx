@@ -37,7 +37,7 @@ const CreateReply = (props) => {
     }
 
     return (
-        <div className = "create-comment-data  reply-style">
+        <div className = "create-comment-data  reply-style reply-input">
             <form className = "d-flex text-align-center" onSubmit = {submitReplyData}>
                 <textarea className = "create-comment-input" onChange = {changeReplyData} type = "text" value = {props.createReplyData} rows = "2" minLength = {1} maxLength = {1000} placeholder = "Add a reply" />
                 <button className = "btn btn-dark">Post</button>

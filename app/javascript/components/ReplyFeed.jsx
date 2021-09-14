@@ -58,7 +58,7 @@ const ReplyFeed = (props) => {
                 <div onClick = {toggleReplies}>hide replies</div>
                 {loadedReplies.map((el,i) => {
                 return (
-                    <div className = "reply" key = {"r" + i}>
+                    <div className = "reply reply-style" key = {"r" + i}>
                         <CommentReply currentUser = {props.currentUser} data = {el} />
                     </div>
                     )

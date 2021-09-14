@@ -1,4 +1,7 @@
 .reply-style {
   margin-left: 30px !important;
-  width: 50% !important;
+}
+
+.reply-input {
+  width: 50%;
 }
