@@ -39,6 +39,32 @@ const ReplyFeed = (props) => {
         setCreateNewReply(!createNewReply)
     }
 
+    const submitEditReply = (replyId, editReplyData) => {
+        const body = {
+          body: editReplyData["body"]
+      }
+        const url = `/api/v1/replies/update/${replyId}`;
+        const token = document.querySelector('meta[name="csrf-token"]').content;
+        fetch(url, {
+        method: "PATCH",
+        headers: {
+        "X-CSRF-Token": token, 
+        "Content-Type": "application/json"
+      },
+        body: JSON.stringify(body)
+      })
+      .then(response => {
+          if (response.ok) {
+              return response.json()
+          }
+          throw new Error("Network response was not ok.");
+      })
+      .then(response => {
+          getReplies();
+      })
+      .catch(error => console.log(error.message))
+      }
+
     return (
         <div>
             {createNewReply ? 
@@ -59,7 +85,7 @@ const ReplyFeed = (props) => {
                 {loadedReplies.map((el,i) => {
                 return (
                     <div className = "reply reply-style" key = {"r" + i}>
-                        <CommentReply currentUser = {props.currentUser} data = {el} />
+                        <CommentReply currentUser = {props.currentUser} data = {el} submitEditReply = {submitEditReply}/>
                     </div>
                     )
                 })}

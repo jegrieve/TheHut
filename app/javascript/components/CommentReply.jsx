@@ -35,7 +35,7 @@ const CommentReply = (props) => {
 
     const submitEditComment = (e) => {
         e.preventDefault();
-        // props.submitEditComment(editCommentData.id, editCommentData)
+        props.submitEditReply(editCommentData.id, editCommentData)
         setEditMode(false);
     }
 
