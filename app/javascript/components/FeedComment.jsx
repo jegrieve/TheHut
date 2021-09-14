@@ -3,11 +3,13 @@ import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from "react/cjs/react.development";
+import ReplyFeed from "./ReplyFeed";
 
 const FeedComment = (props) => { 
     const [editCommentData, setEditCommentData] = useState(null);
     const [editMode, setEditMode] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState(false);
+
     useEffect(() => {
         if (editCommentData && editCommentData.id !== props.data.id) {
             setEditCommentData({...props.data});
@@ -54,7 +56,7 @@ const FeedComment = (props) => {
     const confirmDeleteComment = () => {
         props.confirmDeleteComment(props.data.id)
     }
-
+    
     return (
         <div>
             <div className = "comment-info d-flex align-items-center">
@@ -109,6 +111,7 @@ const FeedComment = (props) => {
             <div>
                 {props.data.body}
             </div>}
+                <ReplyFeed commentData = {props.data} currentUser = {props.currentUser} />
         </div>
     )
 }
