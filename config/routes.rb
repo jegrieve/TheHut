@@ -33,6 +33,11 @@ Rails.application.routes.draw do
 
       post "likes/create", to: 'likes#create'
       delete 'likes/destroy/:id', to: 'likes#destroy'
+
+      get "replies/index", to: "replies#index"
+      post "replies/create/:id", to: 'replies#create'
+      patch 'replies/update/:id', to: 'replies#update'
+      delete 'replies/destroy/:id', to: 'replies#destroy'
     end
   end
   root 'homepage#index'
