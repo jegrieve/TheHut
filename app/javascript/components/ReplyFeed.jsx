@@ -5,6 +5,8 @@ import CommentReply from "./CommentReply";
 const ReplyFeed = (props) => {
     const [loadedReplies, setLoadedReplies] = useState([]); 
     const [replyLimit, setReplyLimit] = useState(10);
+    const [viewReplies, setViewReplies] = useState(false);
+    const [createNewReply, setCreateNewReply] = useState(false);
     console.log(loadedReplies)
     useEffect(() => {
         getReplies();
@@ -29,19 +31,43 @@ const ReplyFeed = (props) => {
           .catch(() => console.log("error"));
     }
 
-    //so i want to get the amount of comments, thats why i put the show replies/hide replies stuff here.
+    const toggleReplies = () => {
+        setViewReplies(!viewReplies)
+    }
+
+    const toggleCreateReply = () => {
+        setCreateNewReply(!createNewReply)
+    }
+
     return (
         <div>
-            Show Reply and Hide reply stuff goes here.
-            <CreateReply commentId = {props.commentData.id} currentUser = {props.currentUser}
-            setReplyLimit = {setReplyLimit} replyLimit = {replyLimit} />
-            {loadedReplies.map((el,i) => {
-            return (
-                <div className = "reply" key = {"r" + i}>
-                    <CommentReply currentUser = {props.currentUser} data = {el} />
-                </div>
-            )
-            })}
+            {createNewReply ? 
+                <div>
+                    <CreateReply commentId = {props.commentData.id} currentUser = {props.currentUser}
+                    setReplyLimit = {setReplyLimit} replyLimit = {replyLimit} />
+                    <div>
+                        <div onClick = {toggleCreateReply}>Cancel</div>
+                    </div>
+                </div> : 
+                <div>
+                    <div onClick = {toggleCreateReply}>Reply</div>
+                </div>}
+
+            {viewReplies ? 
+            <div>
+                <div onClick = {toggleReplies}>hide replies</div>
+                {loadedReplies.map((el,i) => {
+                return (
+                    <div className = "reply" key = {"r" + i}>
+                        <CommentReply currentUser = {props.currentUser} data = {el} />
+                    </div>
+                    )
+                })}
+            </div> 
+            :
+            <div>
+                <div onClick = {toggleReplies}>view replies</div>
+            </div>}
         </div>
     )
 };
