@@ -1,3 +1,3 @@
 class ReplySerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :body, :created_at, :user
 end
