@@ -23,6 +23,21 @@ class Api::V1::RepliesController < ApplicationController
         end
     end
 
+    def update
+        reply = Reply.find(params[:id])
+        if reply 
+            reply.update(body: params[:body])
+            render json: reply 
+        end
+    end
+
+    def destroy
+        if (session[:user_id] && params[:id])
+            Reply.find(params[:id]).destroy
+            render json: {message: "Reply Deleted"}
+        end
+      end
+
     private
 
     def reply_params
