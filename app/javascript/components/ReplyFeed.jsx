@@ -7,10 +7,14 @@ const ReplyFeed = (props) => {
     const [replyLimit, setReplyLimit] = useState(10);
     const [viewReplies, setViewReplies] = useState(false);
     const [createNewReply, setCreateNewReply] = useState(false);
+    const [repliesLength, setRepliesLength] = useState(0);
     console.log(loadedReplies)
     useEffect(() => {
         getReplies();
     },[])
+    useEffect(() => {
+        getRepliesLength();
+    }, [loadedReplies])
 
     useEffect(() => {
         getReplies();
@@ -92,6 +96,22 @@ const ReplyFeed = (props) => {
           .catch(error => console.log(error.message));
       }
 
+      const getRepliesLength = () => {
+        const id = props.commentData.id
+        const url = `/api/v1/replies/index?id=${id}&length=${true}`;
+        fetch(url)
+          .then(response => {
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error("Network response was not ok.");
+          })
+          .then(response => {
+            setRepliesLength(response.replies_length)
+          })
+          .catch(() => console.log("error"));
+          }
+
     return (
         <div>
             {createNewReply ? 
@@ -128,7 +148,7 @@ const ReplyFeed = (props) => {
             </div> 
             :
             <div className = "view-reply-info">
-                <div className = "view-reply-btn" onClick = {toggleReplies}>View Replies (amount)</div>
+                <div className = "view-reply-btn" onClick = {toggleReplies}>View Replies ({repliesLength})</div>
             </div>}
         </div>
     )
