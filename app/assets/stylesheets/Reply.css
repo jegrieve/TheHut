@@ -1,7 +1,41 @@
 .reply-style {
-  margin-left: 30px !important;
+  margin-left: 30px;
+  padding-left: 3px;
+  border-left: 1px solid black;
 }
 
 .reply-input {
   width: 50%;
+  border-left: none;
+}
+
+.create-reply-btn,
+.view-reply-btn {
+  margin-top: 5px;
+  font-size: 13px;
+  font-weight: bold;
+  color: rgb(91, 91, 91);
+}
+
+.create-reply-btn:hover,
+.view-reply-btn:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.view-reply-info {
+  display: inline-block !important;
+}
+
+.dot-separate {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.load-more-replies-btn {
+  margin-top: 5px;
+}
+
+.reply-img {
+  border-bottom: 1px solid black;
 }

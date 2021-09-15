@@ -56,7 +56,7 @@ const FeedComment = (props) => {
     const confirmDeleteComment = () => {
         props.confirmDeleteComment(props.data.id)
     }
-    
+
     return (
         <div>
             <div className = "comment-info d-flex align-items-center">

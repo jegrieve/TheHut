@@ -52,7 +52,7 @@ const CommentReply = (props) => {
         setEditMode(false);
     }
     const confirmDeleteComment = () => {
-        // props.confirmDeleteComment(props.data.id)
+        props.confirmDeleteComment(props.data.id)
     }
  
 
@@ -62,12 +62,12 @@ const CommentReply = (props) => {
                 {props.data.user.profile_img ? 
                 <div>
                     <NavLink to = {`/user/${props.data.user.id}`}>
-                        <img className = "comment-avatar-img" src = {props.data.user.user_img.url}/>
+                        <img className = "comment-avatar-img reply-img" src = {props.data.user.user_img.url}/>
                     </NavLink> 
                 </div> 
                 : 
                 <div className = "comment-avatar-fa">
-                    <NavLink className = "comment-avatar-link" to = {`/user/${props.data.user.id}`}>
+                    <NavLink className = "comment-avatar-link reply-img" to = {`/user/${props.data.user.id}`}>
                         <FontAwesomeIcon icon={faUserCircle} />
                     </NavLink> 
                 </div>}
