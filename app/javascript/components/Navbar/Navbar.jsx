@@ -1,7 +1,7 @@
 import React from "react";
 import SignUpForm from "./SignUpForm";
 import SignInForm from "./SignInForm";
-import UserOptions from "../UserOptions";
+import UserOptions from "./UserOptions";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faUser } from '@fortawesome/free-solid-svg-icons'
