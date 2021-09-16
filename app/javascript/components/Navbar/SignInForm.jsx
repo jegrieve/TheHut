@@ -72,7 +72,6 @@ const SignInForm = (props) => {
                         <span className = "sign-in-title">Login</span>
                         <span onClick = {exitSignInForm} type="button" className="close close-btn-container" aria-label="Close">
                             <FontAwesomeIcon icon={faTimes} />
-                            {/* <span className="close-btn" aria-hidden="true">&times;</span> */}
                         </span>
                     </div>
                     <div className = "form-group sign-in-username-input">
