@@ -17,3 +17,8 @@
 .load-more-posts-btn {
   margin-top: 5px;
 }
+
+.filter-label {
+  font-weight: bold;
+  padding-right: 2px;
+}
