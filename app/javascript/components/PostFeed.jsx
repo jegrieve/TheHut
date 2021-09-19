@@ -51,7 +51,7 @@ const PostFeed = (props) => {
         <div id = "postfeed">
             {fetchedPosts.length ? 
             <div>
-                <label><span className = "filter-label">Filter by : </span>
+                <label><span className = "filter-label">Filter by: </span>
                     <select name = "filter" className = "form-select" value = {props.filterValue} onChange = {handleFilterChange}>
                         <option value = "newest">Newest</option>
                         <option value = "oldest">Oldest</option>
