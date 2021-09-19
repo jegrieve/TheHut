@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from "react";
-import PostFeed from "./PostFeed"
-import BoardFeed from "./BoardFeed"
+import React, {useState} from "react";
+import PostFeed from "./PostFeed";
+import BoardFeed from "./BoardFeed";
 
 const Homepage = (props) => {
   const [filterValue, setFilterValue] = useState("newest")

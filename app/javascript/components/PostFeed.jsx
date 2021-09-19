@@ -34,7 +34,6 @@ const PostFeed = (props) => {
             throw new Error("Network response was not ok.");
           })
           .then(response => {
-              console.log(response)
             setFetchedPosts(response)
           })
           .catch(() => console.log("error"));
@@ -52,8 +51,8 @@ const PostFeed = (props) => {
         <div id = "postfeed">
             {fetchedPosts.length ? 
             <div>
-                <label>Filter by:
-                    <select name = "filter" value = {props.filterValue} onChange = {handleFilterChange}>
+                <label><span className = "filter-label">Filter by : </span>
+                    <select name = "filter" className = "form-select" value = {props.filterValue} onChange = {handleFilterChange}>
                         <option value = "newest">Newest</option>
                         <option value = "oldest">Oldest</option>
                     </select>
@@ -66,9 +65,9 @@ const PostFeed = (props) => {
                 </div>
             )
             })}
-            <div className = "d-flex justify-content-center">
-                <button className = "btn btn-secondary load-more-posts-btn" onClick = {loadMorePosts}>Load more</button>     
-            </div>
+                <div className = "d-flex justify-content-center">
+                    <button className = "btn btn-secondary load-more-posts-btn" onClick = {loadMorePosts}>Load more</button>     
+                </div>
             </div> 
             : 
             <div>
