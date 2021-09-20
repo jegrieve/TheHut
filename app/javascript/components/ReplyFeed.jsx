@@ -8,7 +8,7 @@ const ReplyFeed = (props) => {
     const [viewReplies, setViewReplies] = useState(false);
     const [createNewReply, setCreateNewReply] = useState(false);
     const [repliesLength, setRepliesLength] = useState(0);
-    console.log(loadedReplies)
+
     useEffect(() => {
         getReplies();
     },[])

@@ -164,7 +164,7 @@ const ShowPostData = (props) => {
                     {props.data ? 
                     <div className = "d-flex align-items-center post-comments-options">
                         <div className = "show-post-likes-count">
-                            {props.currentUser ? (props.data.liking_users.some((ele) => ele.id === props.currentUser.id) && props.userLiked !== false)
+                            {props.currentUser ? (props.data.liking_users.some((ele) => ele.id === props.currentUser.id) || props.userLiked === true)
                             ? 
                             <div className = "show-post-heart-btn" onClick = {props.unLikePost}>
                                 <FontAwesomeIcon icon = {faHeart} /> {props.likedPost} Likes
