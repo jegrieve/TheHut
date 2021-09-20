@@ -47,7 +47,8 @@ const BoardFeed = (props) => {
               <div className = "create-new-board">
                 <FontAwesomeIcon icon = {faPlus} /> <span>new board</span>
               </div>
-            </NavLink> : false}
+            </NavLink> : 
+              <div className = "signed-out-create-board"></div>}
             {cachedBoards.length ? 
               <div className = "board-feed-container">
                 {cachedBoards.map((el,i) => {

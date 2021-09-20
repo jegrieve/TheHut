@@ -13,7 +13,8 @@
 }
 
 .board {
-  margin-top: 10px;
+  margin-top: 7px;
+  margin-bottom: 3px;
   margin-left: 5px;
   word-wrap: break-word;
   font-weight: bold;
@@ -42,9 +43,14 @@
 }
 
 .create-new-board {
+  padding-top: 2px;
   font-size: 24px;
 }
 
 .create-new-board:hover {
   opacity: 0.8;
+}
+
+.signed-out-create-board {
+  margin-top: 11px;
 }
