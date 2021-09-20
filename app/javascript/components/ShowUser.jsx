@@ -106,7 +106,7 @@ const ShowUser = (props) => {
                 <UserInfo userData = {userData} updateProfileImage = {updateProfileImage} currentUser = {props.currentUser} 
                 setCurrentUser = {props.setCurrentUser} userEdit = {userEdit} updateProfileBio = {updateProfileBio} 
                 history = {props.history} /> : 
-                false} {/* this would show a page with "no userdata for this user"*/}
+                <div>No user exists here.</div>} 
             </div>
             <div className = "col-6 d-none d-md-block">
               {userData ? 
