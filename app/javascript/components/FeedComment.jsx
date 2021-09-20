@@ -60,10 +60,10 @@ const FeedComment = (props) => {
     return (
         <div>
             <div className = "comment-info d-flex align-items-center">
-                {props.data.user.profile_img ? 
+                {props.data.user.profile_image ? 
                 <div>
                     <NavLink to = {`/user/${props.data.user.id}`}>
-                        <img className = "comment-avatar-img" src = {props.data.user.user_img.url}/>
+                        <img className = "comment-avatar-img" src = {props.data.user.profile_image.url}/>
                     </NavLink> 
                 </div> 
                 : 

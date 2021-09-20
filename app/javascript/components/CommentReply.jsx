@@ -59,10 +59,11 @@ const CommentReply = (props) => {
     return (
         <div>
         <div className = "comment-info d-flex align-items-center">
-                {props.data.user.profile_img ? 
+                <div className = "reply-connector" />
+                {props.data.user.profile_image ? 
                 <div>
                     <NavLink to = {`/user/${props.data.user.id}`}>
-                        <img className = "comment-avatar-img reply-img" src = {props.data.user.user_img.url}/>
+                        <img className = "comment-avatar-img reply-img" src = {props.data.user.profile_image.url}/>
                     </NavLink> 
                 </div> 
                 : 
@@ -80,7 +81,7 @@ const CommentReply = (props) => {
             </div>
             {props.currentUser
             && props.currentUser.id === props.data.user.id ? 
-            <div>
+            <div className = "reply-edit-info">
                 {editMode ?
                  <div>
                      <form onSubmit = {submitEditComment}>
@@ -93,7 +94,7 @@ const CommentReply = (props) => {
                         </div>
                      </form>
                  </div> :             
-            <div>
+            <div className = "reply-comment-info">
                 {props.data.body}
                 <div className = "edit-delete-btns">
                     <span className = "edit-post-btn" onClick = {editComment}>Edit </span>

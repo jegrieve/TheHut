@@ -1,6 +1,4 @@
 .reply-style {
-  margin-left: 30px;
-  padding-left: 3px;
   border-left: 1px solid black;
 }
 
@@ -36,6 +34,15 @@
   margin-top: 5px;
 }
 
-.reply-img {
+.reply-connector {
+  width: 3%;
   border-bottom: 1px solid black;
+  bottom: 50%;
+  position: relative;
+}
+
+.reply-comment-info,
+.reply-edit-info {
+  margin-left: 30px;
+  padding-left: 3px;
 }
