@@ -42,3 +42,9 @@
 .cancel-btn {
   margin-top: 3px;
 }
+
+.unlogged-poster {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}

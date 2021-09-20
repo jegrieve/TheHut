@@ -216,9 +216,11 @@ const CreatePost = (props) => {
                           </div>
                         </div>
                         }
+                        {props.currentUser ? 
                             <div className = "create-post-btn">
                                 <button className = "btn btn-success">Create Post</button>
-                            </div>
+                            </div> : <div className = "unlogged-poster">Please Login/Signup to create a post.</div>}
+
                 </form>
             </div> 
             : 
