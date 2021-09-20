@@ -74,11 +74,11 @@ const Board = (props) => {
             <div>
                 <form onSubmit = {submitEditBoardData}>
                     <div className = "form-group">
-                        <div>Name</div>
+                        <div className = "edit-board-input-title">Title</div>
                         <input className = "form-control" name = "title" type = "text" onChange = {handleEditBoard} value = {editBoardData["title"]} minLength = {4} maxLength = {21} placeholder = "Title required" required/>
                     </div>
                     <div className = "form-group">
-                        <div>Body</div>
+                        <div className = "edit-board-input-title">Body</div>
                         <textarea className = "form-control" name = "body" type = "text" onChange = {handleEditBoard} value = {editBoardData["body"]} rows = {4} placeholder = "Describe the type of content found in this board" minLength = {6} maxLength = {100} required/>
                     </div>
                     <div className = "edit-btns">
@@ -94,7 +94,7 @@ const Board = (props) => {
                 <div>
                     <form onSubmit = {submitEditBoardImage}>
                         <div className = "form-group">
-                            <div>Image</div>
+                            <div className = "edit-board-input-title">Image</div>
                             <input name = "board_image" className = "form-control" type = "file" accept = "image/*" multiple = {false} onChange = {onImageChange} required/>
                         </div>
                         <button className = "btn btn-success submit-btn">Submit</button>
@@ -115,10 +115,10 @@ const Board = (props) => {
                                 </div>
                                 {props.currentUser 
                                 && props.currentUser.id === props.data.user_id.id ?
-                                <div>
-                                    <span onClick = {confirmEditBoardData}>Edit Board </span>
-                                    • <span onClick = {deleteBoard}>Delete Board</span>
-                                    {props.data.board_image ? <span> • <span onClick = {editBoardImage}>Edit Image</span></span> : false}
+                                <div className = "edit-board">
+                                    <span className = "edit-board-info" onClick = {confirmEditBoardData}>Edit Board </span>
+                                    • <span className = "edit-board-info" onClick = {deleteBoard}>Delete Board</span>
+                                    {props.data.board_image ? <span> • <span className = "edit-board-info" onClick = {editBoardImage}>Edit Image</span></span> : false}
                                 </div>: false}
                                 {props.currentUser 
                                 && props.currentUser.id === props.data.user_id.id
