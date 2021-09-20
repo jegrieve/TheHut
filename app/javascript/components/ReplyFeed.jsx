@@ -114,7 +114,7 @@ const ReplyFeed = (props) => {
 
     return (
         <div>
-            {createNewReply ? 
+            {createNewReply && props.currentUser ? 
                 <div>
                     <CreateReply commentId = {props.commentData.id} currentUser = {props.currentUser}
                     setReplyLimit = {setReplyLimit} replyLimit = {replyLimit} />
@@ -123,9 +123,13 @@ const ReplyFeed = (props) => {
                     </div>
                 </div> : 
                 <div className = "view-reply-info">
-                    <div className = "create-reply-btn" onClick = {toggleCreateReply}>Reply</div>
+                  {props.currentUser ?
+                    <div className = "create-reply-btn" onClick = {toggleCreateReply}>Reply</div> 
+                    : false}
                 </div>}
-                {!viewReplies && !createNewReply ? <div className = "view-reply-info view-reply-btn dot-separate"> • </div> : false}
+                {!viewReplies 
+                && !createNewReply 
+                && props.currentUser ? <div className = "view-reply-info view-reply-btn dot-separate"> • </div> : false}
             {viewReplies ? 
             <div>
                 <div className = "view-reply-btn" onClick = {toggleReplies}>Hide Replies</div>
