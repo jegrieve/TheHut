@@ -135,7 +135,11 @@ const renderBoardData = () => {
                         </div>                
                     </div>}
                     <div className = "d-flex justify-content-center">
-                        <button className = "btn btn-success">Create Board</button>
+                        {props.currentUser ? 
+                            <div>
+                                <button className = "btn btn-success">Create Board</button>
+                            </div> :
+                        <div className = "unlogged-poster">Please Login/Signup to create a board.</div>}
                     </div>
                 </form>
             </div>
