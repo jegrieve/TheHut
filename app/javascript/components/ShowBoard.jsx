@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react";
 import PostFeed from "./PostFeed";
 import Board from "./Board";
-import { NavLink } from "react-router-dom";
-
 
 const ShowBoard = (props) => {
     const [boardData, setBoardData] = useState(null);
