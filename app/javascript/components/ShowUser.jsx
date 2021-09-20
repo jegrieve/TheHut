@@ -13,6 +13,12 @@ const ShowUser = (props) => {
     }, [])
 
     useEffect(() => {
+      if (userData && userData.id !== Number(props.match.params.id)) {
+        getUserData();
+      }
+    })
+
+    useEffect(() => {
       if (props.currentUser && userData && 
         props.currentUser.id === userData.id && 
         userEdit === false) {
