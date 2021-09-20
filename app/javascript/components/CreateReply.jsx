@@ -30,8 +30,8 @@ const CreateReply = (props) => {
             throw new Error("Network response was not ok.");
         })
         .then(response => {
-            props.setReplyLimit(props.replyLimit + 1)
             setCreateReplyData("");
+            props.setReplyLimit(props.replyLimit + 1)
         })
         .catch(error => console.log(error.message))
     }
@@ -39,7 +39,7 @@ const CreateReply = (props) => {
     return (
         <div className = "create-comment-data  reply-style reply-input">
             <form className = "d-flex text-align-center" onSubmit = {submitReplyData}>
-                <textarea className = "create-comment-input" onChange = {changeReplyData} type = "text" value = {props.createReplyData} rows = "2" minLength = {1} maxLength = {1000} placeholder = "Add a reply" />
+                <textarea className = "create-comment-input" onChange = {changeReplyData} type = "text" value = {createReplyData} rows = "2" minLength = {1} maxLength = {1000} placeholder = "Add a reply" />
                 <button className = "btn btn-dark">Post</button>
             </form>
         </div>
