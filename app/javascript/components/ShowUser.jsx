@@ -96,7 +96,6 @@ const ShowUser = (props) => {
     .catch(error => console.log(error.message))
     }
 
-
     return(
       <div className = "activity-feed">
         <div className = "container-fluid">

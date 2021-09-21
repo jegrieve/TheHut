@@ -11,7 +11,7 @@ const UserPosts = (props) => {
                         <div className = "user-post" key = {"p" + i}>
                             <div>
                                 <div className = "user-post-date">Posted {el.created_at}</div>
-                                <NavLink className = "user-post-link" to={`/post/${el.id}`}>{el.title}</NavLink>
+                                <NavLink className = "user-post-link selected-activities" to={`/post/${el.id}`}>{el.title}</NavLink>
                             </div>
                         </div>
                         )

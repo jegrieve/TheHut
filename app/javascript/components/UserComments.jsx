@@ -11,8 +11,8 @@ const UserComments = (props) => {
                         <div className = "user-comment" key = {"c" + i}>
                             <div className = "user-post-date">Commented {el.created_at}</div>
                             {el.body.length <= 300 ? 
-                            <NavLink className = "user-post-link" to={`/post/${el.post_id}`}>{el.body}</NavLink> :
-                            <NavLink className = "user-post-link" to={`/post/${el.post_id}`}>Long comment here.</NavLink> }
+                            <NavLink className = "user-post-link selected-activities" to={`/post/${el.post.id}`}>{el.body}</NavLink> :
+                            <NavLink className = "user-post-link" to={`/post/${el.post.id}`}>Long comment here.</NavLink> }
                         </div>
                         )
                     })}
