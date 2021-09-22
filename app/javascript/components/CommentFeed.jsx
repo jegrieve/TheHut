@@ -43,8 +43,8 @@ const CommentFeed = (props) => {
           e.target.style.visibility = "hidden";
           setTimeout(() => {
               e.target.style.visibility = "visible";
-          }, 5000)
-            setCommentLimit(commentLimit + 5);
+          }, 4000)
+            setCommentLimit(commentLimit + 2);
         }
 
         const submitEditComment = (commentId, editCommentData) => {
