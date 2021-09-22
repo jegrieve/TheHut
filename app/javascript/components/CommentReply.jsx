@@ -108,7 +108,7 @@ const CommentReply = (props) => {
                 </div> : false }
             </div>}
             </div> : 
-            <div>
+            <div className = "reply-user-info">
                 {props.data.body}
             </div>}
         </div>

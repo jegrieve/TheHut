@@ -4,7 +4,7 @@ import CommentReply from "./CommentReply";
 
 const ReplyFeed = (props) => {
     const [loadedReplies, setLoadedReplies] = useState([]); 
-    const [replyLimit, setReplyLimit] = useState(10);
+    const [replyLimit, setReplyLimit] = useState(5);
     const [viewReplies, setViewReplies] = useState(false);
     const [createNewReply, setCreateNewReply] = useState(false);
     const [repliesLength, setRepliesLength] = useState(0);
@@ -43,8 +43,12 @@ const ReplyFeed = (props) => {
         setCreateNewReply(!createNewReply)
     }
 
-    const getMoreReplies = () => {
-        setReplyLimit(replyLimit + 5);
+    const getMoreReplies = (e) => {
+      e.target.style.visibility = "hidden";
+      setTimeout(() => {
+          e.target.style.visibility = "visible";
+      }, 4000)
+        setReplyLimit(replyLimit + 2);
     }
 
     const submitEditReply = (replyId, editReplyData) => {
@@ -144,7 +148,9 @@ const ReplyFeed = (props) => {
                             )
                         })}
                     <div className = "load-more-replies-btn">
+                      {loadedReplies.length >= 5 ?
                         <button className = "btn btn-light" onClick = {getMoreReplies}>Load more</button>            
+                      : false}
                     </div>
                     </div> 
                     : 
