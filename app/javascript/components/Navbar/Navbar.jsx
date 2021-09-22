@@ -5,13 +5,14 @@ import UserOptions from "./UserOptions";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faUser } from '@fortawesome/free-solid-svg-icons'
+import logo from 'images/page-logo.png'
 
 const Navbar = (props) => {
     return (
         <div className = "site-navbar d-flex justify-content-around align-items-center">
-                <div>
-                    <NavLink to="/">Website Logo</NavLink>
-                </div>
+            <div className = "nav-logo">
+                <NavLink to={`/`}><img className = "navbar-logo" src = {logo}/></NavLink>
+            </div>
             {props.currentUser 
             ? <div className = "d-flex align-items-center navbar-user-controls justify-content-between">
                 <div>
