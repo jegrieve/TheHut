@@ -21,3 +21,12 @@
 .filter-label {
   font-weight: bold;
 }
+
+.postfeed-spinner {
+  font-size: 30px;
+  height: 500px;
+  position: absolute;
+  left: 40%;
+  top: 50%;
+  bottom: 50%;
+}

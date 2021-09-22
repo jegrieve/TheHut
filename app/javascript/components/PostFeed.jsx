@@ -1,3 +1,5 @@
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, {useEffect, useState} from "react";
 import FeedPost from "./FeedPost";
 
@@ -34,7 +36,7 @@ const PostFeed = (props) => {
             throw new Error("Network response was not ok.");
           })
           .then(response => {
-            setFetchedPosts(response)
+            // setFetchedPosts(response)
           })
           .catch(() => console.log("error"));
     }
@@ -70,8 +72,8 @@ const PostFeed = (props) => {
                 </div>
             </div> 
             : 
-            <div>
-                No posts to show.
+            <div className = "postfeed-spinner">
+                <FontAwesomeIcon icon = {faSpinner} className = "fa-pulse" size = "3x" />
             </div>}
         </div>)
      }
