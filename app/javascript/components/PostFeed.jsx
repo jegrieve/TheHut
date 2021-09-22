@@ -36,7 +36,7 @@ const PostFeed = (props) => {
             throw new Error("Network response was not ok.");
           })
           .then(response => {
-            // setFetchedPosts(response)
+            setFetchedPosts(response)
           })
           .catch(() => console.log("error"));
     }

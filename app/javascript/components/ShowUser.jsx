@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import UserInfo from "./UserInfo";
 import ActivityFeed from "./ActivityFeed";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 const ShowUser = (props) => {
@@ -101,11 +103,13 @@ const ShowUser = (props) => {
         <div className = "container-fluid">
           <div className = "row">
             <div className = "col-sm-12 col-md-6">
-              {userData ? 
+              {userData && false ? 
                 <UserInfo userData = {userData} updateProfileImage = {updateProfileImage} currentUser = {props.currentUser} 
                 setCurrentUser = {props.setCurrentUser} userEdit = {userEdit} updateProfileBio = {updateProfileBio} 
                 history = {props.history} /> : 
-                <div>No user exists here.</div>} 
+                <div className = "user-spinner ">
+                  <FontAwesomeIcon icon = {faSpinner} className = "fa-pulse" size = "3x" />
+                </div>} 
             </div>
             <div className = "col-6 d-none d-md-block">
               {userData ? 

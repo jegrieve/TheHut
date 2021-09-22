@@ -135,3 +135,10 @@
 .selected-activities:hover {
   color: inherit;
 }
+
+.user-spinner {
+  font-size: 30px;
+  padding-top: 30%;
+  position: absolute;
+  left: 50%;
+}

@@ -24,9 +24,7 @@
 
 .postfeed-spinner {
   font-size: 30px;
-  height: 500px;
+  padding-top: 30%;
   position: absolute;
   left: 40%;
-  top: 50%;
-  bottom: 50%;
 }
