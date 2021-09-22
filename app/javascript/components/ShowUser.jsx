@@ -103,7 +103,7 @@ const ShowUser = (props) => {
         <div className = "container-fluid">
           <div className = "row">
             <div className = "col-sm-12 col-md-6">
-              {userData && false ? 
+              {userData ? 
                 <UserInfo userData = {userData} updateProfileImage = {updateProfileImage} currentUser = {props.currentUser} 
                 setCurrentUser = {props.setCurrentUser} userEdit = {userEdit} updateProfileBio = {updateProfileBio} 
                 history = {props.history} /> : 
