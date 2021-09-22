@@ -61,7 +61,7 @@ const BoardFeed = (props) => {
               </div>
             : false}
             <div className = "d-flex justify-content-center">
-              {cachedBoards.length ? 
+              {cachedBoards.length >= 10 ? 
                 <button className = "btn btn-secondary load-more-boards" onClick = {getBoards}>Load more</button>
                : false}
             </div>

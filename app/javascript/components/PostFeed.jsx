@@ -71,7 +71,8 @@ const PostFeed = (props) => {
                     <button className = "btn btn-secondary load-more-posts-btn" onClick = {loadMorePosts}>Load more</button>     
                 </div>
             </div> 
-            : 
+            : props.board ? 
+            <div>No posts associated with this board.</div> :
             <div className = "postfeed-spinner">
                 <FontAwesomeIcon icon = {faSpinner} className = "fa-pulse" size = "3x" />
             </div>}
