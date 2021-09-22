@@ -37,7 +37,11 @@ const ActivityFeed = (props) => {
         }
     }
 
-    const increaseActivityLimit = () => {
+    const increaseActivityLimit = (e) => {
+        e.target.style.visibility = "hidden";
+        setTimeout(() => {
+            e.target.style.visibility = "visible";
+        }, 3000)
         setActivityLimit(activityLimit + 5)
     }
     console.log(props.userData)

@@ -41,7 +41,11 @@ const PostFeed = (props) => {
           .catch(() => console.log("error"));
     }
 
-    const loadMorePosts = () => {
+    const loadMorePosts = (e) => {
+        e.target.style.visibility = "hidden";
+        setTimeout(() => {
+            e.target.style.visibility = "visible";
+        }, 2000)
         setPostLimit(postLimit + 5)
     }
 

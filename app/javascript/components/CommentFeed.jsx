@@ -39,7 +39,11 @@ const CommentFeed = (props) => {
               .catch(() => console.log("error"));
         }
 
-        const getMoreComments = () => {
+        const getMoreComments = (e) => {
+          e.target.style.visibility = "hidden";
+          setTimeout(() => {
+              e.target.style.visibility = "visible";
+          }, 5000)
             setCommentLimit(commentLimit + 5);
         }
 
