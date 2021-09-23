@@ -78,7 +78,7 @@ const Board = (props) => {
                     </div>
                     <div className = "form-group">
                         <div className = "edit-board-input-title">Body</div>
-                        <textarea className = "form-control" name = "body" type = "text" onChange = {handleEditBoard} value = {editBoardData["body"]} rows = {4} placeholder = "Describe the type of content found in this board" minLength = {6} maxLength = {100} required/>
+                        <textarea className = "form-control" name = "body" type = "text" onChange = {handleEditBoard} value = {editBoardData["body"]} rows = {4} placeholder = "Describe the type of content found in this board" minLength = {6} maxLength = {300} required/>
                     </div>
                     <div className = "edit-btns">
                         <button type = "submit" className = "btn btn-success submit-btn">Submit</button>
