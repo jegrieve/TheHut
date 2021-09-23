@@ -10,7 +10,7 @@ const UserInfo = (props) => {
     const [bioText, setBioText] = useState("");
     const [editBio, setEditBio] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState(false);
-      console.log("pineapples")
+
     useEffect(() => {
         if (props.userData.bio) {
           setBioText(props.userData.bio)

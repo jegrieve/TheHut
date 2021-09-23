@@ -144,7 +144,6 @@ const SignUpForm = (props) => {
             throw new Error("Network response was not ok.");
         })
         .then(response => {
-            console.log(response) 
             if (response.id) {
                 exitSignUpForm();
                 props.setCurrentUser(response)

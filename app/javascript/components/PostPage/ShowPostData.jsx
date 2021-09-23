@@ -8,7 +8,6 @@ const ShowPostData = (props) => {
     const [editPostData, setEditPostData] = useState(null);
     const [editPost, setEditPost] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState(false);
-    console.log(editPostData)
 
     useEffect(() => {
         setEditPostData({...props.data})

@@ -15,7 +15,7 @@ const ActivityFeed = (props) => {
     const handleActivityChange = (e) => {
         const element = e.target.id;
         let highlight = document.querySelector(".highlight")
-        console.log(highlight)
+
         if (highlight) {
             highlight.classList.remove("highlight")
         }
@@ -44,7 +44,7 @@ const ActivityFeed = (props) => {
         }, 3000)
         setActivityLimit(activityLimit + 5)
     }
-    console.log(props.userData)
+
     return (
         <div>
             <div className = "activity-feed-title">Activity Feed</div>

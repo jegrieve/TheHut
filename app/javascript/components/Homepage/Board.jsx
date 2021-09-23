@@ -5,7 +5,6 @@ const Board = (props) => {
     const [editBoardData, setEditBoardData] = useState(null);
     const [editBoard, setEditBoard] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState(false);
-    console.log(props.data)
 
     useEffect(() => {
         setEditBoardData({...props.data})

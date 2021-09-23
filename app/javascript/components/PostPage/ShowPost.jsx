@@ -50,7 +50,6 @@ const ShowPost = (props) => {
           throw new Error("Network response was not ok.");
         })
         .then(response => {
-          console.log(response)
           setPostData(response)
         }
           )

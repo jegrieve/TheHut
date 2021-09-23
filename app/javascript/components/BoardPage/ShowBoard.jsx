@@ -22,7 +22,6 @@ const ShowBoard = (props) => {
             throw new Error("Network response was not ok.");
           })
           .then(response => {
-            console.log(response)
             setBoardData(response)
           })
           .catch(() => console.log("error"));

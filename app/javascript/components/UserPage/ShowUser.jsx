@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const ShowUser = (props) => {
     const [userData, setUserData] = useState(null);
     const [userEdit, setUserEdit] = useState(false);
-    console.log(userData)
 
     useEffect(() => {
       getUserData();
