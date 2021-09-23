@@ -61,6 +61,8 @@ const PostFeed = (props) => {
                     <select name = "filter" className = "form-select" value = {props.filterValue} onChange = {handleFilterChange}>
                         <option value = "newest">Newest</option>
                         <option value = "oldest">Oldest</option>
+                        <option value = "likes">Most Likes</option>
+                        <option value = "comments">Most Comments</option>
                     </select>
                 </label>
                 {fetchedPosts.map((el,i) => {
