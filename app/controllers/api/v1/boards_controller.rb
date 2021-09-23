@@ -1,30 +1,30 @@
 class Api::V1::BoardsController < ApplicationController
     def index
         if params[:limit]
-            @boards = Board.limit(params[:limit]).offset(params[:offset])
+            boards = Board.limit(params[:limit]).offset(params[:offset])
         else
-            @boards = Board.all
+            boards = Board.all
         end
-        render json: @boards
+        render json: boards
     end
 
     def create
         user = User.find_by(id: session[:user_id])
-        @board = user.boards.create(board_params)
-        render json: @board
+        board = user.boards.create(board_params)
+        render json: board
     end
 
     def show
-        @board = Board.find(params[:id])
-        if @board && params[:posts]
+        board = Board.find(params[:id])
+        if board && params[:posts]
             if (params[:filter] == "newest")
-                @posts = @board.posts.order(created_at: :desc).limit(params[:limit])
+                posts = board.posts.order(created_at: :desc).limit(params[:limit])
             else
-                @posts = @board.posts.order(created_at: :asc).limit(params[:limit])
+                posts = board.posts.order(created_at: :asc).limit(params[:limit])
             end
-                render json: @posts
+                render json: posts
         else
-            render json: @board
+            render json: board
         end
     end
 

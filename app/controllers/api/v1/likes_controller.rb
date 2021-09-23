@@ -1,14 +1,10 @@
 class Api::V1::LikesController < ApplicationController
-    def index
-
-    end
-
     def create
         user = User.find_by(id: session[:user_id])
-        @like = user.likes.new
-        @like.post_id = params[:post_id]
-        @like.save
-        render json: @like
+        like = user.likes.new
+        like.post_id = params[:post_id]
+        like.save
+        render json: like
     end
 
     def destroy
