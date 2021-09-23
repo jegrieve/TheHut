@@ -142,7 +142,7 @@ const CreatePost = (props) => {
 
     const renderPostData = () => {
             const id = props.currentUser.id
-            const url = `/api/v1/users/show/${id}`;
+            const url = `/api/v1/users/show/${id}?post=${true}`;
         
             fetch(url)
               .then(response => {
@@ -152,7 +152,7 @@ const CreatePost = (props) => {
                 throw new Error("Network response was not ok.");
               })
               .then(response => {
-                props.history.push(`/post/${response.posts[response.posts.length - 1].id}`);
+                props.history.push(`/post/${response.last_post.id}`);
             })
               .catch(() => console.log("error"));
     }

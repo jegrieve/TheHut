@@ -86,7 +86,7 @@ const CreateBoard = (props) => {
 
 const renderBoardData = () => {
     const id = props.currentUser.id
-    const url = `/api/v1/users/show/${id}`;
+    const url = `/api/v1/users/show/${id}?board=${true}`;
 
     fetch(url)
       .then(response => {
@@ -96,7 +96,7 @@ const renderBoardData = () => {
         throw new Error("Network response was not ok.");
       })
       .then(response => {
-        props.history.push(`/board/${response.boards[response.boards.length - 1].id}`);
+        props.history.push(`/board/${response.last_board.id}`);
     })
       .catch(() => console.log("error"));
 }
