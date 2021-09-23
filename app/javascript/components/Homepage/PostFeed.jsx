@@ -74,7 +74,9 @@ const PostFeed = (props) => {
             )
             })}
                 <div className = "d-flex justify-content-center">
-                    <button className = "btn btn-secondary load-more-posts-btn" onClick = {loadMorePosts}>Load more</button>     
+                    {fetchedPosts.length >= 5 ?
+                        <button className = "btn btn-secondary load-more-posts-btn" onClick = {loadMorePosts}>Load more</button>     
+                    : false}
                 </div>
             </div> 
             : props.board ? 
