@@ -141,7 +141,9 @@ const UserInfo = (props) => {
             <div>
               <div>
                 <div className = "show-user-bio-title">Bio</div>
-                <textarea  className = "show-user-bio-edit" value = {bioText} onChange = {onBioInputChange} maxLength = "400"/>
+                <div className = "form-group">
+                  <textarea  className = "show-user-bio-edit form-control" value = {bioText} onChange = {onBioInputChange} maxLength = "400" rows = "5"/>
+                </div>
               </div>
                 <button className = "btn btn-success save-btn" onClick = {saveEditBio}>Save</button>
                 <button className = "btn btn-danger cancel-btn" onClick = {exitEditBio}>Cancel</button>
