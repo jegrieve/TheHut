@@ -83,21 +83,21 @@ const ShowPostData = (props) => {
         return (
             <div>
                 <form onSubmit = {submitEditPostData}>
-                    <div>
+                    <div className = "form-group">
                         <div className = "edit-title">Title</div>
-                        <textarea id = "test" className = "show-post-title-edit" name = "title" value = {editPostData["title"]} 
+                        <textarea id = "test" className = "show-post-title-edit form-control" name = "title" value = {editPostData["title"]} 
                         onChange = {handleEditPost} minLength = {1} maxLength = {300} placeholder = "Title required" required/> 
                     </div>
-                    <div>
+                    <div className = "form-group">
                         <div className = "edit-title">Body</div>
-                        <textarea className = "show-post-body-edit" name = "body" value = {editPostData["body"]} 
-                        onChange = {handleEditPost} placeholder = "Body optional" maxLength = {10000} />
+                        <textarea className = "show-post-body-edit form-control" name = "body" value = {editPostData["body"]} 
+                        onChange = {handleEditPost} placeholder = "Body optional" maxLength = {10000} rows="5" />
                     </div>
                     <div>
                         {props.data.video_link ? 
-                            <div>
+                            <div className = "form-group">
                                 <div className = "edit-title">YouTube Link</div>
-                                <input className = "show-post-video-edit" name = "video_link" type = "text" value = {editPostData["video_link"]} 
+                                <input className = "show-post-video-edit form-control" name = "video_link" type = "text" value = {editPostData["video_link"]} 
                                 onChange = {handleEditPost} />
                             </div> 
                             : false}
@@ -115,7 +115,7 @@ const ShowPostData = (props) => {
         return (
             <div>
                 <form onSubmit = {submitEditPostData}>
-                    <div>
+                    <div className = "form-group">
                         <div className = "edit-title">Image</div>
                         <input name = "image" className = "form-control show-post-image-edit" type = "file" accept = "image/*" multiple = {false} onChange = {onImageChange} required/>
                         <div className = "edit-btns">
