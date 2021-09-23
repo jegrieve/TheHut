@@ -10,12 +10,7 @@ import ShowBoard from "../components/BoardPage/ShowBoard";
 
 const Routes = () => {
   const [currentUser, setCurrentUser] = useState(null);
-
-  if (currentUser) {
-    console.log(`current user is ${currentUser.username}`)
-    console.log(currentUser)
-  }
-
+  
   useEffect(() => {
     getUserSession();
   }, [])
