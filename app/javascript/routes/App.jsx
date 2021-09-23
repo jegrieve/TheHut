@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Homepage from "../components/Homepage";
+import Homepage from "../components/Homepage/Homepage";
 import Navbar from "../components/Navbar/Navbar";
-import CreatePost from "../components/CreatePost";
-import ShowPost from "../components/ShowPost";
-import ShowUser from "../components/ShowUser";
-import CreateBoard from "../components/CreateBoard";
-import ShowBoard from "../components/ShowBoard";
+import CreatePost from "../components/CreateData/CreatePost";
+import ShowPost from "../components/PostPage/ShowPost";
+import ShowUser from "../components/UserPage/ShowUser";
+import CreateBoard from "../components/CreateData/CreateBoard";
+import ShowBoard from "../components/BoardPage/ShowBoard";
 
 const Routes = () => {
   const [currentUser, setCurrentUser] = useState(null);

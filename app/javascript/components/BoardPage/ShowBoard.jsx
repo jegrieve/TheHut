@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import PostFeed from "./PostFeed";
-import Board from "./Board";
+import PostFeed from "../Homepage/PostFeed";
+import Board from "../Homepage/Board";
 
 const ShowBoard = (props) => {
     const [boardData, setBoardData] = useState(null);
