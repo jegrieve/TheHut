@@ -18,6 +18,7 @@
 .nav-create-post,
 .nav-user {
   color: rgb(52, 58, 64);
+  font-size: 18px;
 }
 
 .nav-create-post:hover,
