@@ -2,6 +2,10 @@ class Api::V1::PostsController < ApplicationController
     def index
         if (params[:filter] == "newest")
             posts = Post.order(created_at: :desc).limit(params[:limit])
+        elsif (params[:filter] == "likes")
+            posts = Post.order(likes_count: :desc).limit(params[:limit])
+        elsif (params[:filter] == "comments")
+            posts = Post.order(comments_count: :desc).limit(params[:limit])
         else
             posts = Post.order(created_at: :asc).limit(params[:limit]) 
         end
