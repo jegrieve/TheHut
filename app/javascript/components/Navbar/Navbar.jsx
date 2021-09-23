@@ -5,7 +5,7 @@ import UserOptions from "./UserOptions";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faUser } from '@fortawesome/free-solid-svg-icons'
-import logo from 'images/page-logo.png'
+import logo from 'images/TheHut-logo.png'
 
 const Navbar = (props) => {
     return (
