@@ -25,6 +25,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem "figaro"
 #Use for serializing
 gem 'active_model_serializers'
+#AWS S3 gem
+gem "aws-sdk-s3", require: false
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
