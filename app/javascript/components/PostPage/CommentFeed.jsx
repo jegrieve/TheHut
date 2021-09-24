@@ -98,8 +98,8 @@ const CommentFeed = (props) => {
         return (
             <div className = "comment-feed">
                 <div className = "create-comment">
-                    <CreateComment postId = {props.postId} setCommentLimit = {setCommentLimit} commentLimit = {commentLimit} 
-                    createCommentData = {createCommentData} setCreateCommentData = {setCreateCommentData}/>
+                  {props.currentUser ? <CreateComment postId = {props.postId} setCommentLimit = {setCommentLimit} commentLimit = {commentLimit} 
+                    createCommentData = {createCommentData} setCreateCommentData = {setCreateCommentData}/> : <div><strong>Please Login/Signup to comment.</strong></div>}
                 </div>
                 {loadedComments.length ? 
                 <div>
