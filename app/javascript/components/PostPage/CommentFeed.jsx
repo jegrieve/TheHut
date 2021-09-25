@@ -105,7 +105,7 @@ const CommentFeed = (props) => {
                 <div>
                     {loadedComments.map((el,i) => {
                     return (
-                        <div className = "comment" key = {i}>
+                        <div className = "comment" key = {"cf" + i}>
                             <div>
                                 <FeedComment data = {el} currentUser = {props.currentUser} submitEditComment = {submitEditComment}
                                 confirmDeleteComment = {confirmDeleteComment} />
