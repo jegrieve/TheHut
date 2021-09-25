@@ -178,9 +178,10 @@ const CreatePost = (props) => {
                     <div className = "form-group">
                     <label className = "create-label" htmlFor="select-board-value">Board</label>
                             <select id = "select-board-value" className = "form-control" name = "board" value = {selectBoardValue} onChange = {handleBoardChange}>
+                            <option selected disabled hidden>Choose a board </option>
                             {loadedBoards.map((el,i) => {
                                 return (
-                                    <option key = {i} value = {el.id}>{el.title}</option>
+                                    <option key = { "o" + i} value = {el.id}>{el.title}</option>
                                 )
                                     })}
                         </select>
