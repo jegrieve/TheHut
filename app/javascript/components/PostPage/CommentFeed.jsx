@@ -28,7 +28,6 @@ const CommentFeed = (props) => {
             fetch(url)
               .then(response => {
                 if (response.ok) {
-                  console.log(response);
                   return response.json();
                 }
                 throw new Error("Network response was not ok.");
@@ -36,7 +35,7 @@ const CommentFeed = (props) => {
               .then(response => {
                 setLoadedComments(response);
               })
-              .catch(() => console.log("error"));
+              .catch((error) => console.log(error));
         }
 
         const getMoreComments = (e) => {
