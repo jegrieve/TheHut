@@ -33,6 +33,7 @@ const CommentFeed = (props) => {
                 throw new Error("Network response was not ok.");
               })
               .then(response => {
+                console.log(response)
                 setLoadedComments(response);
               })
               .catch((error) => console.log(error));
