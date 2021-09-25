@@ -7,7 +7,7 @@ class Api::V1::CommentsController < ApplicationController
         elsif comments
             render json: comments.order(created_at: :desc).limit(params[:limit])
         else
-            render json: comments
+            render json: comments.errors
         end
     end
 

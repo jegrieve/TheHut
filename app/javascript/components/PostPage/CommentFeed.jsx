@@ -24,7 +24,7 @@ const CommentFeed = (props) => {
         }, [createCommentData])
 
         const getComments = () => {
-            const url = `/api/v1/comments/index?id=${props.postId}&limit=${commentLimit}`;
+            const url = `/api/v1/comments/index?id=${1}&limit=${commentLimit}`;
             fetch(url)
               .then(response => {
                 if (response.ok) {
