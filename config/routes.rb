@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  default_url_options :host => "https://young-eyrie-63766.herokuapp.com/"
+  default_url_options :host => "https://the-hut.herokuapp.com/"
   #change before pushing to production
   namespace :api do
     namespace :v1 do
