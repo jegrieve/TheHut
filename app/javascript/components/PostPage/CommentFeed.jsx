@@ -33,6 +33,7 @@ const CommentFeed = (props) => {
                 throw new Error("Network response was not ok.");
               })
               .then(response => {
+                setLoadedComments([]);
                 setLoadedComments(response);
               })
               .catch((error) => console.log(error));
@@ -99,7 +100,7 @@ const CommentFeed = (props) => {
             <div className = "comment-feed">
                 <div className = "create-comment">
                   {props.currentUser ? <CreateComment postId = {props.postId} setCommentLimit = {setCommentLimit} commentLimit = {commentLimit} 
-                    createCommentData = {createCommentData} setCreateCommentData = {setCreateCommentData}/> : <div><strong>Please Login/Signup to comment.</strong></div>}
+                    createCommentData = {createCommentData} setCreateCommentData = {setCreateCommentData} /> : <div><strong>Please Login/Signup to comment.</strong></div>}
                 </div>
                 {loadedComments.length ? 
                 <div>
