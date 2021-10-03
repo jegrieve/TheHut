@@ -42,9 +42,6 @@ TheHut is a social website where users can post text, images and videos. Posts c
 <div>
   Icons: Fontawesome
 </div>
-<div>
-  SVGs: Undraw
-</div>
   
 # Screenshots
 <div>Homepage</div>
