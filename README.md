@@ -6,11 +6,14 @@ TheHut is a social website where users can post text, images and videos. Posts c
 
 # Features
 <ul>
-  <li>
-    Create/Edit/Delete posts, users, comments, boards, comment replies.
+   <li>
+    User sign in and sign up with server-side authentication.
   </li>
   <li>
-    Posts can contain text/images/videos.
+    Create/Edit/Delete posts, users, comments, boards and comment replies.
+  </li>
+  <li>
+    Posts can contain text/images/videos. Active storage and AWS used to store images.
   </li>
   <li>
     Like posts, and sort by most-liked, newest, oldest, most-commented.
@@ -25,7 +28,7 @@ TheHut is a social website where users can post text, images and videos. Posts c
     View users, see their recent activity (likes, comments, posts) in the user activity feed.
   </li>
    <li>
-     Responsive website.
+     Responsive website, uses bootstrap grid system.
   </li>
 </ul>
 
@@ -40,7 +43,7 @@ TheHut is a social website where users can post text, images and videos. Posts c
   Web Services: AWS (image hosting), Heroku (app hosting)
 </div>
 <div>
-  Icons: Fontawesome
+  Icons: Font Awesome
 </div>
   
 # Screenshots
