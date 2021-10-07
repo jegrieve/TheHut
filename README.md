@@ -28,7 +28,7 @@ TheHut is a social website where users can post text, images and videos. Posts c
     View users, see their recent activity (likes, comments, posts) in the user activity feed.
   </li>
    <li>
-     Responsive website, uses bootstrap grid system.
+     Responsive website design, uses bootstrap grid system.
   </li>
 </ul>
 
